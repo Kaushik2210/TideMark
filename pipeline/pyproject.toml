@@ -31,6 +31,9 @@ tidemark-registry = "tidemark.registry:main"
 tidemark-water = "tidemark.runner:main"
 tidemark-monthly = "tidemark.monthly:main"
 tidemark-media = "tidemark.media:main"
+tidemark-rainfall = "tidemark.rainfall:main"
+tidemark-candidates = "tidemark.candidates:main"
+tidemark-anomalies = "tidemark.anomalies:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

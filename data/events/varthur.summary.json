@@ -1,0 +1,23 @@
+{
+ "lake_id": "varthur",
+ "months": 131,
+ "base_rate_follows_rain": 0.214,
+ "by_type": {
+  "chlorophyll_high_candidate": {
+   "n": 8,
+   "follows_rain": 0.125
+  },
+  "extent_high": {
+   "n": 2,
+   "follows_rain": 0.0
+  },
+  "floating_mat_candidate": {
+   "n": 19,
+   "follows_rain": 0.158
+  },
+  "rapid_change": {
+   "n": 5,
+   "follows_rain": 0.2
+  }
+ }
+}

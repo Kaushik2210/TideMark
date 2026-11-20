@@ -74,3 +74,12 @@ resets, Aug-Nov 2020) were retried until none remained.
 Otsu was accepted in only about 45% of Bellandur and 38% of Varthur months (96 of 102 for
 Ulsoor); the rest used the MNDWI > 0 fallback. Those lakes spend much of the year with little
 open water or heavy vegetation, so their fallback-month values are the least reliable.
+
+## Update after Phase 4: haze-contaminated months
+
+Phase 4 found that Sen2Cor's scene classification misses thin cloud and haze. In 49 of the 306
+optical months (Bellandur 12, Ulsoor 21, Varthur 16) the median SWIR reflectance over the
+pixels labelled water is above 0.04, where real water is 0.01-0.03, which marks them as cloud/haze
+contaminated (`qc_contaminated` in `data/candidates/<lake>.parquet`; details in
+docs/candidates.md). The water areas for those months in `data/timeseries` and
+`data/monthly` were not corrected and should be treated with caution.

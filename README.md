@@ -7,7 +7,7 @@ satellite data (Sentinel-1/-2, 2016 to present).
 > pipeline in this repo and carries its source and uncertainty. Bloom and foam outputs are
 > *candidates* only, never confirmed detections. Nothing here is a legal boundary determination.
 
-**Status: Phase 3 of 9 complete (Sentinel-2 optical plus Sentinel-1 radar fusion for Bellandur, Varthur, Ulsoor, 2016 to now; unvalidated).** Rainfall, bloom candidates and anomaly flags start in Phase 4.
+**Status: Phase 4 of 9 complete (rainfall, bloom and foam candidates, anomaly flags; all unvalidated).** Encroachment metrics and the Ghost Lakes layer start in Phase 5.
 
 ## What it will do
 

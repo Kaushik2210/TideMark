@@ -1,0 +1,23 @@
+{
+ "lake_id": "bellandur",
+ "months": 131,
+ "base_rate_follows_rain": 0.221,
+ "by_type": {
+  "chlorophyll_high_candidate": {
+   "n": 9,
+   "follows_rain": 0.111
+  },
+  "floating_mat_candidate": {
+   "n": 16,
+   "follows_rain": 0.25
+  },
+  "foam_candidate": {
+   "n": 1,
+   "follows_rain": 0.0
+  },
+  "rapid_change": {
+   "n": 7,
+   "follows_rain": 0.143
+  }
+ }
+}

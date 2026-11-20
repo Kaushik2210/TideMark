@@ -69,3 +69,33 @@ goes to `docs/media/`.
 ## D-015 Commits carry no tool attribution
 Commit messages and repository files contain no AI-tool trailers or contributor entries, per
 the maintainer's instruction.
+
+## D-016 Rainfall is regional ERA5 via Open-Meteo, events are 3-day totals >= 40 mm
+`models=era5` is pinned (era5_land returned only nulls for precipitation; "best match" mixes
+models). The ~28 km grid means rainfall is regional (Bellandur and Varthur share a cell). A rain
+event is a run of days whose trailing 3-day total is >= 40 mm (heuristic; about 5 per year).
+The free API is non-commercial only (CC BY 4.0, verified 2026-11-20): Tidemark must stay
+ad-free and subscription-free or move to a paid plan.
+
+## D-017 Bloom signals: FAI absolute, NDCI relative
+NDCI is 0.3-0.6 in nearly every month on all three lakes, so no absolute NDCI "bloom" threshold
+discriminates. NDCI is reported as a statistic and flagged only as top-decile for the lake's own
+record. FAI > 0.02 on at least 25% of water-core pixels gives the floating-mat candidate.
+
+## D-018 Haze QC from SWIR over "water", plus a cloud buffer for foam
+Sen2Cor's SCL misses thin cloud and haze: it labelled hazy pixels as water, and cloud edges
+looked like 6 ha of foam on Bellandur. Water absorbs SWIR (B11 ~0.01-0.03 in every clean month
+seen), so a median B11 over water above 0.04 marks the month contaminated (seen: 0.057, 0.219).
+Contaminated months are excluded from all optical-derived candidates and extent anomalies, and
+foam candidates within 50 m of masked cloud are dropped. The 0.04 cut and 50 m buffer rest on a
+handful of inspected scenes. This also means some Phase 2 optical water areas are less reliable.
+
+## D-019 SAR texture is not used for foam (deviation from the brief)
+The brief suggests SAR texture as a foam cue. The radar cache stores masks, not backscatter, and
+there is no calibration data for how foam looks in VV for these lakes, so a texture rule would be
+invented. Revisit after Phase 6 ground truth.
+
+## D-020 Inflow/outflow points come from OSM waterways, direction unverified
+Waterway lines (drain, stream, river, canal, ditch) ending within 40 m of a lake are labelled
+inflow or outflow from OSM digitising direction, which is usually downstream but not checked on
+the ground. Foam within 150 m of such a point is tagged `near_inlet`.

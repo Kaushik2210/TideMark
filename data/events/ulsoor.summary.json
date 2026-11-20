@@ -1,0 +1,23 @@
+{
+ "lake_id": "ulsoor",
+ "months": 131,
+ "base_rate_follows_rain": 0.176,
+ "by_type": {
+  "chlorophyll_high_candidate": {
+   "n": 8,
+   "follows_rain": 0.0
+  },
+  "extent_low": {
+   "n": 2,
+   "follows_rain": 0.0
+  },
+  "floating_mat_candidate": {
+   "n": 18,
+   "follows_rain": 0.111
+  },
+  "rapid_change": {
+   "n": 1,
+   "follows_rain": 0.0
+  }
+ }
+}

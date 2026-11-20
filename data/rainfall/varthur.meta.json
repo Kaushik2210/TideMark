@@ -1,0 +1,20 @@
+{
+ "lake_id": "varthur",
+ "requested_lat_lon": [
+  12.9472,
+  77.7363
+ ],
+ "grid_lat_lon": [
+  13.0,
+  77.75
+ ],
+ "model": "era5",
+ "source": "https://archive-api.open-meteo.com/v1/archive",
+ "licence": "CC BY 4.0 (Open-Meteo; free tier is non-commercial use only)",
+ "start": "2015-12-01",
+ "end": "2026-11-13",
+ "event_rule": "trailing 3-day total >= 40.0 mm",
+ "retrieved": "2026-11-20",
+ "days": 4001,
+ "missing_days": 0
+}
