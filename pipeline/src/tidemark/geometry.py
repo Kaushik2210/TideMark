@@ -27,6 +27,12 @@ def area_ha(geom: BaseGeometry) -> float:
     return projected.area / 10_000.0
 
 
+def reproject(geom: BaseGeometry, src_crs: str, dst_crs: str) -> BaseGeometry:
+    """Reproject a geometry between CRSs (x/y = lon/lat or easting/northing)."""
+    t = Transformer.from_crs(src_crs, dst_crs, always_xy=True)
+    return shapely.transform(geom, lambda c: np.column_stack(t.transform(c[:, 0], c[:, 1])))
+
+
 def _coords(geometry: list[dict]) -> list[tuple[float, float]]:
     return [(p["lon"], p["lat"]) for p in geometry]
 

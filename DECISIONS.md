@@ -33,6 +33,24 @@ Overpass (`overpass.py`, with mirror rotation, backoff and an on-disk cache) is 
 `tidemark-registry discover`. Both clients use a generic User-Agent. Because the OSM API has no
 database timestamp, `lakes.geojson` records each feature's latest edit time (`osm_last_edit`).
 
-## D-007 Commits carry no tool attribution
+## D-008 Per-scene Otsu needs a plausibility guard
+Plain per-scene Otsu on MNDWI split vegetation classes into fake "water" when a lake was
+mostly vegetated or dry (Varthur, Feb 2024). Otsu is now accepted only when bimodal and
+inside [-0.15, 0.35]; otherwise MNDWI > 0 is used and the row is flagged. Chosen after
+looking at real scenes, so it is a heuristic to be tested in Phase 6.
+
+## D-009 Scene choice by lake-level cloud, via SCL
+Months are resolved by the cloud/no-data fraction over the lake polygon, not by scene-level
+`eo:cloud_cover`, after finding a 0.08%-cloud scene with no data over Varthur.
+
+## D-010 Months without a usable scene stay in the series
+Rows carry `status` (`ok`, `no_scene`, `too_cloudy`, `error`). Gaps are data, not omissions;
+Phase 3 fills cloudy months with Sentinel-1.
+
+## D-011 Reflectance offset derived from processing baseline
+Items and assets expose no offset, so DN -> reflectance subtracts 1000 for baseline >= 04.00.
+This follows ESA's processing-baseline convention; there is a unit test for both eras.
+
+## D-012 Commits carry no tool attribution
 Commit messages and repository files contain no AI-tool trailers or contributor entries, per
 the maintainer's instruction.

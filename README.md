@@ -7,7 +7,7 @@ satellite data (Sentinel-1/-2, 2016 to present).
 > pipeline in this repo and carries its source and uncertainty. Bloom and foam outputs are
 > *candidates* only, never confirmed detections. Nothing here is a legal boundary determination.
 
-**Status: Phase 1 of 9 complete (scaffold and lake registry for Bellandur, Varthur, Ulsoor).** Satellite processing starts in Phase 2.
+**Status: Phase 2 of 9 complete (Sentinel-2 water extent for Bellandur, Varthur, Ulsoor, 2016 to now; unvalidated).** Radar fusion for cloudy months starts in Phase 3.
 
 ## What it will do
 

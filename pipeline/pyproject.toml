@@ -6,7 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "tidemark"
 version = "0.1.0"
 description = "Satellite-derived health and encroachment tracking for Bengaluru lakes."
-readme = "../README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 dependencies = [
@@ -14,6 +13,13 @@ dependencies = [
   "pyproj>=3.6",
   "requests>=2.31",
   "pyyaml>=6.0",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "pandas>=2.1",
+  "pyarrow>=14",
+  "rasterio>=1.3",
+  "pystac-client>=0.8",
+  "planetary-computer>=1.0",
 ]
 
 [project.optional-dependencies]
@@ -21,6 +27,7 @@ dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]
 tidemark-registry = "tidemark.registry:main"
+tidemark-water = "tidemark.runner:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
