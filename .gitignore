@@ -1,0 +1,30 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# caches (large raw downloads; derived outputs under data/ are committed)
+.cache/
+pipeline/.cache/
+
+# node / next
+node_modules/
+web/.next/
+web/out/
+web/test-results/
+web/playwright-report/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

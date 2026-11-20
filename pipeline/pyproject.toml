@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tidemark"
+version = "0.1.0"
+description = "Satellite-derived health and encroachment tracking for Bengaluru lakes."
+readme = "../README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+  "shapely>=2.0",
+  "pyproj>=3.6",
+  "requests>=2.31",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+tidemark-registry = "tidemark.registry:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

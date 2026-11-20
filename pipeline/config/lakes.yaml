@@ -1,0 +1,32 @@
+# Lake registry configuration.
+# Adding a lake = adding an entry here (then `tidemark-registry build`).
+#
+# osm: list of OpenStreetMap features (way/ID or relation/ID) whose polygons are
+#      unioned into the lake. Pin IDs after checking them with
+#      `tidemark-registry discover "<regex>"`. Never guess an ID.
+# status: "pinned"  -> IDs verified by a human/pipeline run
+#         "pending" -> still to be resolved; builder skips it and says so.
+city: Bengaluru
+bbox: [12.70, 77.40, 13.20, 77.80]   # south, west, north, east (Overpass order)
+
+lakes:
+  - id: bellandur
+    name: Bellandur Lake
+    name_kn: ಬೆಳ್ಳಂದೂರು ಕೆರೆ
+    osm: ["relation/19751547"]
+    status: pinned
+    notes: >-
+      OSM polygon only (a separate, smaller feature, way/27993463 Chikka Bellanduru,
+      is deliberately excluded). OSM area is a mapped outline, not an official figure.
+
+  - id: varthur
+    name: Varthur Lake
+    name_kn: ವರ್ತೂರು ಕೆರೆ
+    osm: ["relation/19306126"]
+    status: pinned
+
+  - id: ulsoor
+    name: Ulsoor Lake (Halasuru Kere)
+    name_kn: ಹಲಸೂರು ಕೆರೆ
+    osm: ["relation/1857615"]
+    status: pinned
