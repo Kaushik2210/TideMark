@@ -7,7 +7,7 @@ satellite data (Sentinel-1/-2, 2016 to present).
 > pipeline in this repo and carries its source and uncertainty. Bloom and foam outputs are
 > *candidates* only, never confirmed detections. Nothing here is a legal boundary determination.
 
-**Status: Phase 4 of 9 complete (rainfall, bloom and foam candidates, anomaly flags; all unvalidated).** Encroachment metrics and the Ghost Lakes layer start in Phase 5.
+**Status: Phase 5 of 9 complete (encroachment candidates and approximate Ghost Lakes; all unvalidated).** The validation set and VALIDATION.md come next in Phase 6.
 
 ## What it will do
 
@@ -23,6 +23,12 @@ Varthur Lake, largest vs smallest observed open-water extent (research estimate,
 ![Varthur Lake: two maps showing mapped water extent in its largest and smallest observed months](docs/media/varthur/before_after.png)
 
 More images and 2016-2026 time-lapse videos for each lake are in [docs/media](docs/media/README.md).
+
+Encroachment candidates (Bellandur): water that was usually present in 2016-2018 and is almost never
+present now, against built-up references. No lake shows water replaced by buildings in this data
+(details and limits in [docs/encroachment.md](docs/encroachment.md)):
+
+![Bellandur Lake: early and recent water frequency, and lost water against built-up references](docs/media/bellandur/encroachment.png)
 
 ## Repository layout
 

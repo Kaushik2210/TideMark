@@ -1,0 +1,188 @@
+{
+ "lake_id": "varthur",
+ "outline_ha": 154.32,
+ "outline_source": "OpenStreetMap (no official boundary available)",
+ "periods": {
+  "early": [
+   2016,
+   2017,
+   2018
+  ],
+  "recent": [
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "early_clean_months": 23,
+  "recent_clean_months": 33
+ },
+ "wet_footprint_early_ha": 80.85,
+ "wet_footprint_recent_ha": 79.17,
+ "lost_water_ha": 1.54,
+ "lost_water_now_worldcover_2021": {
+  "tree cover": 0.006,
+  "shrubland": 0.013,
+  "grassland": 0.013,
+  "cropland": 0.968
+ },
+ "lost_water_now_building_share": 0.0,
+ "lost_water_pct_of_early_footprint": 1.9,
+ "lost_water_now_built_ha": {
+  "central_either": 0.0,
+  "central_both": 0.0,
+  "low": 0.0,
+  "high": 0.0
+ },
+ "lost_water_now_built_pct_of_early_footprint": {
+  "central_either": 0.0,
+  "low": 0.0,
+  "high": 0.0
+ },
+ "sensitivity_grid": [
+  {
+   "early_min": 0.5,
+   "recent_max": 0.0,
+   "lost_ha": 0.07,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.5,
+   "recent_max": 0.05,
+   "lost_ha": 0.12,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.5,
+   "recent_max": 0.15,
+   "lost_ha": 0.75,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.0,
+   "lost_ha": 0.81,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.05,
+   "lost_ha": 1.54,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.15,
+   "lost_ha": 6.0,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.0,
+   "lost_ha": 2.66,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.05,
+   "lost_ha": 4.67,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.15,
+   "lost_ha": 13.76,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  }
+ ],
+ "snapshot": {
+  "worldcover_2020": {
+   "inside_outline": {
+    "built_up_share": 0.0,
+    "classes": {
+     "tree cover": 0.381,
+     "shrubland": 0.243,
+     "grassland": 0.013,
+     "cropland": 0.334,
+     "built-up": 0.0,
+     "bare / sparse vegetation": 0.012,
+     "permanent water bodies": 0.003,
+     "herbaceous wetland": 0.013
+    }
+   },
+   "ring_100_300m": {
+    "built_up_share": 0.299,
+    "classes": {
+     "tree cover": 0.142,
+     "shrubland": 0.126,
+     "grassland": 0.008,
+     "cropland": 0.285,
+     "built-up": 0.299,
+     "bare / sparse vegetation": 0.129,
+     "permanent water bodies": 0.001,
+     "herbaceous wetland": 0.011
+    }
+   }
+  },
+  "worldcover_2021": {
+   "inside_outline": {
+    "built_up_share": 0.0,
+    "classes": {
+     "tree cover": 0.01,
+     "shrubland": 0.043,
+     "grassland": 0.036,
+     "cropland": 0.876,
+     "built-up": 0.0,
+     "bare / sparse vegetation": 0.018,
+     "permanent water bodies": 0.018
+    }
+   },
+   "ring_100_300m": {
+    "built_up_share": 0.325,
+    "classes": {
+     "tree cover": 0.225,
+     "shrubland": 0.098,
+     "grassland": 0.046,
+     "cropland": 0.291,
+     "built-up": 0.325,
+     "bare / sparse vegetation": 0.016
+    }
+   }
+  },
+  "building_footprints": {
+   "imagery": "2017-03-30 to 2021-07-25",
+   "inside_outline_share": 0.0,
+   "ring_0_100m_share": 0.0026,
+   "ring_100_300m_share": 0.0384,
+   "inside_outline_ha": 0.0
+  }
+ },
+ "building_footprints_in_window": 5350
+}

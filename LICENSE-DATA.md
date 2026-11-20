@@ -20,3 +20,10 @@ Derived data inherits obligations from its inputs. In particular:
 - Other sources are listed, with their licences, in DATA_SOURCES.md.
 
 Where the two conflict, the stricter upstream licence governs that specific file.
+
+## Exception: Ghost Lakes
+
+`data/ghost_lakes.geojson` is derived from Wikipedia text and is therefore released under
+**CC BY-SA 4.0** (share-alike), not CC BY. It also carries WorldCover-derived fields (CC BY 4.0).
+Attribute: "Wikipedia contributors, 'Lakes in Bengaluru' (revision recorded per feature), CC BY-SA 4.0".
+It is kept as a separate file so that its share-alike terms do not attach to the other datasets.

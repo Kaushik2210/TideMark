@@ -1,0 +1,993 @@
+{
+ "type": "FeatureCollection",
+ "name": "tidemark_ghost_lakes",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Akkithimmanahalli",
+    "occupied_today_by": "sports stadium, Bangalore Hockey Stadium",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     226
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.768,
+    "worldcover_2020_classes": {
+     "tree cover": 0.148,
+     "shrubland": 0.015,
+     "grassland": 0.007,
+     "cropland": 0.012,
+     "built-up": 0.768,
+     "bare / sparse vegetation": 0.05
+    },
+    "worldcover_2021_builtup_frac": 0.774,
+    "worldcover_2021_classes": {
+     "tree cover": 0.194,
+     "shrubland": 0.001,
+     "grassland": 0.006,
+     "cropland": 0.011,
+     "built-up": 0.774,
+     "bare / sparse vegetation": 0.013
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6004,
+     12.9617
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Challaghatta",
+    "occupied_today_by": "Golfing",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     227
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.292,
+    "worldcover_2020_classes": {
+     "tree cover": 0.264,
+     "shrubland": 0.012,
+     "grassland": 0.413,
+     "built-up": 0.292,
+     "bare / sparse vegetation": 0.006,
+     "permanent water bodies": 0.012
+    },
+    "worldcover_2021_builtup_frac": 0.294,
+    "worldcover_2021_classes": {
+     "tree cover": 0.213,
+     "shrubland": 0.002,
+     "grassland": 0.468,
+     "cropland": 0.017,
+     "built-up": 0.294,
+     "bare / sparse vegetation": 0.006
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6454,
+     12.9522
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dasarahalli",
+    "occupied_today_by": "sports complex, Dr. B.R. Ambedkar Stadium",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     228,
+     229
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.86,
+    "worldcover_2020_classes": {
+     "tree cover": 0.093,
+     "shrubland": 0.001,
+     "grassland": 0.007,
+     "cropland": 0.016,
+     "built-up": 0.86,
+     "bare / sparse vegetation": 0.023
+    },
+    "worldcover_2021_builtup_frac": 0.843,
+    "worldcover_2021_classes": {
+     "tree cover": 0.126,
+     "shrubland": 0.001,
+     "cropland": 0.013,
+     "built-up": 0.843,
+     "bare / sparse vegetation": 0.017
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5437,
+     12.984
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Dharmambudhi",
+    "occupied_today_by": "Majestic bus stand",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     230
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.885,
+    "worldcover_2020_classes": {
+     "tree cover": 0.084,
+     "shrubland": 0.004,
+     "grassland": 0.004,
+     "cropland": 0.005,
+     "built-up": 0.885,
+     "bare / sparse vegetation": 0.018
+    },
+    "worldcover_2021_builtup_frac": 0.899,
+    "worldcover_2021_classes": {
+     "tree cover": 0.099,
+     "built-up": 0.899,
+     "bare / sparse vegetation": 0.002
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5721,
+     12.9779
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Domlur",
+    "occupied_today_by": "The Energy and Resource Institute (TERI), BDA layout",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     231,
+     45
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.686,
+    "worldcover_2020_classes": {
+     "tree cover": 0.28,
+     "shrubland": 0.014,
+     "grassland": 0.001,
+     "cropland": 0.013,
+     "built-up": 0.686,
+     "bare / sparse vegetation": 0.006
+    },
+    "worldcover_2021_builtup_frac": 0.715,
+    "worldcover_2021_classes": {
+     "tree cover": 0.281,
+     "shrubland": 0.0,
+     "grassland": 0.003,
+     "built-up": 0.715
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6353,
+     12.9637
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Jakkarayana",
+    "occupied_today_by": "sports ground",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     232,
+     233
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.867,
+    "worldcover_2020_classes": {
+     "tree cover": 0.069,
+     "shrubland": 0.009,
+     "grassland": 0.001,
+     "cropland": 0.002,
+     "built-up": 0.867,
+     "bare / sparse vegetation": 0.041,
+     "permanent water bodies": 0.011
+    },
+    "worldcover_2021_builtup_frac": 0.889,
+    "worldcover_2021_classes": {
+     "tree cover": 0.104,
+     "shrubland": 0.005,
+     "grassland": 0.0,
+     "cropland": 0.0,
+     "built-up": 0.889,
+     "bare / sparse vegetation": 0.002
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5709,
+     12.9867
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Jaraganahalli",
+    "occupied_today_by": null,
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     234
+    ],
+    "wikipedia_asterisk_unexplained": true,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.896,
+    "worldcover_2020_classes": {
+     "tree cover": 0.031,
+     "shrubland": 0.005,
+     "grassland": 0.005,
+     "cropland": 0.007,
+     "built-up": 0.896,
+     "bare / sparse vegetation": 0.056
+    },
+    "worldcover_2021_builtup_frac": 0.934,
+    "worldcover_2021_classes": {
+     "tree cover": 0.039,
+     "grassland": 0.007,
+     "cropland": 0.01,
+     "built-up": 0.934,
+     "bare / sparse vegetation": 0.009
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.572,
+     12.9018
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Kadugondanahalli",
+    "occupied_today_by": "Ambedkar Medical College",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     45
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.907,
+    "worldcover_2020_classes": {
+     "tree cover": 0.049,
+     "shrubland": 0.017,
+     "grassland": 0.025,
+     "built-up": 0.907,
+     "bare / sparse vegetation": 0.002
+    },
+    "worldcover_2021_builtup_frac": 0.922,
+    "worldcover_2021_classes": {
+     "tree cover": 0.048,
+     "grassland": 0.015,
+     "cropland": 0.007,
+     "built-up": 0.922,
+     "bare / sparse vegetation": 0.008
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6136,
+     13.0247
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Kamakshipalya",
+    "occupied_today_by": "sports ground",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     235,
+     236
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.936,
+    "worldcover_2020_classes": {
+     "tree cover": 0.006,
+     "shrubland": 0.001,
+     "cropland": 0.003,
+     "built-up": 0.936,
+     "bare / sparse vegetation": 0.054
+    },
+    "worldcover_2021_builtup_frac": 0.974,
+    "worldcover_2021_classes": {
+     "tree cover": 0.016,
+     "grassland": 0.002,
+     "built-up": 0.974,
+     "bare / sparse vegetation": 0.008
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5294,
+     12.9843
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Karanji",
+    "occupied_today_by": "Gandhi Bazar area",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     237
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.838,
+    "worldcover_2020_classes": {
+     "tree cover": 0.123,
+     "shrubland": 0.003,
+     "grassland": 0.001,
+     "cropland": 0.004,
+     "built-up": 0.838,
+     "bare / sparse vegetation": 0.032
+    },
+    "worldcover_2021_builtup_frac": 0.823,
+    "worldcover_2021_classes": {
+     "tree cover": 0.174,
+     "shrubland": 0.001,
+     "built-up": 0.823,
+     "bare / sparse vegetation": 0.001
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5693,
+     12.9456
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Konena Agrahara",
+    "occupied_today_by": "multiple buildings",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     238,
+     239,
+     240
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.768,
+    "worldcover_2020_classes": {
+     "tree cover": 0.148,
+     "shrubland": 0.006,
+     "grassland": 0.04,
+     "cropland": 0.012,
+     "built-up": 0.768,
+     "bare / sparse vegetation": 0.026
+    },
+    "worldcover_2021_builtup_frac": 0.75,
+    "worldcover_2021_classes": {
+     "tree cover": 0.178,
+     "shrubland": 0.002,
+     "grassland": 0.001,
+     "cropland": 0.062,
+     "built-up": 0.75,
+     "bare / sparse vegetation": 0.006
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6604,
+     12.9578
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Koramangala",
+    "occupied_today_by": "multiple buildings, residential, National Dairy Research Institute",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     45
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.562,
+    "worldcover_2020_classes": {
+     "tree cover": 0.261,
+     "shrubland": 0.13,
+     "grassland": 0.002,
+     "cropland": 0.007,
+     "built-up": 0.562,
+     "bare / sparse vegetation": 0.02,
+     "permanent water bodies": 0.018
+    },
+    "worldcover_2021_builtup_frac": 0.58,
+    "worldcover_2021_classes": {
+     "tree cover": 0.328,
+     "shrubland": 0.078,
+     "grassland": 0.008,
+     "cropland": 0.004,
+     "built-up": 0.58,
+     "bare / sparse vegetation": 0.002
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6153,
+     12.9492
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Millers",
+    "occupied_today_by": "multiple buildings, hospitals, IT companies, schools, residential buildings",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     26,
+     241,
+     242
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.683,
+    "worldcover_2020_classes": {
+     "tree cover": 0.301,
+     "shrubland": 0.002,
+     "grassland": 0.007,
+     "cropland": 0.002,
+     "built-up": 0.683,
+     "bare / sparse vegetation": 0.004
+    },
+    "worldcover_2021_builtup_frac": 0.71,
+    "worldcover_2021_classes": {
+     "tree cover": 0.284,
+     "cropland": 0.006,
+     "built-up": 0.71,
+     "bare / sparse vegetation": 0.0
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5962,
+     12.9904
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Nagashettihalli",
+    "occupied_today_by": "multiple buildings, space department, residential",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     45,
+     243
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.711,
+    "worldcover_2020_classes": {
+     "tree cover": 0.265,
+     "shrubland": 0.001,
+     "grassland": 0.002,
+     "cropland": 0.015,
+     "built-up": 0.711,
+     "bare / sparse vegetation": 0.006
+    },
+    "worldcover_2021_builtup_frac": 0.732,
+    "worldcover_2021_classes": {
+     "tree cover": 0.261,
+     "grassland": 0.002,
+     "cropland": 0.005,
+     "built-up": 0.732,
+     "bare / sparse vegetation": 0.001
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5701,
+     13.0346
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Parangipalya",
+    "occupied_today_by": "Kaggadasapura Lake",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     243
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.845,
+    "worldcover_2020_classes": {
+     "tree cover": 0.068,
+     "shrubland": 0.034,
+     "grassland": 0.018,
+     "cropland": 0.002,
+     "built-up": 0.845,
+     "bare / sparse vegetation": 0.034
+    },
+    "worldcover_2021_builtup_frac": 0.864,
+    "worldcover_2021_classes": {
+     "tree cover": 0.077,
+     "shrubland": 0.004,
+     "grassland": 0.007,
+     "cropland": 0.043,
+     "built-up": 0.864,
+     "bare / sparse vegetation": 0.006
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6424,
+     12.9092
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Puttennahalli",
+    "occupied_today_by": "J.P. Nagar 6th phase",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     244
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.945,
+    "worldcover_2020_classes": {
+     "tree cover": 0.014,
+     "grassland": 0.0,
+     "cropland": 0.02,
+     "built-up": 0.945,
+     "bare / sparse vegetation": 0.021
+    },
+    "worldcover_2021_builtup_frac": 0.941,
+    "worldcover_2021_classes": {
+     "tree cover": 0.052,
+     "grassland": 0.002,
+     "built-up": 0.941,
+     "bare / sparse vegetation": 0.004
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5704,
+     12.8988
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Ramshetty Palya Kere",
+    "occupied_today_by": "sports playground, residential",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.813,
+    "worldcover_2020_classes": {
+     "tree cover": 0.156,
+     "grassland": 0.0,
+     "cropland": 0.004,
+     "built-up": 0.813,
+     "bare / sparse vegetation": 0.026
+    },
+    "worldcover_2021_builtup_frac": 0.824,
+    "worldcover_2021_classes": {
+     "tree cover": 0.164,
+     "grassland": 0.002,
+     "built-up": 0.824,
+     "bare / sparse vegetation": 0.01
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.558,
+     13.0079
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Sampangi",
+    "occupied_today_by": "sports stadium, Sree Kanteerava Stadium , educational institutions, hospitals, Cubbon Park",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     30
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.565,
+    "worldcover_2020_classes": {
+     "tree cover": 0.414,
+     "shrubland": 0.004,
+     "grassland": 0.003,
+     "cropland": 0.004,
+     "built-up": 0.565,
+     "bare / sparse vegetation": 0.01
+    },
+    "worldcover_2021_builtup_frac": 0.546,
+    "worldcover_2021_classes": {
+     "tree cover": 0.453,
+     "shrubland": 0.001,
+     "built-up": 0.546,
+     "bare / sparse vegetation": 0.0
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5905,
+     12.9683
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Saneguruvana halli",
+    "occupied_today_by": "park, Karnataka State Pollution Control Board buildings",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     245,
+     246
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.852,
+    "worldcover_2020_classes": {
+     "tree cover": 0.071,
+     "grassland": 0.004,
+     "cropland": 0.0,
+     "built-up": 0.852,
+     "bare / sparse vegetation": 0.072
+    },
+    "worldcover_2021_builtup_frac": 0.855,
+    "worldcover_2021_classes": {
+     "tree cover": 0.11,
+     "grassland": 0.004,
+     "built-up": 0.855,
+     "bare / sparse vegetation": 0.031
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5441,
+     12.9907
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Shoolay",
+    "occupied_today_by": "sports stadium, Bangalore Football Stadium",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     247
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.805,
+    "worldcover_2020_classes": {
+     "tree cover": 0.124,
+     "shrubland": 0.019,
+     "grassland": 0.013,
+     "cropland": 0.022,
+     "built-up": 0.805,
+     "bare / sparse vegetation": 0.017
+    },
+    "worldcover_2021_builtup_frac": 0.787,
+    "worldcover_2021_classes": {
+     "tree cover": 0.18,
+     "shrubland": 0.0,
+     "grassland": 0.019,
+     "cropland": 0.005,
+     "built-up": 0.787,
+     "bare / sparse vegetation": 0.009
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6112,
+     12.9694
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Siddikatte",
+    "occupied_today_by": "KR Market",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     26
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.923,
+    "worldcover_2020_classes": {
+     "tree cover": 0.055,
+     "cropland": 0.009,
+     "built-up": 0.923,
+     "bare / sparse vegetation": 0.014
+    },
+    "worldcover_2021_builtup_frac": 0.94,
+    "worldcover_2021_classes": {
+     "tree cover": 0.051,
+     "cropland": 0.004,
+     "built-up": 0.94,
+     "bare / sparse vegetation": 0.005
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5761,
+     12.9656
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Srinivagilu",
+    "occupied_today_by": "residential, office, restaurants",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     248
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.967,
+    "worldcover_2020_classes": {
+     "tree cover": 0.019,
+     "shrubland": 0.005,
+     "cropland": 0.003,
+     "built-up": 0.967,
+     "bare / sparse vegetation": 0.006
+    },
+    "worldcover_2021_builtup_frac": 0.974,
+    "worldcover_2021_classes": {
+     "tree cover": 0.023,
+     "shrubland": 0.001,
+     "grassland": 0.002,
+     "cropland": 0.0,
+     "built-up": 0.974,
+     "bare / sparse vegetation": 0.0
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.6311,
+     12.9366
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Sunkal",
+    "occupied_today_by": "Sunnakal tank; Shantinagar bus stand, bus depot, residential",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     249
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.812,
+    "worldcover_2020_classes": {
+     "tree cover": 0.129,
+     "shrubland": 0.005,
+     "grassland": 0.006,
+     "cropland": 0.001,
+     "built-up": 0.812,
+     "bare / sparse vegetation": 0.035,
+     "permanent water bodies": 0.012
+    },
+    "worldcover_2021_builtup_frac": 0.847,
+    "worldcover_2021_classes": {
+     "tree cover": 0.149,
+     "cropland": 0.001,
+     "built-up": 0.847,
+     "bare / sparse vegetation": 0.002
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5933,
+     12.9551
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Venkatarayana",
+    "occupied_today_by": "residential layout",
+    "geometry_kind": "approximate_point",
+    "location_approximate": true,
+    "source": "Wikipedia, 'Lakes in Bengaluru', Former reservoirs table, revision 1376698984",
+    "source_url": "https://en.wikipedia.org/w/index.php?title=Lakes_in_Bengaluru&oldid=1376698984",
+    "wikipedia_ref_numbers": [
+     250,
+     251,
+     252
+    ],
+    "wikipedia_asterisk_unexplained": false,
+    "licence": "CC BY-SA 4.0 (Wikipedia text); WorldCover fields CC BY 4.0",
+    "retrieved": "2026-11-20",
+    "worldcover_2020_builtup_frac": 0.474,
+    "worldcover_2020_classes": {
+     "tree cover": 0.028,
+     "shrubland": 0.133,
+     "grassland": 0.105,
+     "cropland": 0.035,
+     "built-up": 0.474,
+     "bare / sparse vegetation": 0.226
+    },
+    "worldcover_2021_builtup_frac": 0.544,
+    "worldcover_2021_classes": {
+     "tree cover": 0.034,
+     "shrubland": 0.065,
+     "grassland": 0.23,
+     "cropland": 0.119,
+     "built-up": 0.544,
+     "bare / sparse vegetation": 0.008
+    }
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     77.5448,
+     12.8902
+    ]
+   }
+  }
+ ],
+ "note": "Points are approximate; the table says it is not exhaustive. No lake outline is implied."
+}

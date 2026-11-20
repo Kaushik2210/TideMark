@@ -1,0 +1,185 @@
+{
+ "lake_id": "ulsoor",
+ "outline_ha": 37.87,
+ "outline_source": "OpenStreetMap (no official boundary available)",
+ "periods": {
+  "early": [
+   2016,
+   2017,
+   2018
+  ],
+  "recent": [
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "early_clean_months": 20,
+  "recent_clean_months": 30
+ },
+ "wet_footprint_early_ha": 30.09,
+ "wet_footprint_recent_ha": 32.17,
+ "lost_water_ha": 0.03,
+ "lost_water_now_worldcover_2021": {
+  "tree cover": 0.667,
+  "permanent water bodies": 0.333
+ },
+ "lost_water_now_building_share": 0.0,
+ "lost_water_pct_of_early_footprint": 0.1,
+ "lost_water_now_built_ha": {
+  "central_either": 0.0,
+  "central_both": 0.0,
+  "low": 0.0,
+  "high": 0.01
+ },
+ "lost_water_now_built_pct_of_early_footprint": {
+  "central_either": 0.0,
+  "low": 0.0,
+  "high": 0.0
+ },
+ "sensitivity_grid": [
+  {
+   "early_min": 0.5,
+   "recent_max": 0.0,
+   "lost_ha": 0.0,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.5,
+   "recent_max": 0.05,
+   "lost_ha": 0.0,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.5,
+   "recent_max": 0.15,
+   "lost_ha": 0.0,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.0,
+   "lost_ha": 0.01,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.05,
+   "lost_ha": 0.03,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.15,
+   "lost_ha": 0.08,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.01,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.01
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.0,
+   "lost_ha": 0.14,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.05,
+   "lost_ha": 0.17,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.15,
+   "lost_ha": 0.33,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.01,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.01
+  }
+ ],
+ "snapshot": {
+  "worldcover_2020": {
+   "inside_outline": {
+    "built_up_share": 0.001,
+    "classes": {
+     "tree cover": 0.074,
+     "shrubland": 0.008,
+     "grassland": 0.009,
+     "cropland": 0.045,
+     "built-up": 0.001,
+     "bare / sparse vegetation": 0.002,
+     "permanent water bodies": 0.861
+    }
+   },
+   "ring_100_300m": {
+    "built_up_share": 0.647,
+    "classes": {
+     "tree cover": 0.262,
+     "shrubland": 0.013,
+     "grassland": 0.002,
+     "cropland": 0.026,
+     "built-up": 0.647,
+     "bare / sparse vegetation": 0.046,
+     "permanent water bodies": 0.004
+    }
+   }
+  },
+  "worldcover_2021": {
+   "inside_outline": {
+    "built_up_share": 0.001,
+    "classes": {
+     "tree cover": 0.064,
+     "shrubland": 0.062,
+     "grassland": 0.001,
+     "cropland": 0.002,
+     "built-up": 0.001,
+     "bare / sparse vegetation": 0.001,
+     "permanent water bodies": 0.87
+    }
+   },
+   "ring_100_300m": {
+    "built_up_share": 0.676,
+    "classes": {
+     "tree cover": 0.261,
+     "shrubland": 0.006,
+     "grassland": 0.013,
+     "cropland": 0.034,
+     "built-up": 0.676,
+     "bare / sparse vegetation": 0.007,
+     "permanent water bodies": 0.003
+    }
+   }
+  },
+  "building_footprints": {
+   "imagery": "2017-03-30 to 2021-07-25",
+   "inside_outline_share": 0.0011,
+   "ring_0_100m_share": 0.1087,
+   "ring_100_300m_share": 0.2637,
+   "inside_outline_ha": 0.04
+  }
+ },
+ "building_footprints_in_window": 9643
+}

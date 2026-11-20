@@ -1,0 +1,191 @@
+{
+ "lake_id": "bellandur",
+ "outline_ha": 315.36,
+ "outline_source": "OpenStreetMap (no official boundary available)",
+ "periods": {
+  "early": [
+   2016,
+   2017,
+   2018
+  ],
+  "recent": [
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "early_clean_months": 23,
+  "recent_clean_months": 30
+ },
+ "wet_footprint_early_ha": 136.29,
+ "wet_footprint_recent_ha": 106.28,
+ "lost_water_ha": 40.42,
+ "lost_water_now_worldcover_2021": {
+  "tree cover": 0.176,
+  "shrubland": 0.223,
+  "grassland": 0.015,
+  "cropland": 0.585,
+  "permanent water bodies": 0.0
+ },
+ "lost_water_now_building_share": 0.0,
+ "lost_water_pct_of_early_footprint": 29.7,
+ "lost_water_now_built_ha": {
+  "central_either": 0.0,
+  "central_both": 0.0,
+  "low": 0.0,
+  "high": 0.0
+ },
+ "lost_water_now_built_pct_of_early_footprint": {
+  "central_either": 0.0,
+  "low": 0.0,
+  "high": 0.0
+ },
+ "sensitivity_grid": [
+  {
+   "early_min": 0.5,
+   "recent_max": 0.0,
+   "lost_ha": 26.91,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.5,
+   "recent_max": 0.05,
+   "lost_ha": 33.88,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.5,
+   "recent_max": 0.15,
+   "lost_ha": 45.04,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.0,
+   "lost_ha": 31.83,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.05,
+   "lost_ha": 40.42,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.25,
+   "recent_max": 0.15,
+   "lost_ha": 53.54,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.0,
+   "lost_ha": 41.07,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.05,
+   "lost_ha": 51.04,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  },
+  {
+   "early_min": 0.1,
+   "recent_max": 0.15,
+   "lost_ha": 65.9,
+   "built_worldcover_ha": 0.0,
+   "built_buildings_ha": 0.0,
+   "built_both_ha": 0.0,
+   "built_either_ha": 0.0
+  }
+ ],
+ "snapshot": {
+  "worldcover_2020": {
+   "inside_outline": {
+    "built_up_share": 0.001,
+    "classes": {
+     "tree cover": 0.399,
+     "shrubland": 0.255,
+     "grassland": 0.017,
+     "cropland": 0.318,
+     "built-up": 0.001,
+     "bare / sparse vegetation": 0.002,
+     "permanent water bodies": 0.007,
+     "herbaceous wetland": 0.001
+    }
+   },
+   "ring_100_300m": {
+    "built_up_share": 0.318,
+    "classes": {
+     "tree cover": 0.318,
+     "shrubland": 0.239,
+     "grassland": 0.011,
+     "cropland": 0.069,
+     "built-up": 0.318,
+     "bare / sparse vegetation": 0.038,
+     "permanent water bodies": 0.004,
+     "herbaceous wetland": 0.003
+    }
+   }
+  },
+  "worldcover_2021": {
+   "inside_outline": {
+    "built_up_share": 0.0,
+    "classes": {
+     "tree cover": 0.221,
+     "shrubland": 0.154,
+     "grassland": 0.01,
+     "cropland": 0.598,
+     "built-up": 0.0,
+     "bare / sparse vegetation": 0.0,
+     "permanent water bodies": 0.002,
+     "herbaceous wetland": 0.015
+    }
+   },
+   "ring_100_300m": {
+    "built_up_share": 0.303,
+    "classes": {
+     "tree cover": 0.413,
+     "shrubland": 0.141,
+     "grassland": 0.019,
+     "cropland": 0.108,
+     "built-up": 0.303,
+     "bare / sparse vegetation": 0.009,
+     "permanent water bodies": 0.007
+    }
+   }
+  },
+  "building_footprints": {
+   "imagery": "2017-03-30 to 2021-07-25",
+   "inside_outline_share": 0.0,
+   "ring_0_100m_share": 0.026,
+   "ring_100_300m_share": 0.1099,
+   "inside_outline_ha": 0.01
+  }
+ },
+ "building_footprints_in_window": 9786
+}

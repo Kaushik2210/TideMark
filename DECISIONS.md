@@ -99,3 +99,35 @@ invented. Revisit after Phase 6 ground truth.
 Waterway lines (drain, stream, river, canal, ditch) ending within 40 m of a lake are labelled
 inflow or outflow from OSM digitising direction, which is usually downstream but not checked on
 the ground. Foam within 150 m of such a point is tagged `near_inlet`.
+
+## D-021 No official boundary dataset is used (nothing licensed and machine-readable was found)
+Searched for Karnataka/KTCDA and related open data. Found lists published as PDFs without
+polygons, a crowdmapped masterlist with no stated licence, and a GIS portal not examined (see
+DATA_SOURCES.md). The OSM outline therefore stays the boundary, and every encroachment figure says
+"relative to the OSM outline". A licensed official dataset, if obtained, would replace it by
+changing `pipeline/config/lakes.yaml`.
+
+## D-022 Ghost Lakes are approximate points from Wikipedia, in their own CC BY-SA file
+The only open source found with per-lake coordinates and "what is there now" is the Wikipedia
+Former reservoirs table. Features are points marked `location_approximate`; no outline is drawn or
+implied. WorldCover built-up share within 300 m is added as independent evidence. One row carries an
+asterisk that the table does not explain; it is kept and flagged. The file is CC BY-SA 4.0 and kept
+separate from the CC BY data.
+
+## D-023 WorldCover is a snapshot; a spectral built-up proxy was tried and dropped
+WorldCover 2020 (v100) and 2021 (v200) are different algorithm versions, so they are used as
+snapshots only, never as a change signal. I first tried a Sentinel-2 NDBI/NDVI built-up rule
+calibrated to WorldCover 2021 (F1 0.76, precision 0.70, recall 0.83 outside the outlines).
+Two things sank it: the optimum was a plateau where NDBI contributed nothing (any NDBI cut from
+-0.6 to -0.12 gave the same score, so the rule was just "NDVI below about 0.4"), and inside the
+outlines it tracked dryness, not construction (Varthur "built-up" jumped from 5 ha in 2020 to
+138 ha in 2021 while its wet footprint fell to 1 ha, then fell back as the lake refilled). The
+calibration grid is kept as `docs/encroachment_ndbi_calibration_grid.csv`.
+
+## D-024 Encroachment candidate = water lost and now built-up, with a range
+A pixel counts when it was usually water in 2016-2018, is almost never water in clean optical months
+of 2023-2026, and is built-up according to WorldCover 2021 and/or Microsoft building footprints.
+Central estimate uses early wet share >= 25% and recent wet share <= 5%; the range comes from a
+3x3 grid of those thresholds and from requiring both references (low) or either (high). It is a
+satellite candidate relative to the unofficial OSM outline, not a survey or legal finding. Building
+footprints are a 2017-2021 snapshot, not a time series.

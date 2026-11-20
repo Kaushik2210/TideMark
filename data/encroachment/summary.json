@@ -1,0 +1,41 @@
+{
+ "bellandur": {
+  "outline_ha": 315.36,
+  "wet_footprint_early_ha": 136.29,
+  "wet_footprint_recent_ha": 106.28,
+  "lost_water_ha": 40.42,
+  "lost_water_pct_of_early_footprint": 29.7,
+  "lost_water_now_built_ha": {
+   "central_either": 0.0,
+   "central_both": 0.0,
+   "low": 0.0,
+   "high": 0.0
+  }
+ },
+ "varthur": {
+  "outline_ha": 154.32,
+  "wet_footprint_early_ha": 80.85,
+  "wet_footprint_recent_ha": 79.17,
+  "lost_water_ha": 1.54,
+  "lost_water_pct_of_early_footprint": 1.9,
+  "lost_water_now_built_ha": {
+   "central_either": 0.0,
+   "central_both": 0.0,
+   "low": 0.0,
+   "high": 0.0
+  }
+ },
+ "ulsoor": {
+  "outline_ha": 37.87,
+  "wet_footprint_early_ha": 30.09,
+  "wet_footprint_recent_ha": 32.17,
+  "lost_water_ha": 0.03,
+  "lost_water_pct_of_early_footprint": 0.1,
+  "lost_water_now_built_ha": {
+   "central_either": 0.0,
+   "central_both": 0.0,
+   "low": 0.0,
+   "high": 0.01
+  }
+ }
+}
