@@ -50,8 +50,10 @@ def valid_mask(scl: np.ndarray) -> np.ndarray:
     return ~np.isin(scl, INVALID_SCL)
 
 
-def otsu_threshold(values: np.ndarray, nbins: int = 256) -> tuple[float, float]:
-    """Otsu threshold on values in [-1, 1].
+def otsu_threshold(
+    values: np.ndarray, nbins: int = 256, value_range: tuple[float, float] = (-1.0, 1.0)
+) -> tuple[float, float]:
+    """Otsu threshold on values within ``value_range`` (default [-1, 1], for MNDWI).
 
     Returns (threshold, separability) where separability is the between-class variance
     divided by total variance (0..1; high means clearly bimodal, low means one class
@@ -60,7 +62,7 @@ def otsu_threshold(values: np.ndarray, nbins: int = 256) -> tuple[float, float]:
     v = values[np.isfinite(values)]
     if v.size < 2:
         return float("nan"), 0.0
-    hist, edges = np.histogram(v, bins=nbins, range=(-1.0, 1.0))
+    hist, edges = np.histogram(v, bins=nbins, range=value_range)
     centers = (edges[:-1] + edges[1:]) / 2
     w = hist.astype("float64")
     total = w.sum()

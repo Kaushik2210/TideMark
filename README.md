@@ -7,7 +7,7 @@ satellite data (Sentinel-1/-2, 2016 to present).
 > pipeline in this repo and carries its source and uncertainty. Bloom and foam outputs are
 > *candidates* only, never confirmed detections. Nothing here is a legal boundary determination.
 
-**Status: Phase 2 of 9 complete (Sentinel-2 water extent for Bellandur, Varthur, Ulsoor, 2016 to now; unvalidated).** Radar fusion for cloudy months starts in Phase 3.
+**Status: Phase 3 of 9 complete (Sentinel-2 optical plus Sentinel-1 radar fusion for Bellandur, Varthur, Ulsoor, 2016 to now; unvalidated).** Rainfall, bloom candidates and anomaly flags start in Phase 4.
 
 ## What it will do
 
@@ -15,6 +15,14 @@ satellite data (Sentinel-1/-2, 2016 to present).
 2. Per-lake pages: health score, trend charts, rainfall overlay, anomaly events, report-card image.
 3. "Ghost Lakes" layer: historic water bodies now built over (only where open geometry exists).
 4. Citizen photo submissions matched to the nearest cloud-free satellite date (moderated, never auto-published).
+
+## Preview
+
+Varthur Lake, largest vs smallest observed open-water extent (research estimate, unvalidated):
+
+![Varthur Lake: two maps showing mapped water extent in its largest and smallest observed months](docs/media/varthur/before_after.png)
+
+More images and 2016-2026 time-lapse videos for each lake are in [docs/media](docs/media/README.md).
 
 ## Repository layout
 

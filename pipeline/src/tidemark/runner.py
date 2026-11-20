@@ -32,7 +32,9 @@ ROOT = Path(__file__).resolve().parents[3]
 LAKES = ROOT / "data" / "lakes.geojson"
 OUT_SERIES = ROOT / "data" / "timeseries"
 OUT_EXTENTS = ROOT / "data" / "extents"
-CACHE = Path(os.environ.get("TIDEMARK_CACHE", ROOT / "pipeline" / ".cache")) / "s2_rows"
+CACHE_ROOT = Path(os.environ.get("TIDEMARK_CACHE", ROOT / "pipeline" / ".cache"))
+CACHE = CACHE_ROOT / "s2_rows"
+MASKS = CACHE_ROOT / "s2_masks"  # pixel masks kept for optical/radar fusion
 
 CANDIDATES_PER_MONTH = 4  # scenes whose lake-level cloud fraction is measured per month
 GOOD_ENOUGH_BAD_FRACTION = 0.02  # stop looking once a scene is this clean over the lake
@@ -111,6 +113,14 @@ def process_month(client, lake_id: str, props: dict, lake_ll, month: str) -> dic
         hrefs = {k: best.assets[a].href for k, a in s2.ASSETS.items()}
         win = s2.read_window(hrefs, bounds, meta["processing_baseline"])
         ex = s2.extract_extent(win, lake_utm, region_utm)
+        MASKS.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(
+            MASKS / f"{lake_id}_{month}.npz",
+            mask=ex.mask,
+            valid=ex.valid,
+            transform=np.array(ex.transform)[:6],
+            crs=ex.crs,
+        )
         gj = mask_to_geojson(ex.mask, ex.transform, ex.crs)
         if gj:
             d = OUT_EXTENTS / lake_id
@@ -138,8 +148,10 @@ def run(lake_ids: list[str], start: str, end: str, workers: int = 4) -> None:
         props, geom = lakes[lid]
         for m in months(start, end):
             f = CACHE / f"{lid}_{m}.json"
-            if f.exists() and json.loads(f.read_text(encoding="utf-8")).get("status") != "error":
-                continue
+            if f.exists():
+                st = json.loads(f.read_text(encoding="utf-8")).get("status")
+                if st not in ("error",) and (st != "ok" or (MASKS / f"{lid}_{m}.npz").exists()):
+                    continue
             jobs.append((lid, props, geom, m, f))
     print(f"{len(jobs)} lake-months to process", file=sys.stderr)
 

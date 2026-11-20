@@ -24,10 +24,13 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5"]
+media = ["matplotlib>=3.8", "imageio>=2.34", "imageio-ffmpeg>=0.5"]
 
 [project.scripts]
 tidemark-registry = "tidemark.registry:main"
 tidemark-water = "tidemark.runner:main"
+tidemark-monthly = "tidemark.monthly:main"
+tidemark-media = "tidemark.media:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

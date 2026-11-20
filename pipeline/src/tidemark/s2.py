@@ -22,7 +22,7 @@ BUFFER_M = 100.0  # region around the OSM outline in which water is attributed t
 WINDOW_PAD_M = 300.0  # extra margin read around the outline (for the Otsu sample)
 
 os.environ.setdefault("GDAL_DISABLE_READDIR_ON_OPEN", "EMPTY_DIR")
-os.environ.setdefault("CPL_VSIL_CURL_ALLOWED_EXTENSIONS", ".tif")
+os.environ.setdefault("CPL_VSIL_CURL_ALLOWED_EXTENSIONS", ".tif,.tiff")
 
 
 @dataclass
@@ -105,6 +105,7 @@ def lake_masks(lake_ll: BaseGeometry, crs: str):
 @dataclass
 class Extraction:
     mask: np.ndarray
+    valid: np.ndarray  # pixels with a usable optical observation (not cloud/shadow/no-data)
     transform: rasterio.Affine
     crs: str
     row: dict
@@ -136,4 +137,4 @@ def extract_extent(win: Window, lake_utm: BaseGeometry, region_utm: BaseGeometry
         "confidence": round(float(conf), 3),
         "source": "optical",
     }
-    return Extraction(mask, win.transform, win.crs, row)
+    return Extraction(mask, water.valid_mask(win.scl), win.transform, win.crs, row)

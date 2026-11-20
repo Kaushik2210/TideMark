@@ -51,6 +51,21 @@ Phase 3 fills cloudy months with Sentinel-1.
 Items and assets expose no offset, so DN -> reflectance subtracts 1000 for baseline >= 04.00.
 This follows ESA's processing-baseline convention; there is a unit test for both eras.
 
-## D-012 Commits carry no tool attribution
+## D-012 Radar threshold is a fixed -14 dB, calibrated against optical
+The textbook -18 dB and per-scene Otsu both under-performed against clean optical masks (mean IoU
+0.38 and 0.53); a fixed -14 dB reached 0.71 (leave-one-out 0.71). Evidence and caveats in
+docs/fusion.md. The Phase 2 "plausible Otsu range" idea was not carried over to radar.
+
+## D-013 Fusion is pixel-level with optical priority
+Optical pixels win where valid, radar fills cloud gaps, and months are labelled optical, fused or
+radar. Pixel masks are cached (`.cache/s2_masks`, `.cache/s1_months`) so fusion can be rerun
+without refetching imagery. Unknown pixels are excluded rather than assumed dry.
+
+## D-014 Images and videos are generated from pipeline outputs only
+Per-lake before/after image, trend chart and time-lapse video are rendered by `tidemark-media`
+from the same files the site will use; map colour shows the sensor behind each month. Output
+goes to `docs/media/`.
+
+## D-015 Commits carry no tool attribution
 Commit messages and repository files contain no AI-tool trailers or contributor entries, per
 the maintainer's instruction.

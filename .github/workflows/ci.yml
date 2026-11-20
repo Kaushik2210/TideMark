@@ -18,7 +18,7 @@ jobs:
           python-version: "3.11"
           cache: pip
           cache-dependency-path: pipeline/pyproject.toml
-      - run: pip install -e ".[dev]"
+      - run: pip install -e ".[dev,media]"
       - run: ruff check .
       - run: pytest
 # The web job (lint, type check, Playwright smoke) is added in Phase 7/8.
