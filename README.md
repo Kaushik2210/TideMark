@@ -7,7 +7,7 @@ satellite data (Sentinel-1/-2, 2016 to present).
 > pipeline in this repo and carries its source and uncertainty. Bloom and foam outputs are
 > *candidates* only, never confirmed detections. Nothing here is a legal boundary determination.
 
-**Status: Phase 5 of 9 complete (encroachment candidates and approximate Ghost Lakes; all unvalidated).** The validation set and VALIDATION.md come next in Phase 6.
+**Status: Phase 6 of 9 complete (ground truth and validation; see [VALIDATION.md](VALIDATION.md)).** Water extent is broadly supported; the foam, floating-mat and chlorophyll candidates are not validated. The website starts in Phase 7.
 
 ## What it will do
 

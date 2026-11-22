@@ -131,3 +131,25 @@ Central estimate uses early wet share >= 25% and recent wet share <= 5%; the ran
 3x3 grid of those thresholds and from requiring both references (low) or either (high). It is a
 satellite candidate relative to the unofficial OSM outline, not a survey or legal finding. Building
 footprints are a 2017-2021 snapshot, not a time series.
+
+## D-025 Ground truth only from pages that were opened and read
+`validation/ground_truth.csv` rows cite a primary https source whose date and facts were read from
+the page itself, never from a search snippet. Social-media posts, Reddit and unread items were
+excluded. Rows that are state reports use the publication date and say so. Fires and court orders
+are kept as context but marked `none` because nothing here can observe them.
+
+## D-026 Water-level scoring uses observation dates and a size test, after a flawed first pass
+The first scorer used a percentile rank of the month's area and averaged months; it produced a
+false Ulsoor hit (27 ha against a 29 ha median, from a scene taken before the draining) and diluted
+a real Bellandur overflow. It now uses each scene's own date (10-day window), requires the area to be
+both in the lowest/highest quartile and at most 0.6 / at least 1.25 of the lake median, and uses the
+most extreme observation for short events. Events with no observation in their window are "not
+observed". Both versions are described in VALIDATION.md.
+
+## D-027 Precision of pipeline events is reported only as a lower bound
+The ground truth is incomplete and biased towards dramatic news events, so an unmatched pipeline event
+is not a false positive.
+
+## D-028 A foam supplementary test uses every low-cloud scene, not just the monthly best
+To avoid blaming the method for the monthly best-scene design, foam windows were also tested on all
+Sentinel-2 scenes up to 50% tile cloud. It still found no foam.

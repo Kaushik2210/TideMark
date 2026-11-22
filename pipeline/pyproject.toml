@@ -38,6 +38,7 @@ tidemark-candidates = "tidemark.candidates:main"
 tidemark-anomalies = "tidemark.anomalies:main"
 tidemark-ghost = "tidemark.ghost:main"
 tidemark-encroach = "tidemark.encroachment:main"
+tidemark-validate = "tidemark.validation:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

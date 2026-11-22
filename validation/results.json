@@ -1,0 +1,1308 @@
+{
+ "ground_truth": {
+  "events": 26,
+  "by_type": {
+   "foam_spill": 8,
+   "fire": 5,
+   "drained": 5,
+   "overflow": 2,
+   "dry_low": 2,
+   "encroachment_order": 2,
+   "hyacinth_cover": 1,
+   "dewatered": 1
+  },
+  "testable": 19,
+  "distinct_sources": 20
+ },
+ "foam_and_floating": [
+  {
+   "event_id": "GT01",
+   "lake": "varthur",
+   "type": "foam_candidate",
+   "window": "2017-05-27..2017-05-29",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2017-05-22..2017-06-03",
+    "scenes": 1,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2017-06-03",
+      63.8
+     ]
+    ]
+   },
+   "supplementary_scenes": []
+  },
+  {
+   "event_id": "GT02",
+   "lake": "bellandur",
+   "type": "foam_candidate",
+   "window": "2017-08-16..2017-08-17",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2017-08-11..2017-08-22",
+    "scenes": 1,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2017-08-17",
+      98.6
+     ]
+    ]
+   },
+   "supplementary_scenes": []
+  },
+  {
+   "event_id": "GT03",
+   "lake": "varthur",
+   "type": "foam_candidate",
+   "window": "2017-08-16..2017-08-16",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2017-08-11..2017-08-21",
+    "scenes": 1,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2017-08-17",
+      98.6
+     ]
+    ]
+   },
+   "supplementary_scenes": []
+  },
+  {
+   "event_id": "GT04",
+   "lake": "bellandur",
+   "type": "foam_candidate",
+   "window": "2018-09-25..2018-09-25",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2018-09-20..2018-09-30",
+    "scenes": 2,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2018-09-21",
+      100.0
+     ],
+     [
+      "2018-09-26",
+      78.4
+     ]
+    ]
+   },
+   "supplementary_scenes": []
+  },
+  {
+   "event_id": "GT05",
+   "lake": "varthur",
+   "type": "foam_candidate",
+   "window": "2018-09-25..2018-09-26",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2018-09-20..2018-10-01",
+    "scenes": 3,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2018-09-21",
+      100.0
+     ],
+     [
+      "2018-09-26",
+      78.4
+     ],
+     [
+      "2018-10-01",
+      28.3
+     ]
+    ]
+   },
+   "supplementary_scenes": [
+    {
+     "date": "2018-10-01",
+     "tile_cloud_pct": 28.3,
+     "scene_id": "S2B_MSIL2A_20181001T050649_R019_T43PGQ_20201009T065932",
+     "water_ha": 0.0,
+     "water_b11_median": null,
+     "haze_contaminated": false,
+     "foam_candidate_ha": 0.0
+    }
+   ]
+  },
+  {
+   "event_id": "GT06",
+   "lake": "varthur",
+   "type": "foam_candidate",
+   "window": "2019-03-02..2019-03-05",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2019-02-25..2019-03-10",
+    "scenes": 3,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2019-02-28",
+      7.9
+     ],
+     [
+      "2019-03-05",
+      25.4
+     ],
+     [
+      "2019-03-10",
+      17.4
+     ]
+    ]
+   },
+   "supplementary_scenes": [
+    {
+     "date": "2019-02-28",
+     "tile_cloud_pct": 7.9,
+     "scene_id": "S2B_MSIL2A_20190228T050739_R019_T43PGQ_20201007T213740",
+     "water_ha": 30.91,
+     "water_b11_median": 0.024,
+     "haze_contaminated": false,
+     "foam_candidate_ha": 0.0
+    },
+    {
+     "date": "2019-03-05",
+     "tile_cloud_pct": 25.4,
+     "scene_id": "S2A_MSIL2A_20190305T050701_R019_T43PGQ_20201030T153323",
+     "water_ha": 0.0,
+     "water_b11_median": null,
+     "haze_contaminated": false,
+     "foam_candidate_ha": 0.0
+    },
+    {
+     "date": "2019-03-10",
+     "tile_cloud_pct": 17.4,
+     "scene_id": "S2B_MSIL2A_20190310T050649_R019_T43PGQ_20201007T051513",
+     "water_ha": 26.21,
+     "water_b11_median": 0.0278,
+     "haze_contaminated": false,
+     "foam_candidate_ha": 0.0
+    }
+   ]
+  },
+  {
+   "event_id": "GT07",
+   "lake": "varthur",
+   "type": "foam_candidate",
+   "window": "2021-12-14..2021-12-14",
+   "outcome": "missed",
+   "scene_dates": [
+    "2021-12-19"
+   ],
+   "foam_candidate_ha": 0.0,
+   "sentinel2_scenes_in_window": {
+    "window": "2021-12-09..2021-12-19",
+    "scenes": 2,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2021-12-09",
+      82.7
+     ],
+     [
+      "2021-12-19",
+      0.5
+     ]
+    ]
+   },
+   "supplementary_scenes": [
+    {
+     "date": "2021-12-19",
+     "tile_cloud_pct": 0.5,
+     "scene_id": "S2A_MSIL2A_20211219T051231_R019_T43PGQ_20211219T135035",
+     "water_ha": 20.51,
+     "water_b11_median": 0.0163,
+     "haze_contaminated": false,
+     "foam_candidate_ha": 0.0
+    }
+   ]
+  },
+  {
+   "event_id": "GT08",
+   "lake": "bellandur",
+   "type": "foam_candidate",
+   "window": "2021-12-14..2021-12-14",
+   "outcome": "not_observed",
+   "scene_dates": [],
+   "sentinel2_scenes_in_window": {
+    "window": "2021-12-09..2021-12-19",
+    "scenes": 2,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2021-12-09",
+      82.7
+     ],
+     [
+      "2021-12-19",
+      0.5
+     ]
+    ]
+   },
+   "supplementary_scenes": [
+    {
+     "date": "2021-12-19",
+     "tile_cloud_pct": 0.5,
+     "scene_id": "S2A_MSIL2A_20211219T051231_R019_T43PGQ_20211219T135035",
+     "water_ha": 28.39,
+     "water_b11_median": 0.0139,
+     "haze_contaminated": false,
+     "foam_candidate_ha": 0.0
+    }
+   ]
+  },
+  {
+   "event_id": "GT14",
+   "lake": "bellandur",
+   "type": "floating_mat",
+   "window": "2017-05-29..2017-06-02",
+   "outcome": "not_observed",
+   "scene_dates": [
+    "2017-05-14"
+   ],
+   "note": "scene present but flagged haze-contaminated",
+   "sentinel2_scenes_in_window": {
+    "window": "2017-05-14..2017-06-17",
+    "scenes": 2,
+    "dates_and_tile_cloud_pct": [
+     [
+      "2017-05-14",
+      10.4
+     ],
+     [
+      "2017-06-03",
+      63.8
+     ]
+    ]
+   }
+  }
+ ],
+ "water_level": [
+  {
+   "event_id": "GT15",
+   "lake": "bellandur",
+   "signal": "extent_low",
+   "window": "2021-01-07..2021-12-31",
+   "outcome": "hit",
+   "observations": [
+    "2021-01-18",
+    "2021-02-02",
+    "2021-03-24",
+    "2021-04-03",
+    "2021-05-18",
+    "2021-06-07",
+    "2021-07-07",
+    "2021-08-31",
+    "2021-09-15",
+    "2021-10-20",
+    "2021-11-24",
+    "2021-12-24"
+   ],
+   "area_ha": [
+    17.9,
+    2.1,
+    0.0,
+    0.0,
+    3.1,
+    4.7,
+    5.8,
+    12.5,
+    8.0,
+    37.8,
+    51.9,
+    22.1
+   ],
+   "scored_area_ha": 13.8,
+   "percentile": 0.131,
+   "lake_median_ha": 61.4,
+   "ratio_to_median": 0.23,
+   "sources": [
+    "optical",
+    "optical",
+    "optical",
+    "optical",
+    "optical",
+    "optical",
+    "radar",
+    "fused",
+    "fused",
+    "fused",
+    "radar",
+    "optical"
+   ]
+  },
+  {
+   "event_id": "GT16",
+   "lake": "bellandur",
+   "signal": "extent_high",
+   "window": "2022-08-30..2022-09-06",
+   "outcome": "hit",
+   "observations": [
+    "2022-09-05"
+   ],
+   "area_ha": [
+    133.7
+   ],
+   "scored_area_ha": 133.7,
+   "percentile": 0.946,
+   "lake_median_ha": 61.4,
+   "ratio_to_median": 2.18,
+   "sources": [
+    "optical"
+   ]
+  },
+  {
+   "event_id": "GT17",
+   "lake": "varthur",
+   "signal": "extent_high",
+   "window": "2022-08-30..2022-09-06",
+   "outcome": "not_observed",
+   "nearest_observations": [
+    "2022-08-16",
+    "2022-09-20"
+   ],
+   "nearest_area_ha": [
+    11.8,
+    13.4
+   ]
+  },
+  {
+   "event_id": "GT18",
+   "lake": "bellandur",
+   "signal": "extent_low",
+   "window": "2024-03-08..2024-03-08",
+   "outcome": "partial",
+   "observations": [
+    "2024-03-13"
+   ],
+   "area_ha": [
+    43.8
+   ],
+   "scored_area_ha": 43.8,
+   "percentile": 0.385,
+   "lake_median_ha": 61.4,
+   "ratio_to_median": 0.71,
+   "sources": [
+    "optical"
+   ]
+  },
+  {
+   "event_id": "GT19",
+   "lake": "varthur",
+   "signal": "extent_low",
+   "window": "2024-03-08..2024-03-08",
+   "outcome": "hit",
+   "observations": [
+    "2024-03-13"
+   ],
+   "area_ha": [
+    5.7
+   ],
+   "scored_area_ha": 5.7,
+   "percentile": 0.238,
+   "lake_median_ha": 24.6,
+   "ratio_to_median": 0.23,
+   "sources": [
+    "optical"
+   ]
+  },
+  {
+   "event_id": "GT20",
+   "lake": "ulsoor",
+   "signal": "extent_low",
+   "window": "2026-02-16..2026-02-16",
+   "outcome": "not_observed",
+   "nearest_observations": [
+    "2026-02-01",
+    "2026-03-03"
+   ],
+   "nearest_area_ha": [
+    27.2,
+    0.6
+   ]
+  },
+  {
+   "event_id": "GT21",
+   "lake": "ulsoor",
+   "signal": "extent_low",
+   "window": "2026-02-27..2026-02-27",
+   "outcome": "hit",
+   "observations": [
+    "2026-03-03"
+   ],
+   "area_ha": [
+    0.6
+   ],
+   "scored_area_ha": 0.6,
+   "percentile": 0.015,
+   "lake_median_ha": 29.0,
+   "ratio_to_median": 0.02,
+   "sources": [
+    "optical"
+   ]
+  },
+  {
+   "event_id": "GT22",
+   "lake": "ulsoor",
+   "signal": "extent_low",
+   "window": "2026-04-01..2026-04-30",
+   "outcome": "hit",
+   "observations": [
+    "2026-04-22"
+   ],
+   "area_ha": [
+    0.0
+   ],
+   "scored_area_ha": 0.0,
+   "percentile": 0.008,
+   "lake_median_ha": 29.0,
+   "ratio_to_median": 0.0,
+   "sources": [
+    "optical"
+   ]
+  },
+  {
+   "event_id": "GT23",
+   "lake": "ulsoor",
+   "signal": "extent_low",
+   "window": "2026-05-07..2026-05-07",
+   "outcome": "partial",
+   "observations": [
+    "2026-05-12"
+   ],
+   "area_ha": [
+    20.3
+   ],
+   "scored_area_ha": 20.3,
+   "percentile": 0.031,
+   "lake_median_ha": 29.0,
+   "ratio_to_median": 0.7,
+   "sources": [
+    "fused"
+   ]
+  },
+  {
+   "event_id": "GT24",
+   "lake": "ulsoor",
+   "signal": "extent_low",
+   "window": "2026-05-12..2026-05-12",
+   "outcome": "partial",
+   "observations": [
+    "2026-05-12"
+   ],
+   "area_ha": [
+    20.3
+   ],
+   "scored_area_ha": 20.3,
+   "percentile": 0.031,
+   "lake_median_ha": 29.0,
+   "ratio_to_median": 0.7,
+   "sources": [
+    "fused"
+   ]
+  }
+ ],
+ "pipeline_events_vs_ground_truth": {
+  "chlorophyll_high_candidate": {
+   "events": 25,
+   "matched": 0,
+   "matched_share_lower_bound": 0.0
+  },
+  "extent_high": {
+   "events": 2,
+   "matched": 0,
+   "matched_share_lower_bound": 0.0
+  },
+  "extent_low": {
+   "events": 2,
+   "matched": 2,
+   "matched_share_lower_bound": 1.0
+  },
+  "floating_mat_candidate": {
+   "events": 53,
+   "matched": 0,
+   "matched_share_lower_bound": 0.0
+  },
+  "foam_candidate": {
+   "events": 1,
+   "matched": 0,
+   "matched_share_lower_bound": 0.0
+  },
+  "rapid_change": {
+   "events": 13,
+   "matched": 2,
+   "matched_share_lower_bound": 0.154
+  }
+ },
+ "pipeline_events_matched": [
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2016-02",
+   "obs_date": "2016-02-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2017-01",
+   "obs_date": "2017-01-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2017-04",
+   "obs_date": "2017-04-04",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2017-09",
+   "obs_date": "2017-09-11",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2017-10",
+   "obs_date": "2017-10-21",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2018-02",
+   "obs_date": "2018-02-18",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2018-03",
+   "obs_date": "2018-03-05",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2018-05",
+   "obs_date": "2018-05-04",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2019-01",
+   "obs_date": "2019-01-09",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2019-03",
+   "obs_date": "2019-03-30",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2019-05",
+   "obs_date": "2019-05-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2020-12",
+   "obs_date": "2020-12-29",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2021-01",
+   "obs_date": "2021-01-18",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2021-02",
+   "obs_date": "2021-02-02",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2021-06",
+   "obs_date": "2021-06-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2021-10",
+   "obs_date": "2021-10-20",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "foam_candidate",
+   "month": "2022-08",
+   "obs_date": "2022-08-01",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2022-09",
+   "obs_date": "2022-09-05",
+   "matched": "GT16"
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2022-12",
+   "obs_date": "2022-12-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2023-01",
+   "obs_date": "2023-01-28",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2023-01",
+   "obs_date": "2023-01-28",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2023-02",
+   "obs_date": "2023-02-17",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2023-02",
+   "obs_date": "2023-02-17",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2023-03",
+   "obs_date": "2023-03-04",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2023-03",
+   "obs_date": "2023-03-04",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2023-04",
+   "obs_date": "2023-04-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2023-05",
+   "obs_date": "2023-05-28",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "rapid_change",
+   "month": "2023-05",
+   "obs_date": "2023-05-28",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2023-12",
+   "obs_date": "2023-12-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2024-04",
+   "obs_date": "2024-04-27",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2024-05",
+   "obs_date": "2024-05-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2024-05",
+   "obs_date": "2024-05-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "bellandur",
+   "type": "floating_mat_candidate",
+   "month": "2025-11",
+   "obs_date": "2025-11-10",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2016-02",
+   "obs_date": "2016-02-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2016-05",
+   "obs_date": "2016-05-09",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2019-02",
+   "obs_date": "2019-02-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2019-05",
+   "obs_date": "2019-05-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2020-11",
+   "obs_date": "2020-11-04",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2021-05",
+   "obs_date": "2021-05-18",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2021-05",
+   "obs_date": "2021-05-18",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2021-06",
+   "obs_date": "2021-06-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2021-06",
+   "obs_date": "2021-06-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2022-07",
+   "obs_date": "2022-07-27",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2022-09",
+   "obs_date": "2022-09-25",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2022-09",
+   "obs_date": "2022-09-25",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2022-10",
+   "obs_date": "2022-10-25",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2022-12",
+   "obs_date": "2022-12-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2023-01",
+   "obs_date": "2023-01-28",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2023-11",
+   "obs_date": "2023-11-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2023-12",
+   "obs_date": "2023-12-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2023-12",
+   "obs_date": "2023-12-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2024-03",
+   "obs_date": "2024-03-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2024-12",
+   "obs_date": "2024-12-08",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2025-01",
+   "obs_date": "2025-01-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "chlorophyll_high_candidate",
+   "month": "2025-10",
+   "obs_date": "2025-10-01",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2025-10",
+   "obs_date": "2025-10-01",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2026-02",
+   "obs_date": "2026-02-01",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "extent_low",
+   "month": "2026-03",
+   "obs_date": "2026-03-03",
+   "matched": "GT20,GT21,GT22"
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "rapid_change",
+   "month": "2026-03",
+   "obs_date": "2026-03-03",
+   "matched": "GT20,GT21,GT22"
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "extent_low",
+   "month": "2026-04",
+   "obs_date": "2026-04-22",
+   "matched": "GT22,GT23,GT24"
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2026-06",
+   "obs_date": "2026-06-01",
+   "matched": ""
+  },
+  {
+   "lake_id": "ulsoor",
+   "type": "floating_mat_candidate",
+   "month": "2026-08",
+   "obs_date": "2026-08-10",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2016-02",
+   "obs_date": "2016-02-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2016-11",
+   "obs_date": "2016-11-25",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2017-01",
+   "obs_date": "2017-01-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2017-02",
+   "obs_date": "2017-02-23",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "rapid_change",
+   "month": "2017-02",
+   "obs_date": "2017-02-23",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2017-03",
+   "obs_date": "2017-03-15",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2018-02",
+   "obs_date": "2018-02-18",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2018-03",
+   "obs_date": "2018-03-05",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "rapid_change",
+   "month": "2018-05",
+   "obs_date": "2018-05-29",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2018-09",
+   "obs_date": "2018-09-11",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2018-12",
+   "obs_date": "2018-12-20",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2019-01",
+   "obs_date": "2019-01-09",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "rapid_change",
+   "month": "2019-03",
+   "obs_date": "2019-03-30",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2019-11",
+   "obs_date": "2019-11-05",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2020-02",
+   "obs_date": "2020-02-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2020-02",
+   "obs_date": "2020-02-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2020-03",
+   "obs_date": "2020-03-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2020-04",
+   "obs_date": "2020-04-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2020-10",
+   "obs_date": "2020-10-05",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2021-10",
+   "obs_date": "2021-10-25",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2022-12",
+   "obs_date": "2022-12-24",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2023-01",
+   "obs_date": "2023-01-28",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "chlorophyll_high_candidate",
+   "month": "2023-02",
+   "obs_date": "2023-02-17",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2023-02",
+   "obs_date": "2023-02-17",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2023-11",
+   "obs_date": "2023-11-19",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2024-02",
+   "obs_date": "2024-02-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2024-03",
+   "obs_date": "2024-03-13",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2024-11",
+   "obs_date": "2024-11-08",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2025-01",
+   "obs_date": "2025-01-07",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "floating_mat_candidate",
+   "month": "2025-02",
+   "obs_date": "2025-02-06",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "extent_high",
+   "month": "2026-02",
+   "obs_date": "2026-02-01",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "extent_high",
+   "month": "2026-03",
+   "obs_date": "2026-03-03",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "rapid_change",
+   "month": "2026-04",
+   "obs_date": "2026-04-22",
+   "matched": ""
+  },
+  {
+   "lake_id": "varthur",
+   "type": "rapid_change",
+   "month": "2026-06",
+   "obs_date": "2026-06-16",
+   "matched": ""
+  }
+ ],
+ "jrc": {
+  "bellandur": {
+   "clean_months_2016_2020": 39,
+   "occurrence_1984_2020": {
+    "pixels": 43744,
+    "iou_at_25": 0.73,
+    "ours_ha_at_25": 116.4,
+    "jrc_ha_at_25": 149.1,
+    "iou_at_50": 0.79,
+    "ours_ha_at_50": 77.5,
+    "jrc_ha_at_50": 78.8,
+    "iou_at_75": 0.0,
+    "ours_ha_at_75": 6.1,
+    "jrc_ha_at_75": 0.0,
+    "spearman": 0.88
+   },
+   "seasonality_2020": {
+    "clean_months_2020": 8,
+    "pixels": 43744,
+    "iou_at_25": 0.765,
+    "ours_ha_at_25": 36.4,
+    "jrc_ha_at_25": 38.4,
+    "iou_at_50": 0.448,
+    "ours_ha_at_50": 25.8,
+    "jrc_ha_at_50": 11.7,
+    "iou_at_75": 0.0,
+    "ours_ha_at_75": 10.3,
+    "jrc_ha_at_75": 0.0,
+    "spearman": 0.881
+   }
+  },
+  "varthur": {
+   "clean_months_2016_2020": 37,
+   "occurrence_1984_2020": {
+    "pixels": 23192,
+    "iou_at_25": 0.74,
+    "ours_ha_at_25": 64.7,
+    "jrc_ha_at_25": 76.2,
+    "iou_at_50": 0.175,
+    "ours_ha_at_50": 15.1,
+    "jrc_ha_at_50": 7.6,
+    "iou_at_75": NaN,
+    "ours_ha_at_75": 0.0,
+    "jrc_ha_at_75": 0.0,
+    "spearman": 0.927
+   },
+   "seasonality_2020": {
+    "clean_months_2020": 6,
+    "pixels": 23192,
+    "iou_at_25": 0.445,
+    "ours_ha_at_25": 11.5,
+    "jrc_ha_at_25": 5.4,
+    "iou_at_50": 0.0,
+    "ours_ha_at_50": 7.4,
+    "jrc_ha_at_50": 0.0,
+    "iou_at_75": 0.0,
+    "ours_ha_at_75": 2.1,
+    "jrc_ha_at_75": 0.0,
+    "spearman": 0.765
+   }
+  },
+  "ulsoor": {
+   "clean_months_2016_2020": 36,
+   "occurrence_1984_2020": {
+    "pixels": 7271,
+    "iou_at_25": 0.854,
+    "ours_ha_at_25": 30.1,
+    "jrc_ha_at_25": 27.6,
+    "iou_at_50": 0.764,
+    "ours_ha_at_50": 28.5,
+    "jrc_ha_at_50": 22.7,
+    "iou_at_75": 0.0,
+    "ours_ha_at_75": 26.9,
+    "jrc_ha_at_75": 0.0,
+    "spearman": 0.874
+   },
+   "seasonality_2020": {
+    "clean_months_2020": 8,
+    "pixels": 7271,
+    "iou_at_25": 0.836,
+    "ours_ha_at_25": 31.6,
+    "jrc_ha_at_25": 28.9,
+    "iou_at_50": 0.816,
+    "ours_ha_at_50": 29.9,
+    "jrc_ha_at_50": 26.0,
+    "iou_at_75": 0.736,
+    "ours_ha_at_75": 28.7,
+    "jrc_ha_at_75": 22.0,
+    "spearman": 0.872
+   }
+  }
+ }
+}
