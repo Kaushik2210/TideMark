@@ -13,9 +13,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 3.3,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -31,9 +31,9 @@
   "rain_prior_14d_mm": 0.7,
   "rain_prior_30d_mm": 4.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -49,9 +49,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -67,9 +67,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 18.2,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -85,9 +85,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 18.2,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -103,9 +103,9 @@
   "rain_prior_14d_mm": 9.2,
   "rain_prior_30d_mm": 9.2,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -139,9 +139,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 42.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -175,9 +175,9 @@
   "rain_prior_14d_mm": 17.8,
   "rain_prior_30d_mm": 62.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -193,9 +193,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 57.3,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -211,9 +211,9 @@
   "rain_prior_14d_mm": 1.1,
   "rain_prior_30d_mm": 1.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -229,9 +229,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -247,9 +247,9 @@
   "rain_prior_14d_mm": 48.3,
   "rain_prior_30d_mm": 143.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -265,9 +265,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -283,9 +283,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -301,9 +301,9 @@
   "rain_prior_14d_mm": 1.6,
   "rain_prior_30d_mm": 2.2,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -319,9 +319,9 @@
   "rain_prior_14d_mm": 16.2,
   "rain_prior_30d_mm": 27.7,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -337,9 +337,9 @@
   "rain_prior_14d_mm": 47.8,
   "rain_prior_30d_mm": 145.3,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -391,9 +391,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -409,9 +409,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.6,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -427,9 +427,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.6,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -463,9 +463,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 20.4,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -481,9 +481,9 @@
   "rain_prior_14d_mm": 0.1,
   "rain_prior_30d_mm": 0.2,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -499,9 +499,9 @@
   "rain_prior_14d_mm": 16.4,
   "rain_prior_30d_mm": 180.7,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -517,9 +517,9 @@
   "rain_prior_14d_mm": 7.0,
   "rain_prior_30d_mm": 35.8,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -535,9 +535,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 5.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -553,9 +553,9 @@
   "rain_prior_14d_mm": 1.0,
   "rain_prior_30d_mm": 13.9,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -571,9 +571,9 @@
   "rain_prior_14d_mm": 0.4,
   "rain_prior_30d_mm": 0.4,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -589,9 +589,9 @@
   "rain_prior_14d_mm": 0.9,
   "rain_prior_30d_mm": 2.6,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "varthur",
@@ -607,8 +607,8 @@
   "rain_prior_14d_mm": 80.3,
   "rain_prior_30d_mm": 163.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  }
 ]

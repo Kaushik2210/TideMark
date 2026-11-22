@@ -14,9 +14,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 3.3,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -33,9 +33,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -52,9 +52,9 @@
   "rain_prior_14d_mm": 0.1,
   "rain_prior_30d_mm": 10.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -90,9 +90,9 @@
   "rain_prior_14d_mm": 79.0,
   "rain_prior_30d_mm": 198.3,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -128,9 +128,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 42.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -147,9 +147,9 @@
   "rain_prior_14d_mm": 15.7,
   "rain_prior_30d_mm": 18.9,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -166,9 +166,9 @@
   "rain_prior_14d_mm": 1.1,
   "rain_prior_30d_mm": 1.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -185,9 +185,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -204,9 +204,9 @@
   "rain_prior_14d_mm": 29.4,
   "rain_prior_30d_mm": 51.3,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -223,9 +223,9 @@
   "rain_prior_14d_mm": 2.3,
   "rain_prior_30d_mm": 62.4,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -261,9 +261,9 @@
   "rain_prior_14d_mm": 0.3,
   "rain_prior_30d_mm": 43.9,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -318,9 +318,9 @@
   "rain_prior_14d_mm": 82.3,
   "rain_prior_30d_mm": 211.5,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -337,9 +337,9 @@
   "rain_prior_14d_mm": 97.6,
   "rain_prior_30d_mm": 131.9,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -375,9 +375,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -394,9 +394,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -413,9 +413,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.6,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -432,9 +432,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.6,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -451,9 +451,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -470,9 +470,9 @@
   "rain_prior_14d_mm": 0.0,
   "rain_prior_30d_mm": 0.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -489,9 +489,9 @@
   "rain_prior_14d_mm": 0.3,
   "rain_prior_30d_mm": 22.7,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -508,9 +508,9 @@
   "rain_prior_14d_mm": 31.9,
   "rain_prior_30d_mm": 132.4,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -527,9 +527,9 @@
   "rain_prior_14d_mm": 31.9,
   "rain_prior_30d_mm": 132.4,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -546,9 +546,9 @@
   "rain_prior_14d_mm": 3.7,
   "rain_prior_30d_mm": 29.2,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -565,9 +565,9 @@
   "rain_prior_14d_mm": 0.2,
   "rain_prior_30d_mm": 0.7,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -584,9 +584,9 @@
   "rain_prior_14d_mm": 4.4,
   "rain_prior_30d_mm": 5.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -603,9 +603,9 @@
   "rain_prior_14d_mm": 4.4,
   "rain_prior_30d_mm": 5.1,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  },
  {
   "lake_id": "bellandur",
@@ -622,8 +622,8 @@
   "rain_prior_14d_mm": 16.7,
   "rain_prior_30d_mm": 98.0,
   "follows_rain": false,
-  "rain_event_end": NaN,
-  "rain_event_total_mm": NaN,
-  "rain_event_lag_days": NaN
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  }
 ]

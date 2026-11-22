@@ -1254,7 +1254,7 @@
     "iou_at_50": 0.175,
     "ours_ha_at_50": 15.1,
     "jrc_ha_at_50": 7.6,
-    "iou_at_75": NaN,
+    "iou_at_75": null,
     "ours_ha_at_75": 0.0,
     "jrc_ha_at_75": 0.0,
     "spearman": 0.927

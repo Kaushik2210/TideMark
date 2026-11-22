@@ -24,6 +24,7 @@ import json
 import numpy as np
 import pandas as pd
 
+from . import jsonsafe
 from .runner import ROOT, load_lakes
 
 OUT = ROOT / "data" / "events"
@@ -205,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
             out = events.copy()
             out["obs_date"] = out["obs_date"].dt.strftime("%Y-%m-%d")
             (OUT / f"{lid}.json").write_text(
-                json.dumps(out.where(out.notna(), None).to_dict("records"), indent=1),
+                jsonsafe.dumps(out.to_dict("records"), indent=1),
                 encoding="utf-8")
         (OUT / f"{lid}.summary.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
         print(json.dumps(summary))

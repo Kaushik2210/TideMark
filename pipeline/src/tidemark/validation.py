@@ -14,7 +14,6 @@ What is and is not measured (details in VALIDATION.md):
 from __future__ import annotations
 
 import argparse
-import json
 from datetime import date
 from pathlib import Path
 
@@ -22,6 +21,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
+from . import jsonsafe
 from .runner import ROOT
 
 GT_PATH = ROOT / "validation" / "ground_truth.csv"
@@ -299,15 +299,15 @@ def main(argv: list[str] | None = None) -> int:
         flat = matched.assign(matched=matched["matched"].map(",".join))
         results["pipeline_events_matched"] = flat.to_dict("records")
     RESULTS.parent.mkdir(parents=True, exist_ok=True)
-    RESULTS.write_text(json.dumps(results, indent=1, default=str), encoding="utf-8")
+    RESULTS.write_text(jsonsafe.dumps(results, indent=1), encoding="utf-8")
     if not args.no_jrc:
         from .validation_jrc import run_jrc
 
         results["jrc"] = run_jrc()
-        RESULTS.write_text(json.dumps(results, indent=1, default=str), encoding="utf-8")
-    print(json.dumps({k: v for k, v in results.items()
-                      if k in ("ground_truth", "pipeline_events_vs_ground_truth", "jrc")}, indent=1,
-                     default=str))
+        RESULTS.write_text(jsonsafe.dumps(results, indent=1), encoding="utf-8")
+    print(jsonsafe.dumps({k: v for k, v in results.items()
+                          if k in ("ground_truth", "pipeline_events_vs_ground_truth", "jrc")},
+                         indent=1))
     return 0
 
 

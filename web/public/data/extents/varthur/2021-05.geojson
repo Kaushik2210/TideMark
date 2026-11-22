@@ -1,0 +1,1 @@
+{"type": "Feature", "properties": {"lake_id": "varthur", "month": "2021-05", "source": "optical", "water_area_ha": 0.21}, "geometry": {"type": "Polygon", "coordinates": [[[77.72909, 12.94713], [77.72918, 12.94695], [77.72862, 12.94668], [77.72853, 12.94696], [77.72872, 12.94713], [77.72909, 12.94713]]]}}

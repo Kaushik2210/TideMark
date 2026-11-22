@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/*
+  Tidemark design tokens. Dark is the default (map-first, editorial); a light palette follows
+  prefers-color-scheme. Components use only these semantic tokens, never raw hex.
+  Data-source encoding is used everywhere: optical = blue circle, fused = green diamond,
+  radar = amber triangle (colour AND shape, so it never relies on colour alone).
+*/
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --surface: #111a2b;
+  --surface-2: #17233a;
+  --border: #2a3a52;
+  --fg: #e6edf7;
+  --muted: #9db0c7;
+  --accent: #7dd3fc;
+  --optical: #38bdf8;
+  --fused: #34d399;
+  --radar: #fbbf24;
+  --danger: #fca5a5;
+  --ghost: #c4b5fd;
+  --focus: #7dd3fc;
+  --scrim: rgb(0 0 0 / 0.55);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface-2: #eaf0f8;
+    --border: #c3cfe0;
+    --fg: #0b1220;
+    --muted: #44556b;
+    --accent: #075985;
+    --optical: #0369a1;
+    --fused: #047857;
+    --radar: #b45309;
+    --danger: #b91c1c;
+    --ghost: #6d28d9;
+    --focus: #075985;
+    --scrim: rgb(0 0 0 / 0.45);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-optical: var(--optical);
+  --color-fused: var(--fused);
+  --color-radar: var(--radar);
+  --color-danger: var(--danger);
+  --color-ghost: var(--ghost);
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Visible keyboard focus everywhere. */
+:where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Minimum 44px touch targets for controls. */
+.tap {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Range inputs: large, visible thumbs. */
+input[type="range"] {
+  accent-color: var(--accent);
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.maplibregl-ctrl-attrib {
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
