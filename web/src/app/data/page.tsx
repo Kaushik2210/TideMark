@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { REPO, repoFile } from "@/lib/data";
+import { REPO, repoFile, withBase } from "@/lib/data";
 import { getLakes } from "@/lib/server-data";
 
 export const metadata: Metadata = { title: "Data downloads" };
@@ -29,7 +29,7 @@ export default function DataPage() {
         <h1 className="font-serif text-4xl font-semibold">Data downloads</h1>
         <p className="max-w-2xl text-muted">
           Everything on this site comes from these files. They are research outputs, unvalidated in the
-          ways described on the <a className="underline" href="/methodology/">method page</a>.
+          ways described on the <a className="underline" href={withBase("/methodology/")}>method page</a>.
         </p>
       </header>
 
@@ -49,7 +49,7 @@ export default function DataPage() {
               {items.map((i) => (
                 <tr key={i.file} className="border-t border-border align-top">
                   <th scope="row" className="py-2 pr-3 font-normal">
-                    <a className="tap inline-flex items-center underline" href={`/downloads/${i.file}`} download>{i.file}</a>
+                    <a className="tap inline-flex items-center underline" href={withBase(`/downloads/${i.file}`)} download>{i.file}</a>
                   </th>
                   <td className="py-2 pr-3">{i.what}</td>
                   <td className="py-2">{i.licence}</td>

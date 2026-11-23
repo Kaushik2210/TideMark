@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 
 const root = join(fileURLToPath(new URL(".", import.meta.url)), "..", "out");
 const port = Number(process.argv[2] || 4321);
+// Optional: serve a build made with NEXT_PUBLIC_BASE_PATH by stripping that prefix from requests.
+const base = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
 const types = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css",
   ".json": "application/json", ".geojson": "application/geo+json", ".svg": "image/svg+xml",
@@ -14,7 +16,9 @@ const types = {
 
 createServer(async (req, res) => {
   try {
-    let p = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname));
+    let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+    if (base && (p === base || p.startsWith(`${base}/`))) p = p.slice(base.length) || "/";
+    p = normalize(p);
     if (p.includes("..")) throw new Error("bad path");
     let file = join(root, p);
     if ((await stat(file).catch(() => null))?.isDirectory()) file = join(file, "index.html");

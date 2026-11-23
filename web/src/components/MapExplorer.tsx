@@ -6,7 +6,7 @@ import { CompareView } from "./CompareView";
 import { LakeMap, type FlyTo, type GhostProps } from "./LakeMap";
 import { SourceLegend, SourceMark } from "./SourceMark";
 import { TimeSlider } from "./TimeSlider";
-import { byMonth, fmtHa, formatMonth, hasExtent, loadLakes, loadSeries, monthRange } from "@/lib/data";
+import { byMonth, fmtHa, formatMonth, hasExtent, loadLakes, loadSeries, monthRange, withBase } from "@/lib/data";
 import type { LakeIndex, Row } from "@/lib/types";
 
 interface GhostFeature {
@@ -129,7 +129,7 @@ export function MapExplorer() {
 
   useEffect(() => {
     if (!ghost || ghostList.length) return;
-    fetch("/data/ghost_lakes.geojson")
+    fetch(withBase("/data/ghost_lakes.geojson"))
       .then((r) => r.json())
       .then((g: { features: GhostFeature[] }) => setGhostList(g.features))
       .catch(() => setGhostList([]));

@@ -2,6 +2,10 @@ import type { EventItem, Health, LakeIndex, Row, Source, Validation } from "./ty
 
 export const REPO = "https://github.com/Kaushik2210/TideMark";
 export const REPO_REF = "main";
+/** Set for hosts that serve the site under a sub-path (GitHub Pages project sites), e.g. "/TideMark". */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+/** Prefix a root-absolute path for plain fetch/img/anchor use (next/link adds it by itself). */
+export const withBase = (p: string) => `${BASE_PATH}${p}`;
 export const repoFile = (path: string) => `${REPO}/blob/${REPO_REF}/${path}`;
 
 /** Client-side loader with an in-memory cache, used by interactive components. */
@@ -10,7 +14,7 @@ const cache = new Map<string, Promise<unknown>>();
 export function getJson<T>(path: string): Promise<T> {
   let hit = cache.get(path);
   if (!hit) {
-    hit = fetch(path).then((r) => {
+    hit = fetch(withBase(path)).then((r) => {
       if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
       return r.json();
     });

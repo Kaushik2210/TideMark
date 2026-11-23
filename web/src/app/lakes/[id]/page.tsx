@@ -7,7 +7,7 @@ import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
 import { ReportCard } from "@/components/ReportCard";
 import { SourceMark } from "@/components/SourceMark";
-import { formatMonth, hasExtent, repoFile } from "@/lib/data";
+import { formatMonth, hasExtent, repoFile, withBase } from "@/lib/data";
 import { getEvents, getHealth, getLakes, getSeries, getValidation } from "@/lib/server-data";
 
 type Params = Promise<{ id: string }>;
@@ -154,7 +154,7 @@ export default async function LakePage({ params }: { params: Params }) {
       <CitizenPhotos lakeId={id} lakeName={name} />
 
       <p className="text-sm">
-        <a className="underline" href={`/downloads/${id}_monthly.csv`} download>Download this lake&apos;s monthly data (CSV)</a>
+        <a className="underline" href={withBase(`/downloads/${id}_monthly.csv`)} download>Download this lake&apos;s monthly data (CSV)</a>
         {" · "}
         <Link className="underline" href="/data/">All downloads and licences</Link>
       </p>

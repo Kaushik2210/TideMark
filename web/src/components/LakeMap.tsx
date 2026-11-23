@@ -3,7 +3,7 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useEffect, useRef } from "react";
 import type { Map as MLMap, GeoJSONSource, Marker } from "maplibre-gl";
-import { getJson } from "@/lib/data";
+import { getJson, withBase } from "@/lib/data";
 import type { LakeIndex, Row } from "@/lib/types";
 
 export interface View {
@@ -66,7 +66,7 @@ export function LakeMap(props: Props) {
     (async () => {
       try {
         const maplibregl = await import("maplibre-gl");
-        maplibregl.setWorkerUrl(new URL("/maplibre/maplibre-gl-worker.js", window.location.origin).href);
+        maplibregl.setWorkerUrl(new URL(withBase("/maplibre/maplibre-gl-worker.js"), window.location.origin).href);
         if (cancelled || !container.current) return;
         const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const bg = cssVar("--bg", dark ? "#0b1220" : "#f5f7fb");
@@ -113,7 +113,7 @@ export function LakeMap(props: Props) {
             ghost: cssVar("--ghost", "#c4b5fd"),
             fg: cssVar("--fg", "#e6edf7"),
           };
-          m.addSource("outlines", { type: "geojson", data: "/data/lakes.geojson" });
+          m.addSource("outlines", { type: "geojson", data: withBase("/data/lakes.geojson") });
           m.addLayer({
             id: "outline-line",
             type: "line",
@@ -138,7 +138,7 @@ export function LakeMap(props: Props) {
               paint: { "line-color": cs.fg, "line-width": 0.8, "line-opacity": 0.8 },
             });
           }
-          m.addSource("ghost", { type: "geojson", data: "/data/ghost_lakes.geojson" });
+          m.addSource("ghost", { type: "geojson", data: withBase("/data/ghost_lakes.geojson") });
           m.addLayer({
             id: "ghost",
             type: "circle",
