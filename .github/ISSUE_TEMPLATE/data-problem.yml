@@ -1,0 +1,22 @@
+name: Something looks wrong in the data
+description: A month that looks impossible, a wrong outline, a broken chart or a misleading label
+title: "[Data] "
+labels: ["data-problem"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Page address
+      placeholder: "https://kaushik2210.github.io/TideMark/lakes/bellandur/"
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: Month or date it concerns (if any)
+  - type: textarea
+    id: what
+    attributes:
+      label: What looks wrong, and why do you think so?
+    validations:
+      required: true

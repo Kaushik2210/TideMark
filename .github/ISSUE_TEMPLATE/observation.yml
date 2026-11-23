@@ -1,0 +1,42 @@
+name: Share what you saw at a lake
+description: A dated first-hand observation or photo, to give the satellite record some context
+title: "[Observation] "
+labels: ["observation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        First-hand observations are useful context, but they are **not treated as proof** and are never used to
+        score the satellite record on their own. Please keep faces, vehicle number plates and private property
+        out of any photo, and crop it before you attach it (photos can carry location data).
+  - type: dropdown
+    id: lake
+    attributes:
+      label: Lake
+      options:
+        - Bellandur
+        - Varthur
+        - Ulsoor (Halasuru)
+        - Another lake (name it below)
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date you saw it (YYYY-MM-DD)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What did you see, and where along the lake?
+      description: Water level, colour, foam, plants, smell, construction. Drag a cropped photo into this box if you like.
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before you send
+      options:
+        - label: I took this myself, and I am happy for it to be shown under CC BY 4.0 if a maintainer approves it.
+          required: true

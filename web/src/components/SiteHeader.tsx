@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const LINKS = [
+const LINKS: { href: string; label: string; short?: string }[] = [
   { href: "/", label: "Map" },
   { href: "/lakes/", label: "Lakes" },
+  { href: "/updates/", label: "Updates" },
   { href: "/methodology/", label: "Method" },
-  { href: "/data/", label: "Data" },
+  { href: "/contribute/", label: "Contribute", short: "Join" },
 ];
 
 function isActive(pathname: string, href: string): boolean {
@@ -17,9 +18,10 @@ function isActive(pathname: string, href: string): boolean {
 
 export function SiteHeader() {
   const pathname = usePathname() ?? "/";
+  if (pathname.startsWith("/embed")) return null; // iframe panels carry no site chrome
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 px-4 sm:px-6">
         <Link href="/" className="tap flex items-center gap-2 py-2" aria-label="Tidemark, home">
           <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
             <path d="M2 13c3-4 5-4 8 0s5 4 8 0 4-3 6-1" fill="none" stroke="var(--optical)" strokeWidth="2.2" strokeLinecap="round" />
@@ -37,11 +39,11 @@ export function SiteHeader() {
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
-                    className={`tap inline-flex items-center rounded-md px-2.5 text-sm sm:px-3 font-medium transition-colors ${
+                    className={`tap inline-flex items-center rounded-md px-2 text-sm sm:px-3 font-medium transition-colors ${
                       active ? "bg-surface-2 text-fg" : "text-muted hover:text-fg"
                     }`}
                   >
-                    {l.label}
+                    {l.short ? <><span className="sm:hidden">{l.short}</span><span className="hidden sm:inline">{l.label}</span></> : l.label}
                   </Link>
                 </li>
               );

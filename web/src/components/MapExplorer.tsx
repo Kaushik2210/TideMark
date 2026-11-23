@@ -10,6 +10,7 @@ import { byMonth, fmtHa, formatMonth, hasExtent, loadLakes, loadSeries, loadVali
 import { AnimatedNumber } from "./AnimatedNumber";
 import { MiniTrend } from "./MiniTrend";
 import { MOTION_OK, registerGsap } from "@/lib/motion";
+import { ShareButton } from "./ShareButton";
 import type { LakeIndex, Row, Validation } from "@/lib/types";
 
 interface GhostFeature {
@@ -106,6 +107,15 @@ export function MapExplorer() {
         setSeries(d.series);
         setMonths(d.months);
         setIdx(d.start);
+        // Restore a shared view from the URL hash: #lake=varthur&m=2021-03&base=satellite&ghost=1
+        const q = new URLSearchParams(window.location.hash.slice(1));
+        const hm = q.get("m");
+        const hl = q.get("lake");
+        const hb = q.get("base");
+        if (hm && d.months.includes(hm)) setIdx(d.months.indexOf(hm));
+        if (hl && d.lakes.some((l) => l.id === hl)) setFocus(hl);
+        if (hb === "map" || hb === "satellite" || hb === "none") setBasemap(hb);
+        if (q.get("ghost") === "1") setGhost(true);
         setCmpLake(d.lakes[0].id);
         setCmpA(d.cmpA);
         setCmpB(d.cmpB);
@@ -148,6 +158,17 @@ export function MapExplorer() {
     loadValidation().then((v) => { if (!cancelled) setValidation(v); }).catch(() => {});
     return () => { cancelled = true; };
   }, [phase]);
+
+  // Keep the address bar in step with the view so any state can be shared or bookmarked.
+  useEffect(() => {
+    if (phase !== "ready" || !months.length) return;
+    const q = new URLSearchParams();
+    q.set("m", months[idx]);
+    if (focus !== "all") q.set("lake", focus);
+    if (basemap !== "map") q.set("base", basemap);
+    if (ghost) q.set("ghost", "1");
+    window.history.replaceState(null, "", "#" + q.toString());
+  }, [phase, months, idx, focus, basemap, ghost]);
 
   // One-time entrance for the side panel (skipped with reduced motion).
   useEffect(() => {
@@ -257,6 +278,13 @@ export function MapExplorer() {
             Open-water area of three lakes each month since 2016, from free Sentinel satellite data.
             Estimates carry uncertainty and are not an official assessment.
           </p>
+          <div className="mt-3">
+            <ShareButton
+              title="Tidemark: Bengaluru lakes from space"
+              text={(focus === "all" ? "Bengaluru's lakes" : (lakes.find((l) => l.id === focus)?.name.replace(" (Halasuru Kere)", "") ?? "Lake")) + " in " + formatMonth(month) + ", from Sentinel satellite data (research estimate, not official)."}
+              label="Share this view"
+            />
+          </div>
         </div>
 
         <div role="group" aria-label="View mode" className="grid grid-cols-2 gap-2">

@@ -1,0 +1,73 @@
+name: Report a dated lake event
+description: A lake that drained, overflowed, foamed, burned or was built on, backed by a public source
+title: "[Event] "
+labels: ["ground-truth"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Tidemark checks its satellite signals against **published, dated reports**. Your report helps
+        test (and sometimes disprove) what the satellites seem to show.
+
+        Please only report what a **public source says** (news article, government or court order, official
+        social post). Do not include personal data, and do not accuse any person or company of anything the
+        source itself does not state.
+  - type: dropdown
+    id: lake
+    attributes:
+      label: Lake
+      options:
+        - Bellandur
+        - Varthur
+        - Ulsoor (Halasuru)
+        - Another lake (name it in the summary)
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What happened
+      options:
+        - Drained or very low water
+        - Overflow or high water
+        - Foam spill
+        - Fire
+        - Floating plants (hyacinth) covering the water
+        - Encroachment or construction order
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: start
+    attributes:
+      label: First date it applies to (YYYY-MM-DD)
+      placeholder: "2026-05-14"
+    validations:
+      required: true
+  - type: input
+    id: end
+    attributes:
+      label: Last date (same as the first if it was one day)
+      placeholder: "2026-05-14"
+  - type: input
+    id: source
+    attributes:
+      label: Link to the public report
+      placeholder: "https://"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What does the source say? (your own words, 1 to 3 sentences)
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before you send
+      options:
+        - label: The source is public, and this report contains no personal data.
+          required: true
+        - label: I am not claiming anything the source does not say.
+          required: true

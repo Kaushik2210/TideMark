@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { REPO } from "@/lib/data";
 
 export function SiteFooter() {
+  const pathname = usePathname() ?? "/";
+  if (pathname.startsWith("/embed")) return null;
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl space-y-4 px-4 py-8 text-sm text-muted sm:px-6">
@@ -20,6 +25,10 @@ export function SiteFooter() {
           <a className="underline" href={REPO}>Source code and data on GitHub</a>
           {" · "}
           <Link className="underline" href="/data/">Downloads and licences</Link>
+          {" · "}
+          <Link className="underline" href="/contribute/">Contribute</Link>
+          {" · "}
+          <Link className="underline" href="/updates/">Monthly updates</Link>
         </p>
       </div>
     </footer>

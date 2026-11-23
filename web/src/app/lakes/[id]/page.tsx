@@ -4,13 +4,16 @@ import { notFound } from "next/navigation";
 import { BloomChart, ExtentChart, RainChart, SeriesTable } from "@/components/charts";
 import { CitizenPhotos } from "@/components/CitizenPhotos";
 import { CountUp } from "@/components/CountUp";
+import { EmbedCode } from "@/components/EmbedCode";
 import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
 import { Reveal } from "@/components/Reveal";
 import { ReportCard } from "@/components/ReportCard";
 import { SeasonalLandscape } from "@/components/SeasonalLandscape";
+import { ShareButton } from "@/components/ShareButton";
 import { SourceMark } from "@/components/SourceMark";
 import { formatMonth, hasExtent, repoFile, withBase } from "@/lib/data";
+import { SITE_URL } from "@/lib/site";
 import { getEvents, getHealth, getLakes, getSeries, getValidation } from "@/lib/server-data";
 
 type Params = Promise<{ id: string }>;
@@ -22,7 +25,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { id } = await params;
   const lake = getLakes().find((l) => l.id === id);
-  return { title: lake ? lake.name.replace(" (Halasuru Kere)", "") : "Lake" };
+  const name = lake ? lake.name.replace(" (Halasuru Kere)", "") : "Lake";
+  const card = SITE_URL + "/lakes/" + id + "/og.png";
+  return {
+    title: name,
+    openGraph: { title: name + " | Tidemark", images: [{ url: card, width: 1200, height: 630, alt: name + ": open water from satellite data" }] },
+    twitter: { card: "summary_large_image", images: [card] },
+  };
 }
 
 const OUTCOME: Record<string, string> = {
@@ -97,6 +106,7 @@ export default async function LakePage({ params }: { params: Params }) {
           <a className="tap inline-flex items-center rounded-md border border-border bg-surface px-4 text-sm font-medium hover:bg-surface-2" href={withBase(`/downloads/${id}_monthly.csv`)} download>
             Download monthly data (CSV)
           </a>
+          <ShareButton title={name + " | Tidemark"} text={name + ": " + (latest?.area_ha?.toFixed(1) ?? "n/a") + " ha of open water in " + (latest ? formatMonth(latest.month) : "") + ", from Sentinel satellite data (research estimate, not official)."} />
         </div>
         <nav aria-label="On this page" className="flex flex-wrap gap-x-5 gap-y-1 border-t border-border pt-3 text-sm">
           {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#landscape-h", "3D landscape"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
@@ -170,6 +180,8 @@ export default async function LakePage({ params }: { params: Params }) {
       </Reveal>
 
       <CitizenPhotos lakeId={id} lakeName={name} />
+
+      <EmbedCode lakeId={id} name={name} />
 
       <p className="text-sm">
         <Link className="underline" href="/data/">All downloads and licences</Link>

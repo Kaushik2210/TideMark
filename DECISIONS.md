@@ -254,3 +254,19 @@ Shift for a year, Home/End), with a live text readout and a full table alternati
 selected month with the chart, can be re-sorted (GSAP Flip glides them; skipped with reduced motion), and
 each card's trend line is also a scrubber. The share-of-outline view carries a caveat that a small share can
 mean a dry bed or built edge inside the outline, not only low water.
+
+## D-041 "Social" without a backend: shareable state, previews, feed, embeds, and reports through GitHub
+Tidemark has no server or user accounts, so social features use the web's own plumbing. **Shareable views:**
+the home page keeps its state (month, lake, base map, lost lakes) in the URL hash and restores it on load; a
+Share button uses the native share sheet and falls back to copying the link. **Link previews:** every lake and
+the site get a 1200x630 PNG card drawn at build time from the real series (explicit `.png` routes, because
+extensionless static files can be served with the wrong content type). **Monthly digest and Atom feed:**
+plain-language updates per lake where every change is compared with the combined measurement uncertainty and a
+change inside it is labelled "not a clear change"; sensor switches are flagged; flags are called candidates.
+Feed dates come from the data month, not the build time. **Embeds:** `/embed/<lake>/` is a bare panel for an
+iframe (no site chrome, not indexed) with a copyable snippet on each lake page. **Contributions:** GitHub issue
+forms for dated, sourced events, observations and data problems; accepted events join the validation set with
+their source link, so the community can strengthen (or weaken) the project's own checks. The page states what is
+not accepted (unsourced claims, accusations beyond a source, personal data). Reports are public on GitHub and
+need a free account; that is the cost of having no backend. The Supabase photo upload from Phase 8 remains the
+richer path when a project is configured.
