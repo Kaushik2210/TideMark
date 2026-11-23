@@ -91,11 +91,11 @@ export function ExtentChart({ rows, outlineHa, name }: { rows: Row[]; outlineHa:
         aria-describedby={`${titleId}-readout`}
         onKeyDown={onKeyDown}
         onBlur={() => setI(null)}
-        className="rounded-md"
+        className="overflow-x-auto rounded-md"
       >
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          className="h-auto w-full touch-pan-y select-none"
+          className="h-auto w-full min-w-[640px] touch-pan-y select-none"
           onPointerMove={(e) => setI(pointerIndex(e, n, iw))}
           onPointerLeave={() => setI(null)}
           aria-hidden="true"
@@ -159,7 +159,7 @@ export function RainChart({ rows }: { rows: Row[] }) {
       <figcaption className="text-sm text-muted">
         Monthly rainfall (ERA5 reanalysis, about 28 km grid: regional rain, not what fell on the lake).
       </figcaption>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Bar chart of monthly rainfall in millimetres, 2016 to 2026, with a monsoon peak between June and October each year.">
+      <div tabIndex={0} role="group" aria-label="Chart (scrolls sideways on small screens)" className="overflow-x-auto rounded-md"><svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[640px]" role="img" aria-label="Bar chart of monthly rainfall in millimetres, 2016 to 2026, with a monsoon peak between June and October each year.">
         {[0, 0.5, 1].map((f) => (
           <g key={f}>
             <line x1={M.left} x2={W - M.right} y1={M.top + ih - f * ih} y2={M.top + ih - f * ih} stroke="var(--border)" strokeWidth="0.7" />
@@ -181,7 +181,7 @@ export function RainChart({ rows }: { rows: Row[] }) {
         <text x="4" y={M.top + ih / 2} fontSize="11" fill="var(--muted)" transform={`rotate(-90 10 ${M.top + ih / 2})`} textAnchor="middle">
           mm
         </text>
-      </svg>
+      </svg></div>
     </figure>
   );
 }
@@ -198,7 +198,7 @@ export function BloomChart({ rows }: { rows: Row[] }) {
         more than hollow ones, which are hazy scenes that were excluded from every flag. Rings mark months
         flagged as floating-mat <em>candidates</em> (FAI). These flags are not validated.
       </figcaption>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label="Scatter chart of median NDCI by month. Values are typically between 0.3 and 0.6 on all three lakes; hollow points are hazy months; rings mark floating-mat candidate months.">
+      <div tabIndex={0} role="group" aria-label="Chart (scrolls sideways on small screens)" className="overflow-x-auto rounded-md"><svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[640px]" role="img" aria-label="Scatter chart of median NDCI by month. Values are typically between 0.3 and 0.6 on all three lakes; hollow points are hazy months; rings mark floating-mat candidate months.">
         {[0, 0.2, 0.4, 0.6, 0.8].map((v) => (
           <g key={v}>
             <line x1={M.left} x2={W - M.right} y1={y(v)} y2={y(v)} stroke="var(--border)" strokeWidth="0.7" />
@@ -220,7 +220,7 @@ export function BloomChart({ rows }: { rows: Row[] }) {
             {t.label}
           </text>
         ))}
-      </svg>
+      </svg></div>
     </figure>
   );
 }

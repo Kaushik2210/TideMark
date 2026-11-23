@@ -127,3 +127,9 @@ input[type="range"] {
   from { background-position: 200% 0; }
   to { background-position: -200% 0; }
 }
+
+/* Anchored headings clear the sticky header; smooth scrolling only when motion is allowed. */
+[id] { scroll-margin-top: 4.5rem; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}

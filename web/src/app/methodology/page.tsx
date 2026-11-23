@@ -14,6 +14,15 @@ function Section({ id, title, children }: { id: string; title: string; children:
   );
 }
 
+const STATUS_CHIP: Record<string, string> = {
+  "Broadly supported": "border-fused text-fused",
+  Moderate: "border-radar text-radar",
+  Failed: "border-danger text-danger",
+  "Not validated": "border-border text-muted",
+  "No conversion found": "border-fused text-fused",
+  Experimental: "border-radar text-radar",
+};
+
 const STATUS = [
   { signal: "Open-water extent", status: "Broadly supported", detail: "Agrees with JRC Global Surface Water (overlap 0.73 to 0.85 at a 25% water-frequency cut; weaker for Varthur at stricter cuts). Ulsoor's 2026 draining and Bellandur's 2021 dewatering and 2022 overflow show up." },
   { signal: "Radar-filled months", status: "Moderate", detail: "Radar area is within about 12% of optical on average (correlation 0.83 to 0.89), but pixel overlap is moderate (0.58 to 0.83 where there is enough water)." },
@@ -52,7 +61,7 @@ export default function MethodologyPage() {
               {STATUS.map((s) => (
                 <tr key={s.signal} className="border-t border-border align-top">
                   <th scope="row" className="py-2 pr-3 font-medium">{s.signal}</th>
-                  <td className="py-2 pr-3">{s.status}</td>
+                  <td className="py-2 pr-3"><span className={`inline-block whitespace-nowrap rounded-full border px-2 py-0.5 text-xs ${STATUS_CHIP[s.status] ?? "border-border text-muted"}`}>{s.status}</span></td>
                   <td className="py-2 text-muted">{s.detail}</td>
                 </tr>
               ))}

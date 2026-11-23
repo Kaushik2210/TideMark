@@ -209,3 +209,13 @@ EOX's terms checked or a different source (`NEXT_PUBLIC_BASEMAP_STYLE_URL` only 
 so a commercial fork must change the tile URL in LakeMap.tsx). Esri World Imagery was rejected because
 it requires an ArcGIS licence. Satellite tiles are requested only after a visitor chooses Satellite, and
 the UI states that the mosaic is a yearly composite, not the image behind the month being shown.
+
+## D-037 UI pass: compact events, section navigation, readable charts on phones, automated a11y check
+The flagged-events list made a lake page about 8,700 px tall. It is now a compact list (date, event, rain
+context, evidence chip) showing the 8 most recent with "Show all", and the repeated validation notes moved
+into one "What do the evidence labels mean?" disclosure. Lake pages gained a header action row (report
+card, CSV) and an "On this page" jump list. Charts keep a 640 px minimum width and scroll sideways on small
+screens instead of shrinking to unreadable text. Lake list cards show a sparkline and the health score
+range; the methodology table uses colour-coded status chips (the status word is always present, colour is
+supplementary). An axe-core scan (WCAG 2.2 AA) over every page in dark and light mode now runs in the test
+suite; it excludes MapLibre's own canvas and controls.
