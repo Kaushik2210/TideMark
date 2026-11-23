@@ -270,3 +270,12 @@ their source link, so the community can strengthen (or weaken) the project's own
 not accepted (unsourced claims, accusations beyond a source, personal data). Reports are public on GitHub and
 need a free account; that is the cost of having no backend. The Supabase photo upload from Phase 8 remains the
 richer path when a project is configured.
+
+## D-042 Water stripes: each month against that lake's own usual for the calendar month
+A "warming stripes" style picture of the lakes: one stripe per month, coloured by a robust z-score of the
+month's area against the lake's median for that calendar month (1.4826 x MAD scale, the same idea as the
+pipeline's anomaly flags), so the monsoon cycle is removed and a stripe means "unusual for this lake at this
+time of year". The scale is diverging and colour-blind-safe (orange = drier, blue = wetter), gaps are hatched
+rather than coloured, and the page says plainly that lakes are not comparable by colour intensity because each is
+scaled by its own spread. The same drawing can be saved as a PNG poster with the caveat printed on it. It
+is keyboard-readable (arrows, Shift for a year) with a worded readout.

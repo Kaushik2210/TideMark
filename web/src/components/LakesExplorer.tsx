@@ -7,6 +7,7 @@ import { AnimatedNumber } from "./AnimatedNumber";
 import { MiniTrend } from "./MiniTrend";
 import { Reveal } from "./Reveal";
 import { SourceMark } from "./SourceMark";
+import { WaterStripes } from "./WaterStripes";
 import { fmtHa, formatMonth } from "@/lib/data";
 import { MOTION_OK, registerGsap } from "@/lib/motion";
 import type { LakeIndex, Row } from "@/lib/types";
@@ -262,6 +263,12 @@ export function LakesExplorer({ lakes, series }: { lakes: LakeIndex[]; series: R
             </table>
           </div>
         </details>
+      </Reveal>
+
+      <Reveal as="section" aria-labelledby={`${uid}-stripes`} className="space-y-4">
+        <h2 id={`${uid}-stripes`} className="font-serif text-2xl font-semibold">Water stripes</h2>
+        <p className="max-w-3xl text-muted">The last decade in one picture: every month of every lake, coloured by how unusual it was for the time of year.</p>
+        <WaterStripes lakes={lakes} series={series} />
       </Reveal>
 
       <Reveal as="section" aria-labelledby={`${uid}-cards`} className="space-y-4">
