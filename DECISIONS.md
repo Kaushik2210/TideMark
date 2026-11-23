@@ -153,3 +153,18 @@ is not a false positive.
 ## D-028 A foam supplementary test uses every low-cloud scene, not just the monthly best
 To avoid blaming the method for the monthly best-scene design, foam windows were also tested on all
 Sentinel-2 scenes up to 50% tile cloud. It still found no foam.
+
+## D-029 The website uses no tile key: the map is data-first and street tiles are opt-in
+The default map draws only our own layers (OSM-derived outlines, satellite extents, ghost-lake points)
+on a plain background, so the site works with no account or key. CARTO basemaps need a key that was not
+created. OpenStreetMap's public tile server is available behind a "Street map context" switch that is
+off by default, so no tile request is made unless a visitor asks. The OSM tile usage policy allows light,
+attributed use but not heavy traffic; `NEXT_PUBLIC_BASEMAP_URL` / `NEXT_PUBLIC_BASEMAP_ATTRIBUTION`
+let a deployment swap in a provider that permits its load.
+
+## D-030 Static export, with the MapLibre worker served as a separate file
+The site is a static Next.js export (no server needed, hostable anywhere). MapLibre 6 is ESM-only and
+its worker is not bundled, so `scripts/copy-maplibre-worker.mjs` copies the worker to `public/maplibre/`
+as `.js` (some static hosts serve `.mjs` as text/plain) and the map registers it with `setWorkerUrl`.
+The map container sits inside a wrapper div because MapLibre forces `position: relative` on its own
+element, which collapsed an `absolute inset-0` container to zero height (caught by the smoke test).

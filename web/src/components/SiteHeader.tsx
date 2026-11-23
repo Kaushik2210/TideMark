@@ -26,10 +26,10 @@ export function SiteHeader() {
             <path d="M2 19c3-4 5-4 8 0s5 4 8 0 4-3 6-1" fill="none" stroke="var(--muted)" strokeWidth="1.6" strokeLinecap="round" opacity="0.7" />
             <line x1="2" y1="7" x2="24" y2="7" stroke="var(--fg)" strokeWidth="1.4" />
           </svg>
-          <span className="font-serif text-xl font-semibold tracking-tight">Tidemark</span>
+          <span className="hidden font-serif text-xl font-semibold tracking-tight min-[420px]:inline">Tidemark</span>
         </Link>
         <nav aria-label="Main">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5 sm:gap-1">
             {LINKS.map((l) => {
               const active = isActive(pathname, l.href);
               return (
@@ -37,7 +37,7 @@ export function SiteHeader() {
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
-                    className={`tap inline-flex items-center rounded-md px-3 text-sm font-medium transition-colors ${
+                    className={`tap inline-flex items-center rounded-md px-2.5 text-sm sm:px-3 font-medium transition-colors ${
                       active ? "bg-surface-2 text-fg" : "text-muted hover:text-fg"
                     }`}
                   >

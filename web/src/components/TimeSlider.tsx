@@ -66,7 +66,7 @@ export function TimeSlider({ months, idx, onIdx, lakes, series, playing, onToggl
         <span />
         <div className="relative h-4" aria-hidden="true">
           {years.map((t) => (
-            <span key={t.y} className="num absolute -translate-x-1/2" style={{ left: `${(t.i / (n - 1)) * 100}%` }}>
+            <span key={t.y} className={`num absolute -translate-x-1/2 ${Number(t.y) % 2 ? "hidden sm:inline" : ""}`} style={{ left: `${(t.i / (n - 1)) * 100}%` }}>
               {t.y}
             </span>
           ))}

@@ -283,12 +283,16 @@ export function LakeMap(props: Props) {
   }, []);
 
   return (
-    <div
-      ref={container}
-      role="region"
-      aria-label={props.ariaLabel}
-      className={props.className}
-      data-testid="lake-map"
-    />
+    // MapLibre sets `position: relative` on its container, which would override a caller's
+    // `absolute inset-0`; the outer div keeps the caller's sizing and the map fills it.
+    <div className={props.className}>
+      <div
+        ref={container}
+        role="region"
+        aria-label={props.ariaLabel}
+        className="h-full w-full"
+        data-testid="lake-map"
+      />
+    </div>
   );
 }
