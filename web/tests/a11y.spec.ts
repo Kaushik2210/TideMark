@@ -5,7 +5,7 @@ const PAGES = ["/", "/lakes/", "/lakes/bellandur/", "/methodology/", "/data/"];
 
 for (const scheme of ["dark", "light"] as const) {
   test(`axe: WCAG 2.2 AA, ${scheme} mode`, async ({ browser }) => {
-    const ctx = await browser.newContext({ colorScheme: scheme });
+    const ctx = await browser.newContext({ colorScheme: scheme, reducedMotion: "reduce" });
     const page = await ctx.newPage();
     for (const path of PAGES) {
       await page.goto(path);

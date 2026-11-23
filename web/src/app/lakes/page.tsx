@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CountUp } from "@/components/CountUp";
+import { Reveal } from "@/components/Reveal";
 import { SourceMark } from "@/components/SourceMark";
 import { Sparkline } from "@/components/Sparkline";
 import { formatMonth } from "@/lib/data";
@@ -18,7 +20,7 @@ export default function LakesPage() {
           an experimental health index, with the uncertainty and validation caveats alongside.
         </p>
       </header>
-      <ul className="grid gap-4 sm:grid-cols-3">
+      <Reveal as="ul" stagger className="grid gap-4 sm:grid-cols-3">
         {lakes.map((l) => (
           <li key={l.id}>
             <Link href={`/lakes/${l.id}/`} className="block h-full rounded-xl border border-border bg-surface p-5 transition-colors hover:bg-surface-2">
@@ -31,7 +33,7 @@ export default function LakesPage() {
               <dl className="num mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                 <div className="col-span-2">
                   <dt className="text-muted">Latest open water ({formatMonth(l.latest_extent.month)})</dt>
-                  <dd className="text-2xl font-semibold">{l.latest_extent.area_ha.toFixed(1)} ha</dd>
+                  <dd className="text-2xl font-semibold"><CountUp value={l.latest_extent.area_ha} decimals={1} /> ha</dd>
                   <dd><SourceMark source={l.latest_extent.source} /></dd>
                 </div>
                 <div>
@@ -49,7 +51,7 @@ export default function LakesPage() {
             </Link>
           </li>
         ))}
-      </ul>
+      </Reveal>
     </div>
   );
 }

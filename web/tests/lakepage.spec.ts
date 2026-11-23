@@ -24,3 +24,23 @@ test("lake page: jump links point at real sections", async ({ page }) => {
     await expect(page.locator(`#${id}`)).toHaveCount(1);
   }
 });
+
+test("scroll reveals end fully visible, and with reduced motion nothing is ever hidden", async ({ browser }) => {
+  for (const reduced of [false, true]) {
+    const ctx = await browser.newContext({ reducedMotion: reduced ? "reduce" : "no-preference" });
+    const page = await ctx.newPage();
+    await page.goto("/lakes/bellandur/");
+    const section = page.locator("#val-h").locator("..");
+    if (reduced) {
+      expect(await section.evaluate((e) => getComputedStyle(e).opacity)).toBe("1");
+    }
+    await page.locator("#val-h").scrollIntoViewIfNeeded();
+    await expect.poll(() => section.evaluate((e) => getComputedStyle(e).opacity), { timeout: 5000 }).toBe("1");
+    await ctx.close();
+  }
+});
+
+test("count-up numbers settle on the real values", async ({ page }) => {
+  await page.goto("/lakes/bellandur/");
+  await expect(page.getByText("Latest open water").locator("..").locator("dd").first()).toContainText("9.0 ha", { timeout: 5000 });
+});

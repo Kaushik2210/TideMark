@@ -3,9 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BloomChart, ExtentChart, RainChart, SeriesTable } from "@/components/charts";
 import { CitizenPhotos } from "@/components/CitizenPhotos";
+import { CountUp } from "@/components/CountUp";
 import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
+import { Reveal } from "@/components/Reveal";
 import { ReportCard } from "@/components/ReportCard";
+import { SeasonalLandscape } from "@/components/SeasonalLandscape";
 import { SourceMark } from "@/components/SourceMark";
 import { formatMonth, hasExtent, repoFile, withBase } from "@/lib/data";
 import { getEvents, getHealth, getLakes, getSeries, getValidation } from "@/lib/server-data";
@@ -59,17 +62,17 @@ export default async function LakePage({ params }: { params: Params }) {
         <dl className="num grid grid-cols-2 gap-4 pt-2 text-sm sm:grid-cols-4">
           <div>
             <dt className="text-muted">Latest open water</dt>
-            <dd className="text-2xl font-semibold">{latest?.area_ha?.toFixed(1)} ha</dd>
+            <dd className="text-2xl font-semibold">{latest?.area_ha != null ? <CountUp value={latest.area_ha} decimals={1} /> : "n/a"} ha</dd>
             <dd className="text-muted">{latest ? formatMonth(latest.month) : ""} · {latest ? <SourceMark source={latest.source} label={false} /> : null}</dd>
           </div>
           <div>
             <dt className="text-muted">OpenStreetMap outline</dt>
-            <dd className="text-2xl font-semibold">{lake.outline_ha.toFixed(0)} ha</dd>
+            <dd className="text-2xl font-semibold"><CountUp value={lake.outline_ha} /> ha</dd>
             <dd className="text-muted">not an official boundary</dd>
           </div>
           <div>
             <dt className="text-muted">Months with an extent</dt>
-            <dd className="text-2xl font-semibold">{lake.months_with_extent} / {lake.months}</dd>
+            <dd className="text-2xl font-semibold"><CountUp value={lake.months_with_extent} /> / {lake.months}</dd>
             <dd className="text-muted">{optical} optical, {fused} fused, {radar} radar</dd>
           </div>
           <div>
@@ -96,36 +99,41 @@ export default async function LakePage({ params }: { params: Params }) {
           </a>
         </div>
         <nav aria-label="On this page" className="flex flex-wrap gap-x-5 gap-y-1 border-t border-border pt-3 text-sm">
-          {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
+          {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#landscape-h", "3D landscape"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
             <a key={href} href={href} className="tap inline-flex items-center text-muted underline-offset-4 hover:text-fg hover:underline">{label}</a>
           ))}
         </nav>
       </header>
 
-      <HealthCard health={health} name={name} />
+      <Reveal><HealthCard health={health} name={name} /></Reveal>
 
-      <section aria-labelledby="extent-h" className="space-y-4">
+      <Reveal as="section" aria-labelledby="extent-h" className="space-y-4">
         <h2 id="extent-h" className="font-serif text-2xl font-semibold">Open-water area over time</h2>
         <ExtentChart rows={rows} outlineHa={lake.outline_ha} name={name} />
         <RainChart rows={rows} />
         <SeriesTable rows={rows} />
-      </section>
+      </Reveal>
 
-      <section aria-labelledby="bloom-h" className="space-y-4">
+      <Reveal as="section" aria-labelledby="landscape-h" className="space-y-4">
+        <h2 id="landscape-h" className="font-serif text-2xl font-semibold">Seasonal landscape (3D)</h2>
+        <SeasonalLandscape rows={rows} name={name} />
+      </Reveal>
+
+      <Reveal as="section" aria-labelledby="bloom-h" className="space-y-4">
         <h2 id="bloom-h" className="font-serif text-2xl font-semibold">Bloom indicators (candidates)</h2>
         <BloomChart rows={rows} />
         <p className="max-w-3xl text-sm text-muted">
           The chlorophyll proxy is high (0.3 to 0.6) in almost every month on these lakes, so it is shown
           as a level, not as episodes. Hazy scenes are excluded from every flag.
         </p>
-      </section>
+      </Reveal>
 
-      <section aria-labelledby="events-h" className="space-y-4">
+      <Reveal as="section" aria-labelledby="events-h" className="space-y-4">
         <h2 id="events-h" className="font-serif text-2xl font-semibold">Flagged events</h2>
         <EventTimeline events={events} lakeName={name} />
-      </section>
+      </Reveal>
 
-      <section aria-labelledby="val-h" className="space-y-4">
+      <Reveal as="section" aria-labelledby="val-h" className="space-y-4">
         <h2 id="val-h" className="font-serif text-2xl font-semibold">What we checked against reports</h2>
         <p className="max-w-3xl text-sm text-muted">
           Dated news reports were compared with the satellite record ({validation.ground_truth.events} events in
@@ -159,7 +167,7 @@ export default async function LakePage({ params }: { params: Params }) {
           Foam detection did not work and its flags should not be read as foam. See the full write-up,
           including failures, in <a className="underline" href={repoFile("VALIDATION.md")}>VALIDATION.md</a>.
         </p>
-      </section>
+      </Reveal>
 
       <CitizenPhotos lakeId={id} lakeName={name} />
 

@@ -219,3 +219,18 @@ screens instead of shrinking to unreadable text. Lake list cards show a sparklin
 range; the methodology table uses colour-coded status chips (the status word is always present, colour is
 supplementary). An axe-core scan (WCAG 2.2 AA) over every page in dark and light mode now runs in the test
 suite; it excludes MapLibre's own canvas and controls.
+
+## D-038 Three.js and GSAP: a 3D seasonal landscape and scroll motion, both optional enhancements
+**3D:** each lake page has a "seasonal landscape": one bar per month, laid out by calendar month (left to
+right) and year (back to front), height = open-water area, colour = data source. It shows the monsoon
+cycle and the long decline at a glance, which a line chart shows less directly. It is a view of the same
+numbers (not new data), scaled to each lake's own maximum and labelled as such, so lakes cannot be compared
+by eye. Built with Three.js (one instanced mesh, render-on-demand, paused off-screen, fully disposed on
+unmount). The library (~0.5 MB) is only fetched when the section nears the viewport. It is operable
+without a pointer (arrow keys read months, buttons set the camera view), announces readings through an
+aria-live line, and degrades to a message pointing at the chart and table when WebGL is unavailable.
+**GSAP:** scroll-triggered reveals and number count-ups. Every animation runs inside a
+`prefers-reduced-motion: no-preference` match, so with reduced motion (or before JS runs) content is simply
+shown in its final state; the count-up exposes only the final number to screen readers. GSAP is not MIT:
+it uses GSAP's own licence (free to use, see gsap.com/community-license); check it before any commercial
+fork. Three.js is MIT.

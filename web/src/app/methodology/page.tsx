@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/Reveal";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { repoFile } from "@/lib/data";
@@ -5,14 +6,15 @@ import { getValidation } from "@/lib/server-data";
 
 export const metadata: Metadata = { title: "Method and validation" };
 
-function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
+function SectionImpl({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section aria-labelledby={id} className="space-y-3">
+    <Reveal as="section" aria-labelledby={id} className="space-y-3">
       <h2 id={id} className="font-serif text-2xl font-semibold">{title}</h2>
       <div className="max-w-3xl space-y-3 text-[1.0625rem] leading-relaxed">{children}</div>
-    </section>
+    </Reveal>
   );
 }
+const Section = SectionImpl;
 
 const STATUS_CHIP: Record<string, string> = {
   "Broadly supported": "border-fused text-fused",
