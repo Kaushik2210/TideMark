@@ -520,5 +520,23 @@
   "rain_event_end": null,
   "rain_event_total_mm": null,
   "rain_event_lag_days": null
+ },
+ {
+  "lake_id": "ulsoor",
+  "month": "2026-10",
+  "obs_date": "2026-10-29",
+  "date_is_approx": false,
+  "type": "chlorophyll_high_candidate",
+  "value": 0.229,
+  "detail": "median NDCI 0.23 >= lake top-decile 0.22",
+  "confidence": 1.0,
+  "source": "optical",
+  "rain_prior_7d_mm": 58.0,
+  "rain_prior_14d_mm": 120.3,
+  "rain_prior_30d_mm": 175.0,
+  "follows_rain": true,
+  "rain_event_end": "2026-10-26",
+  "rain_event_total_mm": 58.0,
+  "rain_event_lag_days": 3.0
  }
 ]

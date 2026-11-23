@@ -610,5 +610,23 @@
   "rain_event_end": null,
   "rain_event_total_mm": null,
   "rain_event_lag_days": null
+ },
+ {
+  "lake_id": "varthur",
+  "month": "2026-10",
+  "obs_date": "2026-10-29",
+  "date_is_approx": false,
+  "type": "chlorophyll_high_candidate",
+  "value": 0.309,
+  "detail": "median NDCI 0.31 >= lake top-decile 0.31",
+  "confidence": 1.0,
+  "source": "optical",
+  "rain_prior_7d_mm": 50.3,
+  "rain_prior_14d_mm": 114.8,
+  "rain_prior_30d_mm": 161.5,
+  "follows_rain": true,
+  "rain_event_end": "2026-10-25",
+  "rain_event_total_mm": 50.3,
+  "rain_event_lag_days": 4.0
  }
 ]

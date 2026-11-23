@@ -12,9 +12,9 @@
  "source": "https://archive-api.open-meteo.com/v1/archive",
  "licence": "CC BY 4.0 (Open-Meteo; free tier is non-commercial use only)",
  "start": "2015-12-01",
- "end": "2026-11-13",
+ "end": "2026-11-16",
  "event_rule": "trailing 3-day total >= 40.0 mm",
- "retrieved": "2026-11-20",
- "days": 4001,
+ "retrieved": "2026-11-23",
+ "days": 4004,
  "missing_days": 0
 }
