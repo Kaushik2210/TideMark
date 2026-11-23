@@ -7,6 +7,7 @@ import { CountUp } from "@/components/CountUp";
 import { EmbedCode } from "@/components/EmbedCode";
 import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
+import { ListenLake } from "@/components/ListenLake";
 import { Reveal } from "@/components/Reveal";
 import { ReportCard } from "@/components/ReportCard";
 import { SeasonalLandscape } from "@/components/SeasonalLandscape";
@@ -122,6 +123,7 @@ export default async function LakePage({ params }: { params: Params }) {
         <ExtentChart rows={rows} outlineHa={lake.outline_ha} name={name} />
         <RainChart rows={rows} />
         <SeriesTable rows={rows} />
+        <ListenLake rows={rows} name={name} />
       </Reveal>
 
       <Reveal as="section" aria-labelledby="landscape-h" className="space-y-4">

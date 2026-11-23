@@ -279,3 +279,12 @@ time of year". The scale is diverging and colour-blind-safe (orange = drier, blu
 rather than coloured, and the page says plainly that lakes are not comparable by colour intensity because each is
 scaled by its own spread. The same drawing can be saved as a PNG poster with the caveat printed on it. It
 is keyboard-readable (arrows, Shift for a year) with a worded readout.
+
+## D-043 Listen: the record as sound, on request only
+Each lake page can play its monthly record as music (about 14 s). Pitch follows open-water area on a pentatonic
+scale spanning about three octaves, scaled to the lake's own range; timbre follows the data source (sine =
+optical, triangle = optical plus radar, quieter square = radar only); a soft low tick marks each January; months
+with no usable scene are silent rests, so no value is invented. It is a second, non-visual way to perceive the
+same series, and it never starts by itself: an AudioContext is created only when Play is pressed, it stops on
+tab hide or completion, and a volume control is provided. Screen readers are told "Playing" once rather than
+every month (the on-screen readout is aria-hidden while playing) to avoid a stream of announcements.
