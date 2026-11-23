@@ -234,3 +234,14 @@ aria-live line, and degrades to a message pointing at the chart and table when W
 shown in its final state; the count-up exposes only the final number to screen readers. GSAP is not MIT:
 it uses GSAP's own licence (free to use, see gsap.com/community-license); check it before any commercial
 fork. Three.js is MIT.
+
+## D-039 Home page interactivity: linked map and table, scrubbable trends, jump-to-event
+Hovering or tapping a lake's water on the map shows its figure for the month in a card, and emphasises the
+matching table row (and hovering a row emphasises the lake on the map). Each row has a trend line with a
+marker at the selected month that can be dragged to change the month (pointer only; the slider remains the
+keyboard and screen-reader control, so the trend is aria-hidden). Figures tween between months with GSAP and
+expose only the final value to assistive technology. "Jump to a reported event" buttons are generated from
+the validation set (events the satellite record hit or partly matched), and open the month with the lowest
+or highest area inside the reported window, so they point at evidence rather than at hand-picked dates. The
+side panel enters with a short staggered GSAP animation, skipped with reduced motion. No 3D on the home page:
+the map is the main object and a second WebGL scene would cost load time without adding information.

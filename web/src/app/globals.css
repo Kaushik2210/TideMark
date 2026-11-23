@@ -133,3 +133,22 @@ input[type="range"] {
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+/* Map hover card */
+.tide-popup .maplibregl-popup-content {
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.8125rem;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
+}
+.tide-popup.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.tide-popup.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.tide-popup.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: var(--surface); }
+.tide-popup.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.tide-popup.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.tide-popup.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: var(--surface); }
+.tide-popup.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--surface); }
+.tide-popup.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--surface); }

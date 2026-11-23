@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { CompareView } from "./CompareView";
 import { LakeMap, type BaseMode, type FlyTo, type GhostProps } from "./LakeMap";
 import { SourceLegend, SourceMark } from "./SourceMark";
 import { TimeSlider } from "./TimeSlider";
-import { byMonth, fmtHa, formatMonth, hasExtent, loadLakes, loadSeries, monthRange, withBase } from "@/lib/data";
-import type { LakeIndex, Row } from "@/lib/types";
+import { byMonth, fmtHa, formatMonth, hasExtent, loadLakes, loadSeries, loadValidation, monthRange, withBase } from "@/lib/data";
+import { AnimatedNumber } from "./AnimatedNumber";
+import { MiniTrend } from "./MiniTrend";
+import { MOTION_OK, registerGsap } from "@/lib/motion";
+import type { LakeIndex, Row, Validation } from "@/lib/types";
 
 interface GhostFeature {
   properties: GhostProps & { worldcover_2021_builtup_frac?: number | null };
@@ -89,6 +92,9 @@ export function MapExplorer() {
   const [ghostList, setGhostList] = useState<GhostFeature[]>([]);
   const [flyTo, setFlyTo] = useState<FlyTo | null>(null);
   const [mapStatus, setMapStatus] = useState<"loading" | "ready" | "unsupported">("loading");
+  const [hoverLake, setHoverLake] = useState<string | null>(null);
+  const [validation, setValidation] = useState<Validation | null>(null);
+  const asideRef = useRef<HTMLElement>(null);
 
   const [reloadKey, setReloadKey] = useState(0);
   useEffect(() => {
@@ -135,10 +141,51 @@ export function MapExplorer() {
       .catch(() => setGhostList([]));
   }, [ghost, ghostList.length]);
 
+  // Reported events (from the validation set) that the satellite record picked up, as jump-to shortcuts.
+  useEffect(() => {
+    if (phase !== "ready") return;
+    let cancelled = false;
+    loadValidation().then((v) => { if (!cancelled) setValidation(v); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [phase]);
+
+  // One-time entrance for the side panel (skipped with reduced motion).
+  useEffect(() => {
+    const el = asideRef.current;
+    if (phase !== "ready" || !el) return;
+    const gsap = registerGsap();
+    const mm = gsap.matchMedia();
+    mm.add(MOTION_OK, () => {
+      gsap.from(Array.from(el.children), { opacity: 0, y: 16, duration: 0.55, ease: "power2.out", stagger: 0.07, clearProps: "opacity,transform" });
+    });
+    return () => mm.revert();
+  }, [phase]);
+
   const month = months[idx];
   const sel = useMemo(() => lakes.map((l) => ({ lake: l, row: byMonth(series[l.id] ?? []).get(month) })), [lakes, series, month]);
   const missing = sel.filter((s) => !hasExtent(s.row)).length;
   const cmpLakeObj = lakes.find((l) => l.id === cmpLake) ?? lakes[0];
+  const moments = useMemo(() => {
+    if (!validation) return [];
+    const nameOf = (id: string) => (lakes.find((l) => l.id === id)?.name ?? id).replace(" (Halasuru Kere)", "").replace(" Lake", "");
+    const out: { id: string; lake: string; month: string; label: string; outcome: string }[] = [];
+    for (const e of validation.water_level) {
+      if (e.outcome !== "hit" && e.outcome !== "partial") continue;
+      const rows = series[e.lake];
+      if (!rows) continue;
+      const [a, b] = e.window.split("..").map((d) => d.slice(0, 7));
+      const inWin = rows.filter((r) => hasExtent(r) && r.month >= a && r.month <= b);
+      if (!inWin.length) continue;
+      const low = e.signal === "extent_low";
+      const pick = inWin.reduce((p, r) => (low ? (r.area_ha ?? Infinity) < (p.area_ha ?? Infinity) : (r.area_ha ?? -1) > (p.area_ha ?? -1)) ? r : p);
+      out.push({ id: e.event_id, lake: e.lake, month: pick.month, outcome: e.outcome, label: `${nameOf(e.lake)}: ${low ? "drained or low water" : "overflow or high water"}, ${a.slice(0, 4)}` });
+    }
+    // Two reports of the same event can land on the same month; show one button.
+    const seen = new Set<string>();
+    return out
+      .filter((m) => { const k = `${m.lake}|${m.month}|${m.label}`; if (seen.has(k)) return false; seen.add(k); return true; })
+      .sort((x, y) => x.month.localeCompare(y.month));
+  }, [validation, series, lakes]);
 
   if (phase === "loading") {
     return (
@@ -176,6 +223,8 @@ export function MapExplorer() {
                 onGhostSelect={setGhostSel}
                 onSelectLake={setFocus}
                 onStatus={setMapStatus}
+                highlight={hoverLake}
+                onHoverLake={setHoverLake}
                 ariaLabel="Map of Bengaluru lakes showing open-water extent for the selected month"
                 className="absolute inset-0"
               />
@@ -201,7 +250,7 @@ export function MapExplorer() {
         )}
       </div>
 
-      <aside aria-label="Details and controls" className="space-y-6 border-t border-border p-4 sm:p-6 lg:h-[calc(100dvh-3.5rem)] lg:overflow-y-auto lg:border-l lg:border-t-0">
+      <aside ref={asideRef} aria-label="Details and controls" className="space-y-6 border-t border-border p-4 sm:p-6 lg:h-[calc(100dvh-3.5rem)] lg:overflow-y-auto lg:border-l lg:border-t-0">
         <div>
           <h1 className="font-serif text-3xl font-semibold leading-tight">Bengaluru&apos;s lakes, seen from space</h1>
           <p className="mt-2 text-sm text-muted">
@@ -280,19 +329,32 @@ export function MapExplorer() {
               </thead>
               <tbody>
                 {sel.map(({ lake, row }) => (
-                  <tr key={lake.id} className="border-t border-border align-top">
-                    <th scope="row" className="py-2 pr-2 font-normal">
-                      <Link className="underline decoration-border underline-offset-4 hover:decoration-fg" href={`/lakes/${lake.id}/`}>{lake.name.replace(" (Halasuru Kere)", "")}</Link>
-                    </th>
-                    {hasExtent(row) ? (
-                      <>
-                        <td className="py-2 pr-2">{fmtHa(row.area_ha)} <span className="text-muted">± {fmtHa(row.unc_ha)}</span></td>
-                        <td className="py-2"><SourceMark source={row.source} label={false} /></td>
-                      </>
-                    ) : (
-                      <td colSpan={2} className="py-2 text-muted">No usable scene (cloud, and no radar scene)</td>
-                    )}
-                  </tr>
+                  <Fragment key={lake.id}>
+                    <tr
+                      className={`border-t border-border align-top transition-colors ${hoverLake === lake.id ? "bg-surface-2" : ""}`}
+                      onMouseEnter={() => setHoverLake(lake.id)}
+                      onMouseLeave={() => setHoverLake(null)}
+                      onFocus={() => setHoverLake(lake.id)}
+                      onBlur={() => setHoverLake(null)}
+                    >
+                      <th scope="row" className="py-2 pr-2 font-normal">
+                        <Link className="underline decoration-border underline-offset-4 hover:decoration-fg" href={`/lakes/${lake.id}/`}>{lake.name.replace(" (Halasuru Kere)", "")}</Link>
+                      </th>
+                      {hasExtent(row) ? (
+                        <>
+                          <td className="py-2 pr-2"><AnimatedNumber value={row.area_ha ?? 0} /> ha <span className="text-muted">± {fmtHa(row.unc_ha)}</span></td>
+                          <td className="py-2"><SourceMark source={row.source} label={false} /></td>
+                        </>
+                      ) : (
+                        <td colSpan={2} className="py-2 text-muted">No usable scene (cloud, and no radar scene)</td>
+                      )}
+                    </tr>
+                    <tr aria-hidden="true" className={hoverLake === lake.id ? "bg-surface-2" : ""}>
+                      <td colSpan={3} className="pb-2">
+                        <MiniTrend rows={series[lake.id] ?? []} months={months} idx={idx} active={hoverLake === lake.id} onScrub={(i) => { setPlaying(false); setIdx(i); }} />
+                      </td>
+                    </tr>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
@@ -303,6 +365,29 @@ export function MapExplorer() {
               Only open water is counted. Dry lakebed, and water hidden under floating plants, is not.
               The ± is a half-pixel edge bound, not a confidence interval.
             </p>
+          </section>
+        ) : null}
+
+        {mode === "time" && moments.length > 0 ? (
+          <section aria-labelledby="moments-h" data-testid="moments">
+            <h2 id="moments-h" className="font-serif text-xl font-semibold">Jump to a reported event</h2>
+            <p className="mt-1 text-sm text-muted">
+              Events from news reports that the satellite record also shows. Each button opens the month with the
+              lowest or highest water inside the reported window.
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {moments.map((m) => (
+                <li key={m.id}>
+                  <button
+                    type="button"
+                    onClick={() => { setPlaying(false); setFocus(m.lake); setIdx(Math.max(0, months.indexOf(m.month))); }}
+                    className="tap rounded-full border border-border px-3 text-left text-sm hover:bg-surface-2"
+                  >
+                    {m.label} <span className="text-muted">({formatMonth(m.month)}{m.outcome === "partial" ? ", partly matched" : ""})</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
           </section>
         ) : null}
 

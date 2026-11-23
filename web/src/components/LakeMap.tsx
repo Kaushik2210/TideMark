@@ -38,6 +38,9 @@ interface Props {
   onGhostSelect?: (p: GhostProps | null) => void;
   onSelectLake?: (id: string) => void;
   onStatus?: (s: "loading" | "ready" | "unsupported") => void;
+  /** Lake whose outline should be emphasised (hovered row or polygon), or null. */
+  highlight?: string | null;
+  onHoverLake?: (id: string | null) => void;
   flyTo?: FlyTo | null;
   ariaLabel: string;
   className?: string;
@@ -177,6 +180,33 @@ export function LakeMap(props: Props) {
           m.on("mouseenter", "ghost", () => (m.getCanvas().style.cursor = "pointer"));
           m.on("mouseleave", "ghost", () => (m.getCanvas().style.cursor = ""));
 
+          // Hover (or tap) a lake's water to read its figure for the selected month.
+          const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10, className: "tide-popup", maxWidth: "240px" });
+          const describe = (id: string) => {
+            const { lakes: ls, series: ss, month: mo } = latest.current;
+            const lake = ls.find((x) => x.id === id);
+            const row = ss[id]?.find((r) => r.month === mo);
+            const nm = (lake?.name ?? id).replace(" (Halasuru Kere)", "");
+            return row && row.area_ha !== null && row.source !== "none"
+              ? `${nm}: ${row.area_ha.toFixed(1)} ha (${row.source}), ${mo}`
+              : `${nm}: no usable scene in ${mo}`;
+          };
+          for (const l of latest.current.lakes) {
+            const layer = `extent-fill-${l.id}`;
+            const show = (e: { lngLat: { lng: number; lat: number } }) => {
+              m.getCanvas().style.cursor = "pointer";
+              popup.setLngLat(e.lngLat).setText(describe(l.id)).addTo(m);
+              latest.current.onHoverLake?.(l.id);
+            };
+            m.on("mousemove", layer, show);
+            m.on("click", layer, show);
+            m.on("mouseleave", layer, () => {
+              m.getCanvas().style.cursor = "";
+              popup.remove();
+              latest.current.onHoverLake?.(null);
+            });
+          }
+
           // Accessible lake labels: real buttons positioned on the map.
           for (const l of latest.current.lakes) {
             const el = document.createElement("button");
@@ -295,6 +325,19 @@ export function LakeMap(props: Props) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     map.easeTo({ center: flyTo.center, zoom: flyTo.zoom, duration: reduce ? 0 : 600 });
   }, [flyTo]);
+
+  // Emphasise one lake (hovered table row or polygon) and quieten the others.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !readyRef.current) return;
+    for (const l of lakes) {
+      if (!map.getLayer(`extent-fill-${l.id}`)) continue;
+      const on = props.highlight === l.id;
+      const dim = props.highlight != null && !on;
+      map.setPaintProperty(`extent-fill-${l.id}`, "fill-opacity", dim ? 0.35 : on ? 0.95 : 0.78);
+      map.setPaintProperty(`extent-line-${l.id}`, "line-width", on ? 2.6 : 0.8);
+    }
+  }, [props.highlight, lakes]);
 
   // Re-apply once the map reports ready (effects above ran before 'load').
   useEffect(() => {
