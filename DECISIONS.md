@@ -168,3 +168,18 @@ its worker is not bundled, so `scripts/copy-maplibre-worker.mjs` copies the work
 as `.js` (some static hosts serve `.mjs` as text/plain) and the map registers it with `setWorkerUrl`.
 The map container sits inside a wrapper div because MapLibre forces `position: relative` on its own
 element, which collapsed an `absolute inset-0` container to zero height (caught by the smoke test).
+
+## D-031 Citizen photos: row-level security, not the website, guarantees moderation
+The public (anon) role can only insert `pending` rows and upload to a private bucket; it can read only
+`approved` rows and only public columns. Approval needs the service-role key, which is never shipped.
+Plain `fetch` against Supabase's REST/Storage endpoints is used instead of `supabase-js` to avoid a
+dependency for three calls. The browser generates the row id so no read-back of pending rows is needed.
+
+## D-032 Photos are re-encoded in the browser to strip EXIF and downsized
+Canvas re-encoding drops GPS and camera metadata before upload and caps size at 2000 px / 5 MB. Cost:
+a lossy re-encode and no server-side check. Uploads stay switched off (with an explanation) when no
+project is configured, so a fork never shows a form that cannot work.
+
+## D-033 Report card is drawn on a canvas in the browser
+No image service or screenshot dependency. It carries the not-official disclaimer and the health
+score's sensitivity range, so a shared PNG keeps its uncertainty.

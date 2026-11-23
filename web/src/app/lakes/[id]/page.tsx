@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BloomChart, ExtentChart, RainChart, SeriesTable } from "@/components/charts";
+import { CitizenPhotos } from "@/components/CitizenPhotos";
 import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
+import { ReportCard } from "@/components/ReportCard";
 import { SourceMark } from "@/components/SourceMark";
 import { formatMonth, hasExtent, repoFile } from "@/lib/data";
 import { getEvents, getHealth, getLakes, getSeries, getValidation } from "@/lib/server-data";
@@ -83,6 +85,14 @@ export default async function LakePage({ params }: { params: Params }) {
       </header>
 
       <HealthCard health={health} name={name} />
+      <ReportCard
+        data={{
+          id, name, areaHa: latest?.area_ha ?? null, month: latest ? formatMonth(latest.month) : "n/a",
+          sourceLabel: latest ? { optical: "Sentinel-2 optical", fused: "optical + radar fused", radar: "Sentinel-1 radar", none: "none" }[latest.source] : "none",
+          score: Math.round(health.score), range: health.sensitivity_range.map(Math.round) as [number, number],
+          lowCoverage: health.low_coverage,
+        }}
+      />
 
       <section aria-labelledby="extent-h" className="space-y-4">
         <h2 id="extent-h" className="font-serif text-2xl font-semibold">Open-water area over time</h2>
@@ -140,6 +150,8 @@ export default async function LakePage({ params }: { params: Params }) {
           including failures, in <a className="underline" href={repoFile("VALIDATION.md")}>VALIDATION.md</a>.
         </p>
       </section>
+
+      <CitizenPhotos lakeId={id} lakeName={name} />
 
       <p className="text-sm">
         <a className="underline" href={`/downloads/${id}_monthly.csv`} download>Download this lake&apos;s monthly data (CSV)</a>
