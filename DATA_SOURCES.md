@@ -34,3 +34,7 @@ Phase 5 reconciles the boundary definitions.
 ## Attribution text
 
 "Contains modified Copernicus Sentinel data. Lake boundaries © OpenStreetMap contributors (ODbL)."
+
+## Basemap (website)
+OpenFreeMap vector tiles and styles (`tiles.openfreemap.org`), © OpenMapTiles, data from OpenStreetMap
+(ODbL). No key. Loaded by visitors' browsers at view time; not stored in this repository.

@@ -14,7 +14,7 @@ interface Props {
   b: string;
   onA: (m: string) => void;
   onB: (m: string) => void;
-  street: boolean;
+  basemap: boolean;
 }
 
 function MonthSelect({ id, label, value, months, rows, onChange }: { id: string; label: string; value: string; months: string[]; rows: Row[]; onChange: (m: string) => void }) {
@@ -41,7 +41,7 @@ function MonthSelect({ id, label, value, months, rows, onChange }: { id: string;
  * Before/after comparison: two synchronised maps, the "after" one clipped to the right of a
  * divider. The divider is a native range input, so it is fully keyboard accessible.
  */
-export function CompareView({ lake, rows, months, a, b, onA, onB, street }: Props) {
+export function CompareView({ lake, rows, months, a, b, onA, onB, basemap }: Props) {
   const [pos, setPos] = useState(50);
   const [view, setView] = useState<View | null>(null);
   const by = new Map(rows.map((r) => [r.month, r]));
@@ -59,7 +59,7 @@ export function CompareView({ lake, rows, months, a, b, onA, onB, street }: Prop
     onB(hi.month < lo.month ? lo.month : hi.month);
   };
 
-  const mapProps = { lakes: [lake], series: { [lake.id]: rows }, ghost: false, street, focus: lake.id, view, onViewChange: setView };
+  const mapProps = { lakes: [lake], series: { [lake.id]: rows }, ghost: false, basemap, focus: lake.id, view, onViewChange: setView };
   return (
     <section aria-labelledby="cmp-h" className="space-y-3">
       <h2 id="cmp-h" className="font-serif text-xl font-semibold">Compare two dates: {lake.name}</h2>

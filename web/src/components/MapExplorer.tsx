@@ -79,7 +79,7 @@ export function MapExplorer() {
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [ghost, setGhost] = useState(false);
-  const [street, setStreet] = useState(false);
+  const [basemap, setBasemap] = useState(true);
   const [focus, setFocus] = useState("all");
   const [mode, setMode] = useState<"time" | "compare">("time");
   const [cmpLake, setCmpLake] = useState("bellandur");
@@ -170,7 +170,7 @@ export function MapExplorer() {
                 lakes={lakes}
                 series={series}
                 ghost={ghost}
-                street={street}
+                basemap={basemap}
                 focus={focus}
                 flyTo={flyTo}
                 onGhostSelect={setGhostSel}
@@ -195,7 +195,7 @@ export function MapExplorer() {
         ) : (
           <div className="overflow-y-auto p-4 sm:p-6">
             {cmpLakeObj ? (
-              <CompareView lake={cmpLakeObj} rows={series[cmpLakeObj.id] ?? []} months={months} a={cmpA} b={cmpB} onA={setCmpA} onB={setCmpB} street={street} />
+              <CompareView lake={cmpLakeObj} rows={series[cmpLakeObj.id] ?? []} months={months} a={cmpA} b={cmpB} onA={setCmpA} onB={setCmpB} basemap={basemap} />
             ) : null}
           </div>
         )}
@@ -247,7 +247,7 @@ export function MapExplorer() {
 
         <div className="space-y-3">
           <Switch id="ghost-switch" checked={ghost} onChange={setGhost} label="Lost lakes (approximate)" hint="Tanks that have been built over, shown as approximate points with no outline." />
-          <Switch id="street-switch" checked={street} onChange={setStreet} label="Street map context" hint="Loads OpenStreetMap tiles from openstreetmap.org when switched on." />
+          <Switch id="basemap-switch" checked={basemap} onChange={setBasemap} label="Base map (roads, places)" hint="Map tiles come from OpenFreeMap (OpenStreetMap data). Switch off to see only the satellite layers." />
         </div>
 
         {mode === "time" ? (

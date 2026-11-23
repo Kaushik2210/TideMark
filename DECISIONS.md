@@ -190,3 +190,12 @@ A full rebuild takes hours and needs data that is not in git. The job refreshes 
 and opens a pull request for a human to skim. Cost: gaps older than the window need a manual backfill
 (`months` input). Tests and the site build run inside the job because PRs created with the default token
 do not trigger CI.
+
+## D-035 Basemap: OpenFreeMap vector tiles, on by default (supersedes the opt-in part of D-029)
+OpenFreeMap needs no key or sign-up, serves OpenStreetMap data as vector tiles, and has a dark style for
+dark mode and Positron for light mode, so the map now shows roads, places and context under the lake
+layers. Visitors' browsers request tiles from tiles.openfreemap.org; a "Base map" switch hides it. If the
+style cannot be fetched within 6 s the map falls back to a plain background so the data layers still
+work. Attribution comes from the style (shown in the map's attribution control). OpenFreeMap is a
+donation-funded service with no stated request limit; heavy traffic should self-host or switch provider via
+`NEXT_PUBLIC_BASEMAP_STYLE_URL`.

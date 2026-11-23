@@ -12,7 +12,7 @@ export function SiteFooter() {
           here is a legal boundary determination, a water-quality measurement, or advice.
         </p>
         <p className="max-w-3xl">
-          Contains modified Copernicus Sentinel data. Lake outlines © OpenStreetMap contributors (ODbL).
+          Contains modified Copernicus Sentinel data. Lake outlines and base map © OpenStreetMap contributors (ODbL), tiles by OpenFreeMap.
           Rainfall: Open-Meteo (CC BY 4.0, ERA5). Land cover: ESA WorldCover (CC BY 4.0). Lost-lake
           points: Wikipedia contributors (CC BY-SA 4.0). Code MIT; derived data CC BY 4.0 unless noted.
         </p>

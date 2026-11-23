@@ -28,7 +28,7 @@ interface Props {
   lakes: LakeIndex[];
   series: Record<string, Row[]>;
   ghost: boolean;
-  street: boolean;
+  basemap: boolean;
   focus: string; // lake id or "all"
   interactive?: boolean;
   view?: View | null;
@@ -42,8 +42,28 @@ interface Props {
 }
 
 const EMPTY = { type: "FeatureCollection", features: [] } as const;
-const OSM_TILES = process.env.NEXT_PUBLIC_BASEMAP_URL || "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
-const OSM_ATTRIBUTION = process.env.NEXT_PUBLIC_BASEMAP_ATTRIBUTION || "© OpenStreetMap contributors";
+// OpenFreeMap: free vector basemap, no key or sign-up, OpenStreetMap data. Attribution comes from the
+// style itself. Override with NEXT_PUBLIC_BASEMAP_STYLE_URL to use another MapLibre style.
+const STYLE_DARK = process.env.NEXT_PUBLIC_BASEMAP_STYLE_URL || "https://tiles.openfreemap.org/styles/dark";
+const STYLE_LIGHT = process.env.NEXT_PUBLIC_BASEMAP_STYLE_URL || "https://tiles.openfreemap.org/styles/positron";
+
+/** Plain background used when the basemap style cannot be fetched, so the data layers still work. */
+function fallbackStyle(bg: string) {
+  return { version: 8 as const, sources: {}, layers: [{ id: "bg", type: "background" as const, paint: { "background-color": bg } }] };
+}
+
+async function pickStyle(url: string, bg: string) {
+  try {
+    const ctl = new AbortController();
+    const t = window.setTimeout(() => ctl.abort(), 6000);
+    const r = await fetch(url, { signal: ctl.signal });
+    window.clearTimeout(t);
+    if (r.ok) return url;
+  } catch {
+    /* fall through to the plain background */
+  }
+  return fallbackStyle(bg);
+}
 
 function cssVar(name: string, fallback: string): string {
   const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -51,11 +71,12 @@ function cssVar(name: string, fallback: string): string {
 }
 
 export function LakeMap(props: Props) {
-  const { month, lakes, series, ghost, street, focus, interactive = true, view, flyTo } = props;
+  const { month, lakes, series, ghost, basemap, focus, interactive = true, view, flyTo } = props;
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
   const markersRef = useRef<Marker[]>([]);
   const readyRef = useRef(false);
+  const baseIds = useRef<string[]>([]);
   const latest = useRef(props);
   latest.current = props;
 
@@ -70,24 +91,11 @@ export function LakeMap(props: Props) {
         if (cancelled || !container.current) return;
         const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const bg = cssVar("--bg", dark ? "#0b1220" : "#f5f7fb");
+        const style = await pickStyle(dark ? STYLE_DARK : STYLE_LIGHT, bg);
+        if (cancelled || !container.current) return;
         const m: MLMap = new maplibregl.Map({
           container: container.current,
-          style: {
-            version: 8,
-            sources: {
-              osm: { type: "raster", tiles: [OSM_TILES], tileSize: 256, maxzoom: 19, attribution: OSM_ATTRIBUTION },
-            },
-            layers: [
-              { id: "bg", type: "background", paint: { "background-color": bg } },
-              {
-                id: "osm",
-                type: "raster",
-                source: "osm",
-                layout: { visibility: "none" },
-                paint: dark ? { "raster-brightness-max": 0.38, "raster-saturation": -0.7, "raster-contrast": 0.15 } : {},
-              },
-            ],
-          },
+          style,
           center: [77.65, 12.95],
           zoom: 10.6,
           interactive,
@@ -105,6 +113,7 @@ export function LakeMap(props: Props) {
         });
 
         m.on("load", () => {
+          baseIds.current = m.getStyle().layers.map((l) => l.id);
           const cs = {
             optical: cssVar("--optical", "#38bdf8"),
             fused: cssVar("--fused", "#34d399"),
@@ -233,7 +242,9 @@ export function LakeMap(props: Props) {
     const map = mapRef.current;
     if (!map || !readyRef.current) return;
     map.setLayoutProperty("ghost", "visibility", latest.current.ghost ? "visible" : "none");
-    map.setLayoutProperty("osm", "visibility", latest.current.street ? "visible" : "none");
+    for (const id of baseIds.current) {
+      if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", latest.current.basemap ? "visible" : "none");
+    }
   }
 
   function applyFocus() {
@@ -251,7 +262,7 @@ export function LakeMap(props: Props) {
   }
 
   useEffect(() => { applyExtents(); }, [month, series, lakes]);
-  useEffect(() => { applyToggles(); }, [ghost, street]);
+  useEffect(() => { applyToggles(); }, [ghost, basemap]);
   useEffect(() => { applyFocus(); }, [focus, lakes]);
 
   useEffect(() => {
