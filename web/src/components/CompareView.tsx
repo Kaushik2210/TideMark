@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LakeMap, type View } from "./LakeMap";
+import { LakeMap, type BaseMode, type View } from "./LakeMap";
 import { SourceMark } from "./SourceMark";
 import { fmtHa, formatMonth, hasExtent } from "@/lib/data";
 import type { LakeIndex, Row } from "@/lib/types";
@@ -14,7 +14,7 @@ interface Props {
   b: string;
   onA: (m: string) => void;
   onB: (m: string) => void;
-  basemap: boolean;
+  basemap: BaseMode;
 }
 
 function MonthSelect({ id, label, value, months, rows, onChange }: { id: string; label: string; value: string; months: string[]; rows: Row[]; onChange: (m: string) => void }) {

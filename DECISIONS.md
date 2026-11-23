@@ -199,3 +199,13 @@ style cannot be fetched within 6 s the map falls back to a plain background so t
 work. Attribution comes from the style (shown in the map's attribution control). OpenFreeMap is a
 donation-funded service with no stated request limit; heavy traffic should self-host or switch provider via
 `NEXT_PUBLIC_BASEMAP_STYLE_URL`.
+
+## D-036 Satellite base map: EOX Sentinel-2 cloudless, opt-in, non-commercial terms
+A three-way "Base map" choice (Map, Satellite, None) replaces the on/off switch. Satellite uses the EOX
+Sentinel-2 cloudless 2025 mosaic (10 m, upsampled beyond zoom 14): the same kind of data Tidemark analyses,
+no key needed. EOX's WMTS is free and open for non-commercial applications provided the attribution is
+shown; Tidemark is a non-commercial research project, and commercial reuse of this site would need
+EOX's terms checked or a different source (`NEXT_PUBLIC_BASEMAP_STYLE_URL` only swaps the vector style,
+so a commercial fork must change the tile URL in LakeMap.tsx). Esri World Imagery was rejected because
+it requires an ArcGIS licence. Satellite tiles are requested only after a visitor chooses Satellite, and
+the UI states that the mosaic is a yearly composite, not the image behind the month being shown.

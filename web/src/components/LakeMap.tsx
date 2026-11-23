@@ -6,6 +6,8 @@ import type { Map as MLMap, GeoJSONSource, Marker } from "maplibre-gl";
 import { getJson, withBase } from "@/lib/data";
 import type { LakeIndex, Row } from "@/lib/types";
 
+export type BaseMode = "map" | "satellite" | "none";
+
 export interface View {
   center: [number, number];
   zoom: number;
@@ -28,7 +30,7 @@ interface Props {
   lakes: LakeIndex[];
   series: Record<string, Row[]>;
   ghost: boolean;
-  basemap: boolean;
+  basemap: BaseMode;
   focus: string; // lake id or "all"
   interactive?: boolean;
   view?: View | null;
@@ -46,6 +48,11 @@ const EMPTY = { type: "FeatureCollection", features: [] } as const;
 // style itself. Override with NEXT_PUBLIC_BASEMAP_STYLE_URL to use another MapLibre style.
 const STYLE_DARK = process.env.NEXT_PUBLIC_BASEMAP_STYLE_URL || "https://tiles.openfreemap.org/styles/dark";
 const STYLE_LIGHT = process.env.NEXT_PUBLIC_BASEMAP_STYLE_URL || "https://tiles.openfreemap.org/styles/positron";
+
+// EOX Sentinel-2 cloudless mosaic (free for non-commercial use with attribution; 10 m, so it is
+// upsampled beyond zoom 14). Only requested when a visitor picks the satellite base map.
+const SAT_TILES = "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2025_3857/default/g/{z}/{y}/{x}.jpg";
+const SAT_ATTRIBUTION = '<a href="https://cloudless.eox.at" target="_blank" rel="noopener">EOxCloudless</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2025)';
 
 /** Plain background used when the basemap style cannot be fetched, so the data layers still work. */
 function fallbackStyle(bg: string) {
@@ -114,6 +121,8 @@ export function LakeMap(props: Props) {
 
         m.on("load", () => {
           baseIds.current = m.getStyle().layers.map((l) => l.id);
+          m.addSource("eox", { type: "raster", tiles: [SAT_TILES], tileSize: 256, maxzoom: 14, attribution: SAT_ATTRIBUTION });
+          m.addLayer({ id: "eox", type: "raster", source: "eox", layout: { visibility: "none" } });
           const cs = {
             optical: cssVar("--optical", "#38bdf8"),
             fused: cssVar("--fused", "#34d399"),
@@ -187,6 +196,11 @@ export function LakeMap(props: Props) {
               latest.current.onViewChange?.({ center: [c.lng, c.lat], zoom: m.getZoom() });
             }
           });
+          // The compact attribution opens by itself on load; keep it collapsed so it never covers the legend.
+          container.current?.querySelectorAll(".maplibregl-ctrl-attrib").forEach((el) => {
+            el.classList.remove("maplibregl-compact-show");
+            el.removeAttribute("open");
+          });
           readyRef.current = true;
           container.current?.setAttribute("data-ready", "true");
           latest.current.onStatus?.("ready");
@@ -243,8 +257,9 @@ export function LakeMap(props: Props) {
     if (!map || !readyRef.current) return;
     map.setLayoutProperty("ghost", "visibility", latest.current.ghost ? "visible" : "none");
     for (const id of baseIds.current) {
-      if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", latest.current.basemap ? "visible" : "none");
+      if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", latest.current.basemap === "map" ? "visible" : "none");
     }
+    map.setLayoutProperty("eox", "visibility", latest.current.basemap === "satellite" ? "visible" : "none");
   }
 
   function applyFocus() {

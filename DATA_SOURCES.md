@@ -38,3 +38,7 @@ Phase 5 reconciles the boundary definitions.
 ## Basemap (website)
 OpenFreeMap vector tiles and styles (`tiles.openfreemap.org`), © OpenMapTiles, data from OpenStreetMap
 (ODbL). No key. Loaded by visitors' browsers at view time; not stored in this repository.
+
+OpenFreeMap is the default basemap above. The optional **Satellite** basemap is EOxCloudless 2025 by EOX IT
+Services GmbH (`tiles.maps.eox.at`; contains modified Copernicus Sentinel data 2025), free for
+non-commercial use with attribution. Loaded by visitors' browsers only when Satellite is selected.

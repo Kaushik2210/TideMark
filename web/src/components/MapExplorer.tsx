@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { CompareView } from "./CompareView";
-import { LakeMap, type FlyTo, type GhostProps } from "./LakeMap";
+import { LakeMap, type BaseMode, type FlyTo, type GhostProps } from "./LakeMap";
 import { SourceLegend, SourceMark } from "./SourceMark";
 import { TimeSlider } from "./TimeSlider";
 import { byMonth, fmtHa, formatMonth, hasExtent, loadLakes, loadSeries, monthRange, withBase } from "@/lib/data";
@@ -79,7 +79,7 @@ export function MapExplorer() {
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [ghost, setGhost] = useState(false);
-  const [basemap, setBasemap] = useState(true);
+  const [basemap, setBasemap] = useState<BaseMode>("map");
   const [focus, setFocus] = useState("all");
   const [mode, setMode] = useState<"time" | "compare">("time");
   const [cmpLake, setCmpLake] = useState("bellandur");
@@ -246,8 +246,24 @@ export function MapExplorer() {
         )}
 
         <div className="space-y-3">
+          <div>
+            <p className="text-sm font-medium" id="base-h">Base map</p>
+            <div role="group" aria-labelledby="base-h" aria-describedby="base-hint" className="mt-1 flex flex-wrap gap-2">
+              {([["map", "Map"], ["satellite", "Satellite"], ["none", "None"]] as const).map(([v, label]) => (
+                <button key={v} type="button" aria-pressed={basemap === v} onClick={() => setBasemap(v)} data-testid={`base-${v}`} className={`tap rounded-full border px-4 text-sm ${basemap === v ? "border-accent bg-surface-2" : "border-border"}`}>
+                  {label}
+                </button>
+              ))}
+            </div>
+            <p id="base-hint" className="mt-1 text-sm text-muted">
+              {basemap === "satellite"
+                ? "Sentinel-2 cloudless mosaic (2025) by EOX, 10 m resolution; a yearly composite, not the image behind the month shown."
+                : basemap === "map"
+                  ? "Roads and places from OpenFreeMap (OpenStreetMap data)."
+                  : "Only the satellite water layers are drawn."}
+            </p>
+          </div>
           <Switch id="ghost-switch" checked={ghost} onChange={setGhost} label="Lost lakes (approximate)" hint="Tanks that have been built over, shown as approximate points with no outline." />
-          <Switch id="basemap-switch" checked={basemap} onChange={setBasemap} label="Base map (roads, places)" hint="Map tiles come from OpenFreeMap (OpenStreetMap data). Switch off to see only the satellite layers." />
         </div>
 
         {mode === "time" ? (
