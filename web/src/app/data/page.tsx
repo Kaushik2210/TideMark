@@ -35,7 +35,7 @@ export default function DataPage() {
 
       <section aria-labelledby="files-h" className="space-y-3">
         <h2 id="files-h" className="font-serif text-2xl font-semibold">Files</h2>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-md" tabIndex={0} role="region" aria-label="Table (scrolls sideways on small screens)">
           <table className="w-full min-w-[32rem] text-left text-sm">
             <caption className="sr-only">Downloadable files and their licences</caption>
             <thead>

@@ -47,7 +47,7 @@ export default function MethodologyPage() {
       </header>
 
       <Section id="status" title="What holds up, at a glance">
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-md" tabIndex={0} role="region" aria-label="Table (scrolls sideways on small screens)">
           <table className="w-full min-w-[32rem] text-left text-sm">
             <caption className="sr-only">Validation status of each signal</caption>
             <thead>
