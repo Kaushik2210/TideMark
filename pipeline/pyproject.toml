@@ -41,6 +41,7 @@ tidemark-encroach = "tidemark.encroachment:main"
 tidemark-validate = "tidemark.validation:main"
 tidemark-health = "tidemark.health:main"
 tidemark-export = "tidemark.web_export:main"
+tidemark-update = "tidemark.update:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,86 @@
+name: Monthly data update
+
+# Runs on the 5th (Sentinel scenes for the previous month have normally been published by then)
+# and on demand. It opens a pull request with the refreshed data; it never pushes to main.
+on:
+  schedule:
+    - cron: "17 4 5 * *"
+  workflow_dispatch:
+    inputs:
+      months:
+        description: "How many recent months to re-process"
+        default: "3"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: monthly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PC_SDK_SUBSCRIPTION_KEY: ${{ secrets.PC_SDK_SUBSCRIPTION_KEY }}
+      TIDEMARK_MIN_REQUEST_INTERVAL: "1.0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pipeline/pyproject.toml
+      - run: pip install -e "pipeline[dev]"
+
+      # Raw per-month caches speed up later runs. A cold cache is fine: the updater keeps every
+      # published month and aborts (no PR) if any table would lose months.
+      - uses: actions/cache@v4
+        with:
+          path: pipeline/.cache
+          key: tidemark-cache-${{ github.run_id }}
+          restore-keys: tidemark-cache-
+
+      - name: Refresh recent months
+        env:
+          MONTHS: ${{ inputs.months || '3' }}
+        run: tidemark-update --months "$MONTHS"
+
+      - name: Pipeline tests
+        working-directory: pipeline
+        run: |
+          ruff check .
+          pytest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build the site and run the smoke tests on the new data
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+
+      - name: Open a pull request if anything changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain data web/public)" ]; then
+            echo "No data changes this month."; exit 0
+          fi
+          branch="data/monthly-$(date -u +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data web/public
+          git commit -m "Monthly data update $(date -u +%Y-%m)"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Monthly data update $(date -u +%Y-%m)" \
+            --body "Automated refresh of the most recent months. Tests and the site build passed in this run. Please skim the changed months for obvious problems (a lake that suddenly drops to zero, a flagged event with no plausible cause) before merging. This is a research product; the numbers are estimates."

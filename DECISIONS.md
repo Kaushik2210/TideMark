@@ -183,3 +183,10 @@ project is configured, so a fork never shows a form that cannot work.
 ## D-033 Report card is drawn on a canvas in the browser
 No image service or screenshot dependency. It carries the not-official disclaimer and the health
 score's sensitivity range, so a shared PNG keeps its uncertainty.
+
+## D-034 The monthly job re-processes a window and opens a PR, it does not rebuild or auto-merge
+A full rebuild takes hours and needs data that is not in git. The job refreshes the last 3 months
+(late scenes can change them), merges every older published month back in, aborts if any table shrank,
+and opens a pull request for a human to skim. Cost: gaps older than the window need a manual backfill
+(`months` input). Tests and the site build run inside the job because PRs created with the default token
+do not trigger CI.

@@ -7,7 +7,7 @@ satellite data (Sentinel-1/-2, 2016 to present).
 > pipeline in this repo and carries its source and uncertainty. Bloom and foam outputs are
 > *candidates* only, never confirmed detections. Nothing here is a legal boundary determination.
 
-**Status: Phase 8 of 9 complete (website plus citizen photo upload and report card; uploads need a Supabase project, see [docs/moderation.md](docs/moderation.md); see [VALIDATION.md](VALIDATION.md) for what is and is not validated).** Water extent is broadly supported; the foam, floating-mat and chlorophyll candidates are not validated. The monthly automation (Phase 9) is not built yet.
+**Status: Phase 9 of 9 built (website, citizen photo upload, report card and monthly automation, see [docs/automation.md](docs/automation.md); the workflow has not yet run on GitHub, though its updater was trialled locally with a cold cache; uploads need a Supabase project, see [docs/moderation.md](docs/moderation.md); see [VALIDATION.md](VALIDATION.md) for what is and is not validated).** Water extent is broadly supported; the foam, floating-mat and chlorophyll candidates are not validated.
 
 ## What it will do
 
