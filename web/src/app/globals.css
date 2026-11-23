@@ -22,6 +22,10 @@
   --ghost: #c4b5fd;
   --focus: #7dd3fc;
   --scrim: rgb(0 0 0 / 0.55);
+  /* One colour per lake on comparison charts; lines also differ in dash pattern, never colour alone. */
+  --lake-1: #f9a8d4;
+  --lake-2: #a5b4fc;
+  --lake-3: #e2e8f0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -41,6 +45,9 @@
     --ghost: #6d28d9;
     --focus: #075985;
     --scrim: rgb(0 0 0 / 0.45);
+    --lake-1: #be185d;
+    --lake-2: #4338ca;
+    --lake-3: #334155;
   }
 }
 

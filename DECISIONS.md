@@ -245,3 +245,12 @@ the validation set (events the satellite record hit or partly matched), and open
 or highest area inside the reported window, so they point at evidence rather than at hand-picked dates. The
 side panel enters with a short staggered GSAP animation, skipped with reduced motion. No 3D on the home page:
 the map is the main object and a second WebGL scene would cost load time without adding information.
+
+## D-040 Lakes page: one shared-axis comparison chart, linked cards, GSAP Flip sorting
+The three lakes differ hugely in size, so the page now leads with a comparison chart: hectares or share of
+the (unofficial) OpenStreetMap outline, 2016-on / 5 years / 2 years, lakes toggled on and off (at least one
+stays on). Lines differ by colour and dash pattern. The chart scrubs by pointer and by keyboard (arrows,
+Shift for a year, Home/End), with a live text readout and a full table alternative. The cards share the
+selected month with the chart, can be re-sorted (GSAP Flip glides them; skipped with reduced motion), and
+each card's trend line is also a scrubber. The share-of-outline view carries a caveat that a small share can
+mean a dry bed or built edge inside the outline, not only low water.

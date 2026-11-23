@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 let registered = false;
@@ -6,7 +7,7 @@ let registered = false;
 /** Registers GSAP plugins once (browser only) and returns gsap. */
 export function registerGsap(): typeof gsap {
   if (!registered && typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, Flip);
     registered = true;
   }
   return gsap;
