@@ -625,5 +625,24 @@
   "rain_event_end": null,
   "rain_event_total_mm": null,
   "rain_event_lag_days": null
+ },
+ {
+  "lake_id": "bellandur",
+  "month": "2026-11",
+  "obs_date": "2026-11-18",
+  "date_is_approx": false,
+  "type": "chlorophyll_high_candidate",
+  "value": 0.128,
+  "detail": "median NDCI 0.13 >= lake top-decile 0.12",
+  "confidence": 0.406,
+  "source": "optical",
+  "near_inlet": null,
+  "rain_prior_7d_mm": null,
+  "rain_prior_14d_mm": null,
+  "rain_prior_30d_mm": null,
+  "follows_rain": false,
+  "rain_event_end": null,
+  "rain_event_total_mm": null,
+  "rain_event_lag_days": null
  }
 ]

@@ -4,8 +4,8 @@
  "base_rate_follows_rain": 0.221,
  "by_type": {
   "chlorophyll_high_candidate": {
-   "n": 9,
-   "follows_rain": 0.111
+   "n": 10,
+   "follows_rain": 0.1
   },
   "floating_mat_candidate": {
    "n": 16,
