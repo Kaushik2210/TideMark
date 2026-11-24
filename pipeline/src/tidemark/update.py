@@ -84,7 +84,16 @@ def clear_recent_cache(months: list[str]) -> int:
 
 
 def run(months_back: int, today: date | None = None) -> int:
-    from . import anomalies, candidates, health, monthly, rainfall, runner, web_export
+    from . import (
+        anomalies,
+        candidates,
+        health,
+        monthly,
+        rain_response,
+        rainfall,
+        runner,
+        web_export,
+    )
 
     start, end = window(today or date.today(), months_back)
     print(f"refreshing {start} .. {end}", file=sys.stderr)
@@ -112,6 +121,7 @@ def run(months_back: int, today: date | None = None) -> int:
         return 3
 
     anomalies.main([])
+    rain_response.main([])
     health.main([])
     web_export.main()
     return 0

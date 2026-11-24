@@ -79,6 +79,10 @@ def main() -> int:
         last = have.iloc[-1]
         health = json.loads((ROOT / "data" / "health" / f"{lid}.json").read_text(encoding="utf-8"))
         write_json(DATA / "health" / f"{lid}.json", health)
+        rr = ROOT / "data" / "rain_response" / f"{lid}.json"
+        if rr.exists():
+            rr_data = json.loads(rr.read_text(encoding="utf-8"))
+            write_json(DATA / "rain_response" / f"{lid}.json", rr_data)
         ev = ROOT / "data" / "events" / f"{lid}.json"
         write_json(DATA / "events" / f"{lid}.json",
                    json.loads(ev.read_text(encoding="utf-8")) if ev.exists() else [])  # NaN-safe

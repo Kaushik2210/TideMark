@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import type { EventItem, Health, LakeIndex, Row, Validation } from "./types";
+import type { EventItem, Health, LakeIndex, RainResponse, Row, Validation } from "./types";
 
 /** Build-time readers for the static JSON bundle in public/data (server components only). */
 const DATA = path.join(process.cwd(), "public", "data");
@@ -14,3 +14,4 @@ export const getSeries = (id: string) => read<Row[]>("series", `${id}.json`);
 export const getEvents = (id: string) => read<EventItem[]>("events", `${id}.json`);
 export const getHealth = (id: string) => read<Health>("health", `${id}.json`);
 export const getValidation = () => read<Validation>("validation.json");
+export const getRainResponse = (id: string) => read<RainResponse>("rain_response", `${id}.json`);

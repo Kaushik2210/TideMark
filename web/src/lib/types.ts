@@ -88,3 +88,23 @@ export const SOURCE_LABEL: Record<Source, string> = {
   radar: "Radar (Sentinel-1)",
   none: "No usable data",
 };
+
+export interface RainLag {
+  lag: number;
+  rho: number | null;
+  ci: [number | null, number | null];
+  n: number;
+  clear: boolean;
+}
+
+export interface RainResponse {
+  lake_id: string;
+  months: number;
+  method: string;
+  block_months: number;
+  resamples: number;
+  lags: RainLag[];
+  best_lag: number | null;
+  direction: "more water" | "less water" | null;
+  caveats: string[];
+}

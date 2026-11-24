@@ -42,6 +42,7 @@ tidemark-validate = "tidemark.validation:main"
 tidemark-health = "tidemark.health:main"
 tidemark-export = "tidemark.web_export:main"
 tidemark-update = "tidemark.update:main"
+tidemark-rain-response = "tidemark.rain_response:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

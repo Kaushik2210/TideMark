@@ -288,3 +288,12 @@ with no usable scene are silent rests, so no value is invented. It is a second, 
 same series, and it never starts by itself: an AudioContext is created only when Play is pressed, it stops on
 tab hide or completion, and a volume control is provided. Screen readers are told "Playing" once rather than
 every month (the on-screen readout is aria-hidden while playing) to avoid a stream of announcements.
+
+## D-044 A research feature that reports a null result: rain response
+New analysis, `tidemark-rain-response`: do wetter-than-usual months precede more water, and after what lag? It uses
+seasonal anomalies (to remove the shared monsoon cycle), rank correlation at lags 0 to 3 months, and a moving-block
+bootstrap interval, and calls a link "clear" only if the interval excludes zero. On this data nothing is clear for
+any lake. The website says exactly that ("no clear link at monthly resolution"), lists untested possible reasons
+rather than asserting a cause, and shows the intervals so the reader can see how wide the uncertainty is. The method
+is checked on synthetic data (it recovers a planted lag and finds nothing in noise). Included in the monthly update,
+so the answer is recomputed as data accrue. See docs/rain-response.md.

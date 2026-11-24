@@ -1,0 +1,57 @@
+{
+ "lake_id": "bellandur",
+ "months": 118,
+ "method": "Spearman rank correlation of seasonal anomalies, 95% moving-block bootstrap interval",
+ "block_months": 6,
+ "resamples": 2000,
+ "lags": [
+  {
+   "lag": 0,
+   "rho": -0.016477718652219153,
+   "ci": [
+    -0.17648713775588817,
+    0.13930493677903433
+   ],
+   "n": 118,
+   "clear": false
+  },
+  {
+   "lag": 1,
+   "rho": -0.07040448864434351,
+   "ci": [
+    -0.2232358597333051,
+    0.1087268332894831
+   ],
+   "n": 117,
+   "clear": false
+  },
+  {
+   "lag": 2,
+   "rho": -0.06840348628483278,
+   "ci": [
+    -0.23427704878406388,
+    0.11354266752062937
+   ],
+   "n": 116,
+   "clear": false
+  },
+  {
+   "lag": 3,
+   "rho": -0.07751479330647391,
+   "ci": [
+    -0.2461483991292795,
+    0.14023334753738953
+   ],
+   "n": 116,
+   "clear": false
+  }
+ ],
+ "best_lag": null,
+ "direction": null,
+ "caveats": [
+  "Regional ERA5 rain on a ~28 km grid, not rain measured at the lake.",
+  "Association at monthly resolution, not proof of cause (a month hides the order).",
+  "Bellandur and Varthur are fed largely by sewage inflow that does not depend on rain.",
+  "Radar and optical months define water slightly differently."
+ ]
+}

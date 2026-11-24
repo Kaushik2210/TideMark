@@ -1,0 +1,57 @@
+{
+ "lake_id": "ulsoor",
+ "months": 109,
+ "method": "Spearman rank correlation of seasonal anomalies, 95% moving-block bootstrap interval",
+ "block_months": 6,
+ "resamples": 2000,
+ "lags": [
+  {
+   "lag": 0,
+   "rho": 0.1325875794404665,
+   "ci": [
+    -0.04049439455660024,
+    0.25748114585405646
+   ],
+   "n": 109,
+   "clear": false
+  },
+  {
+   "lag": 1,
+   "rho": 0.05226600331877132,
+   "ci": [
+    -0.13102396021911278,
+    0.17892774278976747
+   ],
+   "n": 108,
+   "clear": false
+  },
+  {
+   "lag": 2,
+   "rho": 0.18575872387267137,
+   "ci": [
+    -0.021916730508851245,
+    0.36757067384141007
+   ],
+   "n": 107,
+   "clear": false
+  },
+  {
+   "lag": 3,
+   "rho": 0.1548166728849862,
+   "ci": [
+    -0.053891743614833884,
+    0.33461458050987336
+   ],
+   "n": 107,
+   "clear": false
+  }
+ ],
+ "best_lag": null,
+ "direction": null,
+ "caveats": [
+  "Regional ERA5 rain on a ~28 km grid, not rain measured at the lake.",
+  "Association at monthly resolution, not proof of cause (a month hides the order).",
+  "Bellandur and Varthur are fed largely by sewage inflow that does not depend on rain.",
+  "Radar and optical months define water slightly differently."
+ ]
+}

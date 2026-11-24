@@ -9,13 +9,14 @@ import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
 import { ListenLake } from "@/components/ListenLake";
 import { Reveal } from "@/components/Reveal";
+import { RainResponseChart } from "@/components/RainResponseChart";
 import { ReportCard } from "@/components/ReportCard";
 import { SeasonalLandscape } from "@/components/SeasonalLandscape";
 import { ShareButton } from "@/components/ShareButton";
 import { SourceMark } from "@/components/SourceMark";
 import { formatMonth, hasExtent, repoFile, withBase } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
-import { getEvents, getHealth, getLakes, getSeries, getValidation } from "@/lib/server-data";
+import { getEvents, getHealth, getLakes, getRainResponse, getSeries, getValidation } from "@/lib/server-data";
 
 type Params = Promise<{ id: string }>;
 
@@ -51,6 +52,7 @@ export default async function LakePage({ params }: { params: Params }) {
   const rows = getSeries(id);
   const health = getHealth(id);
   const events = getEvents(id);
+  const rain = getRainResponse(id);
   const validation = getValidation();
   const name = lake.name.replace(" (Halasuru Kere)", "");
   const have = rows.filter(hasExtent);
@@ -110,7 +112,7 @@ export default async function LakePage({ params }: { params: Params }) {
           <ShareButton title={name + " | Tidemark"} text={name + ": " + (latest?.area_ha?.toFixed(1) ?? "n/a") + " ha of open water in " + (latest ? formatMonth(latest.month) : "") + ", from Sentinel satellite data (research estimate, not official)."} />
         </div>
         <nav aria-label="On this page" className="flex flex-wrap gap-x-5 gap-y-1 border-t border-border pt-3 text-sm">
-          {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#landscape-h", "3D landscape"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
+          {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#landscape-h", "3D landscape"], ["#rain-h", "Rain response"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
             <a key={href} href={href} className="tap inline-flex items-center text-muted underline-offset-4 hover:text-fg hover:underline">{label}</a>
           ))}
         </nav>
@@ -129,6 +131,11 @@ export default async function LakePage({ params }: { params: Params }) {
       <Reveal as="section" aria-labelledby="landscape-h" className="space-y-4">
         <h2 id="landscape-h" className="font-serif text-2xl font-semibold">Seasonal landscape (3D)</h2>
         <SeasonalLandscape rows={rows} name={name} />
+      </Reveal>
+
+      <Reveal as="section" aria-labelledby="rain-h" className="space-y-4">
+        <h2 id="rain-h" className="font-serif text-2xl font-semibold">Does rain move the lake?</h2>
+        <RainResponseChart data={rain} lake={name} />
       </Reveal>
 
       <Reveal as="section" aria-labelledby="bloom-h" className="space-y-4">
