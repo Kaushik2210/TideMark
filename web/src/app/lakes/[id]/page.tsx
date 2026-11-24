@@ -9,6 +9,7 @@ import { EventTimeline } from "@/components/EventTimeline";
 import { HealthCard } from "@/components/HealthCard";
 import { ListenLake } from "@/components/ListenLake";
 import { Reveal } from "@/components/Reveal";
+import { ThenNow } from "@/components/ThenNow";
 import { RainResponseChart } from "@/components/RainResponseChart";
 import { ReportCard } from "@/components/ReportCard";
 import { SeasonalLandscape } from "@/components/SeasonalLandscape";
@@ -112,7 +113,7 @@ export default async function LakePage({ params }: { params: Params }) {
           <ShareButton title={name + " | Tidemark"} text={name + ": " + (latest?.area_ha?.toFixed(1) ?? "n/a") + " ha of open water in " + (latest ? formatMonth(latest.month) : "") + ", from Sentinel satellite data (research estimate, not official)."} />
         </div>
         <nav aria-label="On this page" className="flex flex-wrap gap-x-5 gap-y-1 border-t border-border pt-3 text-sm">
-          {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#landscape-h", "3D landscape"], ["#rain-h", "Rain response"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
+          {[["#health-h", "Health index"], ["#extent-h", "Water area"], ["#tn-h", "Then and now"], ["#landscape-h", "3D landscape"], ["#rain-h", "Rain response"], ["#bloom-h", "Bloom indicators"], ["#events-h", "Flagged events"], ["#val-h", "Validation"], ["#citizen-h", "Photos"]].map(([href, label]) => (
             <a key={href} href={href} className="tap inline-flex items-center text-muted underline-offset-4 hover:text-fg hover:underline">{label}</a>
           ))}
         </nav>
@@ -126,6 +127,11 @@ export default async function LakePage({ params }: { params: Params }) {
         <RainChart rows={rows} />
         <SeriesTable rows={rows} />
         <ListenLake rows={rows} name={name} />
+      </Reveal>
+
+      <Reveal as="section" aria-labelledby="tn-h" className="space-y-4">
+        <h2 id="tn-h" className="font-serif text-2xl font-semibold">Then and now</h2>
+        <ThenNow rows={rows} bbox={lake.bbox} lakeId={id} name={name} />
       </Reveal>
 
       <Reveal as="section" aria-labelledby="landscape-h" className="space-y-4">

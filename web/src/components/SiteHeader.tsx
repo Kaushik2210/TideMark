@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CommandPalette, PaletteButton, type PaletteLake } from "./CommandPalette";
 
 const LINKS: { href: string; label: string; short?: string }[] = [
   { href: "/", label: "Map" },
@@ -16,7 +17,7 @@ function isActive(pathname: string, href: string): boolean {
   return pathname.startsWith(href.replace(/\/$/, ""));
 }
 
-export function SiteHeader() {
+export function SiteHeader({ lakes }: { lakes: PaletteLake[] }) {
   const pathname = usePathname() ?? "/";
   if (pathname.startsWith("/embed")) return null; // iframe panels carry no site chrome
   return (
@@ -50,7 +51,9 @@ export function SiteHeader() {
             })}
           </ul>
         </nav>
+        <PaletteButton />
       </div>
+      <CommandPalette lakes={lakes} />
     </header>
   );
 }

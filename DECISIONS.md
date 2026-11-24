@@ -307,3 +307,13 @@ only partly seen") and never as a clean hit; a radar-derived peak carries a cave
 known (satellite-only, matched, partly matched, failed validation). The story is plain headings and paragraphs, so it
 reads without the map and with a screen reader, and the map is not interactive inside it so it never steals the scroll.
 Inactive chapters are not faded (an earlier version failed AA contrast); the active one gets an accent edge.
+
+## D-046 Jump-to palette and a "Then and now" swipe
+Ctrl/Cmd+K (or the search button in the header) opens a jump-to box for every page and lake. It is a native modal
+`<dialog>` (focus trap and Escape for free) with a labelled listbox and arrow-key selection; it adds no dependency
+and loads no data beyond the lake names already in the page. Each lake page gets "Then and now": pick any two months
+with a usable scene and swipe between their real open-water outlines, drawn from the same per-month extent files the
+map uses, in one shared frame. Months with no usable scene are not offered, so nothing is interpolated. The sentence
+under it applies the digest's uncertainty rule (a difference inside the combined uncertainty is "not a clear change")
+and warns when the two months came from different sensors. A swipe hides the part of each outline under the other
+side; the dropdowns and numbers carry the same information for anyone who cannot use the slider.
