@@ -285,6 +285,7 @@ export function MapExplorer() {
               label="Share this view"
             />
           </div>
+          <p className="mt-3 text-sm"><Link className="underline underline-offset-4" href="/story/">New here? Take the short guided story <span aria-hidden="true">&rarr;</span></Link></p>
         </div>
 
         <div role="group" aria-label="View mode" className="grid grid-cols-2 gap-2">

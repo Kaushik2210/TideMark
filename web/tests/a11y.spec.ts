@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const PAGES = ["/", "/lakes/", "/lakes/bellandur/", "/methodology/", "/data/", "/updates/", "/contribute/", "/embed/bellandur/"];
+const PAGES = ["/", "/lakes/", "/lakes/bellandur/", "/methodology/", "/data/", "/updates/", "/contribute/", "/embed/bellandur/", "/story/"];
 
 for (const scheme of ["dark", "light"] as const) {
   test(`axe: WCAG 2.2 AA, ${scheme} mode`, async ({ browser }) => {

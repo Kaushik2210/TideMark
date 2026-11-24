@@ -29,6 +29,8 @@ export function SiteFooter() {
           <Link className="underline" href="/contribute/">Contribute</Link>
           {" · "}
           <Link className="underline" href="/updates/">Monthly updates</Link>
+          {" · "}
+          <Link className="underline" href="/story/">The story</Link>
         </p>
       </div>
     </footer>

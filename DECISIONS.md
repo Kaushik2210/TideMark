@@ -297,3 +297,13 @@ any lake. The website says exactly that ("no clear link at monthly resolution"),
 rather than asserting a cause, and shows the intervals so the reader can see how wide the uncertainty is. The method
 is checked on synthetic data (it recovers a planted lag and finds nothing in noise). Included in the monthly update,
 so the answer is recomputed as data accrue. See docs/rain-response.md.
+
+## D-045 Story mode: a guided tour built from the data, with its failures included
+`/story/` is a scroll-driven tour: the map is pinned and follows the chapter in view (month and framing), driven by
+GSAP ScrollTrigger. Chapters are generated from the data, not typed in: the record's own peak, each reported
+water-level event the satellite record picked up (with the published source's link and publisher, from
+`ground_truth.csv`), the foam events it failed on, and today. A partial match is titled as such ("Reported drained,
+only partly seen") and never as a clean hit; a radar-derived peak carries a caveat; every chapter states how it is
+known (satellite-only, matched, partly matched, failed validation). The story is plain headings and paragraphs, so it
+reads without the map and with a screen reader, and the map is not interactive inside it so it never steals the scroll.
+Inactive chapters are not faded (an earlier version failed AA contrast); the active one gets an accent edge.
