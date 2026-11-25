@@ -109,6 +109,11 @@ input[type="range"] {
   cursor: pointer;
 }
 
+.maplibregl-ctrl-group button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
 .maplibregl-ctrl-attrib {
   font-size: 11px;
 }

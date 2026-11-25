@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { SatelliteCredit } from "./SatelliteCredit";
 import { CompareView } from "./CompareView";
 import { LakeMap, type BaseMode, type FlyTo, type GhostProps } from "./LakeMap";
 import { SourceLegend, SourceMark } from "./SourceMark";
@@ -83,7 +84,7 @@ export function MapExplorer() {
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [ghost, setGhost] = useState(false);
-  const [basemap, setBasemap] = useState<BaseMode>("map");
+  const [basemap, setBasemap] = useState<BaseMode>("satellite");
   const [focus, setFocus] = useState("all");
   const [mode, setMode] = useState<"time" | "compare">("time");
   const [cmpLake, setCmpLake] = useState("bellandur");
@@ -115,6 +116,7 @@ export function MapExplorer() {
         if (hm && d.months.includes(hm)) setIdx(d.months.indexOf(hm));
         if (hl && d.lakes.some((l) => l.id === hl)) setFocus(hl);
         if (hb === "map" || hb === "satellite" || hb === "none") setBasemap(hb);
+        else if (hm || hl) setBasemap("map"); // Older shared links used implicit streets.
         if (q.get("ghost") === "1") setGhost(true);
         setCmpLake(d.lakes[0].id);
         setCmpA(d.cmpA);
@@ -254,9 +256,10 @@ export function MapExplorer() {
                   <p className="max-w-sm">The interactive map needs WebGL, which is not available here. The table beside it and the <Link className="underline" href="/lakes/">lake pages</Link> show the same data.</p>
                 </div>
               ) : null}
-              <div className="pointer-events-none absolute bottom-2 left-2 rounded bg-surface/90 px-2 py-1">
-                <SourceLegend className="pointer-events-auto" />
-              </div>
+            </div>
+            <div className="border-t border-border bg-surface px-4 py-2">
+              <SourceLegend />
+              {basemap === "satellite" && mapStatus !== "unsupported" && <SatelliteCredit />}
             </div>
             <div className="border-t border-border bg-surface px-4 py-3 sm:px-6">
               <TimeSlider months={months} idx={idx} onIdx={(i) => { setPlaying(false); setIdx(i); }} lakes={lakes} series={series} playing={playing} onTogglePlay={() => setPlaying((p) => !p)} />
@@ -327,7 +330,7 @@ export function MapExplorer() {
           <div>
             <p className="text-sm font-medium" id="base-h">Base map</p>
             <div role="group" aria-labelledby="base-h" aria-describedby="base-hint" className="mt-1 flex flex-wrap gap-2">
-              {([["map", "Map"], ["satellite", "Satellite"], ["none", "None"]] as const).map(([v, label]) => (
+              {([["satellite", "Satellite"], ["map", "Streets"], ["none", "No basemap"]] as const).map(([v, label]) => (
                 <button key={v} type="button" aria-pressed={basemap === v} onClick={() => setBasemap(v)} data-testid={`base-${v}`} className={`tap rounded-full border px-4 text-sm ${basemap === v ? "border-accent bg-surface-2" : "border-border"}`}>
                   {label}
                 </button>
@@ -335,7 +338,7 @@ export function MapExplorer() {
             </div>
             <p id="base-hint" className="mt-1 text-sm text-muted">
               {basemap === "satellite"
-                ? "Sentinel-2 cloudless mosaic (2025) by EOX, 10 m resolution; a yearly composite, not the image behind the month shown."
+                ? "The Sentinel-2 cloudless basemap combines imagery from 2025. Moving the time slider changes the measured water extent."
                 : basemap === "map"
                   ? "Roads and places from OpenFreeMap (OpenStreetMap data)."
                   : "Only the satellite water layers are drawn."}

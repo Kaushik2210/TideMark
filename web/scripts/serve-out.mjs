@@ -11,7 +11,7 @@ const base = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
 const types = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css",
   ".json": "application/json", ".geojson": "application/geo+json", ".svg": "image/svg+xml",
-  ".png": "image/png", ".xml": "application/xml", ".csv": "text/csv", ".txt": "text/plain", ".ico": "image/x-icon",
+  ".webp": "image/webp", ".png": "image/png", ".xml": "application/xml", ".csv": "text/csv", ".txt": "text/plain", ".ico": "image/x-icon",
 };
 
 createServer(async (req, res) => {

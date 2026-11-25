@@ -39,6 +39,10 @@ Phase 5 reconciles the boundary definitions.
 OpenFreeMap vector tiles and styles (`tiles.openfreemap.org`), © OpenMapTiles, data from OpenStreetMap
 (ODbL). No key. Loaded by visitors' browsers at view time; not stored in this repository.
 
-OpenFreeMap is the default basemap above. The optional **Satellite** basemap is EOxCloudless 2025 by EOX IT
+The explorer opens on **Satellite**. The **Streets** option uses OpenFreeMap. The satellite basemap is EOxCloudless 2025 by EOX IT
 Services GmbH (`tiles.maps.eox.at`; contains modified Copernicus Sentinel data 2025), free for
-non-commercial use with attribution. Loaded by visitors' browsers only when Satellite is selected.
+non-commercial use with attribution. The map streams detail tiles and serves a bundled overview for the Bengaluru area.
+The overview stitches the unaltered colours of WMTS tiles from layer `s2cloudless-2025_3857`,
+Google matrix level 11, columns 1464 through 1467 and rows 948 through 950, into one WebP.
+Retrieved 2026-11-25. The annual mosaic is geographic context for every observation month.
+See the [EOX map service](https://maps.eox.at/) and [imagery licence](https://cloudless.eox.at/documentation/license).

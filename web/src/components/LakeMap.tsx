@@ -1,7 +1,7 @@
 "use client";
 
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import type { Map as MLMap, GeoJSONSource, Marker } from "maplibre-gl";
 import { getJson, withBase } from "@/lib/data";
 import type { LakeIndex, Row } from "@/lib/types";
@@ -53,13 +53,13 @@ const STYLE_DARK = process.env.NEXT_PUBLIC_BASEMAP_STYLE_URL || "https://tiles.o
 const STYLE_LIGHT = process.env.NEXT_PUBLIC_BASEMAP_STYLE_URL || "https://tiles.openfreemap.org/styles/positron";
 
 // EOX Sentinel-2 cloudless mosaic (free for non-commercial use with attribution; 10 m, so it is
-// upsampled beyond zoom 14). Only requested when a visitor picks the satellite base map.
+// upsampled beyond zoom 14). A local city overview sits below the streamed detail.
 const SAT_TILES = "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2025_3857/default/g/{z}/{y}/{x}.jpg";
 const SAT_ATTRIBUTION = '<a href="https://cloudless.eox.at" target="_blank" rel="noopener">EOxCloudless</a> by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2025)';
 
 /** Plain background used when the basemap style cannot be fetched, so the data layers still work. */
 function fallbackStyle(bg: string) {
-  return { version: 8 as const, sources: {}, layers: [{ id: "bg", type: "background" as const, paint: { "background-color": bg } }] };
+  return { version: 8 as const, sources: {}, layers: [{ id: "tidemark-background", type: "background" as const, paint: { "background-color": bg } }] };
 }
 
 async function pickStyle(url: string, bg: string) {
@@ -86,12 +86,14 @@ export function LakeMap(props: Props) {
   const mapRef = useRef<MLMap | null>(null);
   const markersRef = useRef<Marker[]>([]);
   const readyRef = useRef(false);
-  const baseIds = useRef<string[]>([]);
+  const baseIds = useRef(new Map<string, "visible" | "none">());
+  const streetRequested = useRef(false);
   const latest = useRef(props);
   latest.current = props;
 
   // Create the map once in the browser.
   useEffect(() => {
+    const streetLayers = baseIds.current;
     let cancelled = false;
     let map: MLMap | null = null;
     (async () => {
@@ -101,8 +103,7 @@ export function LakeMap(props: Props) {
         if (cancelled || !container.current) return;
         const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const bg = cssVar("--bg", dark ? "#0b1220" : "#f5f7fb");
-        const style = await pickStyle(dark ? STYLE_DARK : STYLE_LIGHT, bg);
-        if (cancelled || !container.current) return;
+        const style = fallbackStyle(bg);
         const m: MLMap = new maplibregl.Map({
           container: container.current,
           style,
@@ -115,7 +116,10 @@ export function LakeMap(props: Props) {
         });
         map = m;
         mapRef.current = m;
-        m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+        if (interactive) {
+          m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+          m.addControl(new maplibregl.ScaleControl({ unit: "metric", maxWidth: 80 }), "top-right");
+        }
 
         m.on("error", (e) => {
           // Tile and source hiccups must not break the page; the data table stays available.
@@ -123,7 +127,14 @@ export function LakeMap(props: Props) {
         });
 
         m.on("load", () => {
-          baseIds.current = m.getStyle().layers.map((l) => l.id);
+          // Corners are the outer Web Mercator edges of the twelve original overview tiles.
+          m.addSource("city-overview", {
+            type: "image", url: withBase("/bengaluru-2025.webp"),
+            coordinates: [[77.34375, 13.2399455], [78.046875, 13.2399455],
+              [78.046875, 12.7260843], [77.34375, 12.7260843]],
+          });
+          m.addLayer({ id: "city-overview", type: "raster", source: "city-overview",
+            layout: { visibility: latest.current.basemap === "satellite" ? "visible" : "none" } });
           m.addSource("eox", { type: "raster", tiles: [SAT_TILES], tileSize: 256, maxzoom: 14, attribution: SAT_ATTRIBUTION });
           m.addLayer({ id: "eox", type: "raster", source: "eox", layout: { visibility: "none" } });
           const cs = {
@@ -211,10 +222,13 @@ export function LakeMap(props: Props) {
           for (const l of latest.current.lakes) {
             const el = document.createElement("button");
             el.type = "button";
-            el.textContent = l.name.replace(" (Halasuru Kere)", "");
+            const label = document.createElement("span");
+            label.textContent = l.name.replace(" (Halasuru Kere)", "");
+            label.className = "rounded-md border border-border bg-surface px-2 py-1 text-xs font-semibold text-fg shadow";
+            el.append(label);
             el.setAttribute("aria-label", `Focus ${l.name}`);
             el.className =
-              "tap rounded-full border border-border bg-surface/90 px-3 text-sm font-medium text-fg shadow-sm backdrop-blur-sm";
+              "tap flex items-end justify-center rounded-md pb-1";
             el.addEventListener("click", () => latest.current.onSelectLake?.(l.id));
             markersRef.current.push(new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, -4] }).setLngLat(l.centroid).addTo(m));
           }
@@ -246,14 +260,13 @@ export function LakeMap(props: Props) {
       applyToggles();
       applyFocus();
     }
-    // exposed to other effects through the ref-bound closures below
-    (container.current as unknown as { __apply?: () => void }).__apply = applyAll;
-
     return () => {
       cancelled = true;
       markersRef.current.forEach((m) => m.remove());
       markersRef.current = [];
       readyRef.current = false;
+      streetRequested.current = false;
+      streetLayers.clear();
       map?.remove();
       mapRef.current = null;
     };
@@ -275,22 +288,67 @@ export function LakeMap(props: Props) {
       getJson<unknown>(`/data/extents/${l.id}/${month}.geojson`)
         .then((feature) => {
           // Ignore stale responses if the month changed meanwhile.
-          if (latest.current.month === month) src.setData(feature as never);
+          if (map === mapRef.current && latest.current.month === month) src.setData(feature as never);
         })
-        .catch(() => src.setData(EMPTY as never));
+        .catch(() => {
+          if (map === mapRef.current && latest.current.month === month) src.setData(EMPTY as never);
+        });
     }
     container.current?.setAttribute("data-month", month);
   }
 
-  function applyToggles() {
+  const applyWaterStyle = useCallback(() => {
+    const map = mapRef.current;
+    if (!map || !readyRef.current) return;
+    const { basemap, highlight, lakes } = latest.current;
+    const satellite = basemap === "satellite";
+    for (const lake of lakes) {
+      const selected = highlight === lake.id;
+      const dim = Boolean(highlight && !selected);
+      const opacity = satellite ? (selected ? 0.43 : 0.23) : (selected ? 0.95 : 0.78);
+      map.setPaintProperty(`extent-fill-${lake.id}`, "fill-opacity", dim ? opacity * 0.5 : opacity);
+      map.setPaintProperty(`extent-line-${lake.id}`, "line-width", selected ? 2.6 : satellite ? 1.5 : 0.8);
+      map.setPaintProperty(`extent-line-${lake.id}`, "line-color", satellite ? "#f2ffff" : cssVar("--fg", "#e6edf7"));
+    }
+  }, []);
+
+  const applyToggles = useCallback(() => {
     const map = mapRef.current;
     if (!map || !readyRef.current) return;
     map.setLayoutProperty("ghost", "visibility", latest.current.ghost ? "visible" : "none");
-    for (const id of baseIds.current) {
-      if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", latest.current.basemap === "map" ? "visible" : "none");
+    const mode = latest.current.basemap;
+    for (const [id, visibility] of baseIds.current) {
+      map.setLayoutProperty(id, "visibility", mode === "map" ? visibility : "none");
     }
-    map.setLayoutProperty("eox", "visibility", latest.current.basemap === "satellite" ? "visible" : "none");
-  }
+    for (const id of ["city-overview", "eox"]) {
+      map.setLayoutProperty(id, "visibility", mode === "satellite" ? "visible" : "none");
+    }
+    applyWaterStyle();
+    if (mode === "map" && !streetRequested.current) {
+      streetRequested.current = true;
+      const url = window.matchMedia("(prefers-color-scheme: dark)").matches ? STYLE_DARK : STYLE_LIGHT;
+      void pickStyle(url, cssVar("--bg", "#0b1220")).then((style) => {
+        if (map !== mapRef.current) return;
+        if (typeof style !== "string" || latest.current.basemap !== "map") {
+          streetRequested.current = false;
+          return;
+        }
+        map.setStyle(style, {
+          transformStyle: (before, streets) => {
+            if (!before) return streets;
+            const layers = streets.layers.map((layer) => {
+              const visibility = layer.layout?.visibility === "none" ? "none" : "visible";
+              baseIds.current.set(layer.id, visibility);
+              return latest.current.basemap === "map" ? layer
+                : { ...layer, layout: { ...layer.layout, visibility: "none" as const } };
+            });
+            return { ...streets, sources: { ...streets.sources, ...before.sources },
+              layers: [before.layers[0], ...layers, ...before.layers.slice(1)] };
+          },
+        });
+      });
+    }
+  }, [applyWaterStyle]);
 
   function applyFocus() {
     const map = mapRef.current;
@@ -307,7 +365,7 @@ export function LakeMap(props: Props) {
   }
 
   useEffect(() => { applyExtents(); }, [month, series, lakes]);
-  useEffect(() => { applyToggles(); }, [ghost, basemap]);
+  useEffect(() => { applyToggles(); }, [ghost, basemap, applyToggles]);
   useEffect(() => { applyFocus(); }, [focus, lakes]);
 
   useEffect(() => {
@@ -326,30 +384,7 @@ export function LakeMap(props: Props) {
     map.easeTo({ center: flyTo.center, zoom: flyTo.zoom, duration: reduce ? 0 : 600 });
   }, [flyTo]);
 
-  // Emphasise one lake (hovered table row or polygon) and quieten the others.
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !readyRef.current) return;
-    for (const l of lakes) {
-      if (!map.getLayer(`extent-fill-${l.id}`)) continue;
-      const on = props.highlight === l.id;
-      const dim = props.highlight != null && !on;
-      map.setPaintProperty(`extent-fill-${l.id}`, "fill-opacity", dim ? 0.35 : on ? 0.95 : 0.78);
-      map.setPaintProperty(`extent-line-${l.id}`, "line-width", on ? 2.6 : 0.8);
-    }
-  }, [props.highlight, lakes]);
-
-  // Re-apply once the map reports ready (effects above ran before 'load').
-  useEffect(() => {
-    const el = container.current as unknown as { __apply?: () => void } | null;
-    const t = window.setInterval(() => {
-      if (readyRef.current) {
-        el?.__apply?.();
-        window.clearInterval(t);
-      }
-    }, 200);
-    return () => window.clearInterval(t);
-  }, []);
+  useEffect(() => { applyWaterStyle(); }, [props.highlight, lakes, applyWaterStyle]);
 
   return (
     // MapLibre sets `position: relative` on its container, which would override a caller's

@@ -317,3 +317,7 @@ map uses, in one shared frame. Months with no usable scene are not offered, so n
 under it applies the digest's uncertainty rule (a difference inside the combined uncertainty is "not a clear change")
 and warns when the two months came from different sensors. A swipe hides the part of each outline under the other
 side; the dropdowns and numbers carry the same information for anyone who cannot use the slider.
+
+## D-047 Satellite-first lake explorer
+
+The explorer opens on the 2025 EOX mosaic. A georeferenced Bengaluru overview is bundled with the site so the study area stays visible while higher-resolution tiles stream or if the tile host fails. Water masks use a translucent fill and a pale shoreline on imagery. The permanent imagery credit identifies the year separately from the observation slider. The street style loads when requested. Earlier shared month links with an implicit street basemap retain that view.

@@ -27,3 +27,7 @@ Where the two conflict, the stricter upstream licence governs that specific file
 **CC BY-SA 4.0** (share-alike), not CC BY. It also carries WorldCover-derived fields (CC BY 4.0).
 Attribute: "Wikipedia contributors, 'Lakes in Bengaluru' (revision recorded per feature), CC BY-SA 4.0".
 It is kept as a separate file so that its share-alike terms do not attach to the other datasets.
+
+## Satellite basemap
+
+`web/public/bengaluru-2025.webp` is a cropped regional overview assembled from EOxCloudless by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2025). It retains the upstream [CC BY-NC-SA 4.0 licence](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [EOX terms](https://cloudless.eox.at/documentation/license).

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { LakeMap, type BaseMode, type View } from "./LakeMap";
+import { SatelliteCredit } from "./SatelliteCredit";
 import { SourceMark } from "./SourceMark";
 import { fmtHa, formatMonth, hasExtent } from "@/lib/data";
 import type { LakeIndex, Row } from "@/lib/types";
@@ -82,6 +83,7 @@ export function CompareView({ lake, rows, months, a, b, onA, onB, basemap }: Pro
         </div>
       </div>
 
+      {basemap === "satellite" && <SatelliteCredit />}
       <div className="num grid gap-3 text-sm sm:grid-cols-3" aria-live="polite">
         <p>
           <span className="text-muted">Before ({formatMonth(a)})</span>
