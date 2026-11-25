@@ -39,10 +39,33 @@ Phase 5 reconciles the boundary definitions.
 OpenFreeMap vector tiles and styles (`tiles.openfreemap.org`), © OpenMapTiles, data from OpenStreetMap
 (ODbL). No key. Loaded by visitors' browsers at view time; not stored in this repository.
 
-The explorer opens on **Satellite**. The **Streets** option uses OpenFreeMap. The satellite basemap is EOxCloudless 2025 by EOX IT
+The explorer opens on **Monthly imagery**. The **Streets** option uses OpenFreeMap. The optional annual reference basemap is EOxCloudless 2025 by EOX IT
 Services GmbH (`tiles.maps.eox.at`; contains modified Copernicus Sentinel data 2025), free for
 non-commercial use with attribution. The map streams detail tiles and serves a bundled overview for the Bengaluru area.
 The overview stitches the unaltered colours of WMTS tiles from layer `s2cloudless-2025_3857`,
 Google matrix level 11, columns 1464 through 1467 and rows 948 through 950, into one WebP.
-Retrieved 2026-11-25. The annual mosaic is geographic context for every observation month.
+Retrieved 2026-11-25. The fixed mosaic is shown only when the annual reference option is selected.
 See the [EOX map service](https://maps.eox.at/) and [imagery licence](https://cloudless.eox.at/documentation/license).
+
+## Dated Sentinel-2 imagery
+
+Monthly imagery uses the Sentinel-2 L2A `visual` true-colour asset. From the archived candidate scenes
+dated within each month, we choose the lowest whole-scene cloud percentage and break ties by item ID.
+All lakes in the view share one acquisition date. A lake may be cloudy or outside a valid swath, and
+its water measurement can come from a different optical date or radar. The linked STAC item identifies
+the exact acquisition. No temporal interpolation or alternate-year filling is used.
+The overview is resampled in Web Mercator, and detail tiles use the same item and asset.
+Contains modified Copernicus Sentinel data. [Planetary Computer collection](https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a).
+
+## Mapped water bodies
+
+`web/public/data/city-lakes.geojson` is a separate OpenStreetMap-derived directory (ODbL 1.0),
+built from the [Karnataka extract](https://download.openstreetmap.fr/extracts/asia/india/karnataka.osm.pbf).
+The extract was published on 25 November 2026. Each feature links to its source way or relation.
+The directory includes named mapped water polygons with representative points inside the configured
+study rectangle. It includes tanks and ponds. Features overlapping a monitored outline by more than 80%
+of the smaller polygon are omitted to avoid duplicate listings. This is a map inventory, not an official
+citywide census. Geometry is simplified for display; it does not describe historical shorelines.
+
+To refresh the directory, install `pipeline[directory]` and run
+`python pipeline/scripts/city_lakes.py path/to/karnataka.osm.pbf`.

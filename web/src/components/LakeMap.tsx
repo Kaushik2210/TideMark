@@ -4,9 +4,9 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useCallback, useEffect, useRef } from "react";
 import type { Map as MLMap, GeoJSONSource, Marker } from "maplibre-gl";
 import { getJson, withBase } from "@/lib/data";
-import type { LakeIndex, Row } from "@/lib/types";
+import type { CityLake, SceneArchive, LakeIndex, Row } from "@/lib/types";
 
-export type BaseMode = "map" | "satellite" | "none";
+export type BaseMode = "monthly" | "map" | "satellite" | "none";
 
 export interface View {
   center: [number, number];
@@ -27,6 +27,8 @@ export interface FlyTo {
 
 interface Props {
   month: string;
+  archive?: SceneArchive;
+  places?: CityLake[];
   lakes: LakeIndex[];
   series: Record<string, Row[]>;
   ghost: boolean;
@@ -87,6 +89,7 @@ export function LakeMap(props: Props) {
   const markersRef = useRef<Marker[]>([]);
   const readyRef = useRef(false);
   const baseIds = useRef(new Map<string, "visible" | "none">());
+  const displayedScene = useRef<string | null>(null);
   const streetRequested = useRef(false);
   const latest = useRef(props);
   latest.current = props;
@@ -152,6 +155,18 @@ export function LakeMap(props: Props) {
             source: "outlines",
             paint: { "line-color": cs.muted, "line-width": 1.4, "line-dasharray": [3, 2] },
           });
+          if (latest.current.places) {
+            m.addSource("places", { type: "geojson", data: withBase("/data/city-lakes.geojson"),
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>' });
+            m.addLayer({ id: "place-fill", type: "fill", source: "places",
+              paint: { "fill-color": cs.optical, "fill-opacity": 0.025 } });
+            m.addLayer({ id: "place-line", type: "line", source: "places",
+              paint: { "line-color": "#d5ede8", "line-width": 1, "line-opacity": 0.65 } });
+            m.on("click", "place-fill", e => {
+              const id = e.features?.[0]?.properties.id;
+              if (id) latest.current.onSelectLake?.(id);
+            });
+          }
           for (const l of latest.current.lakes) {
             m.addSource(`extent-${l.id}`, { type: "geojson", data: EMPTY as never });
             m.addLayer({
@@ -265,6 +280,7 @@ export function LakeMap(props: Props) {
       markersRef.current.forEach((m) => m.remove());
       markersRef.current = [];
       readyRef.current = false;
+      displayedScene.current = null;
       streetRequested.current = false;
       streetLayers.clear();
       map?.remove();
@@ -301,7 +317,7 @@ export function LakeMap(props: Props) {
     const map = mapRef.current;
     if (!map || !readyRef.current) return;
     const { basemap, highlight, lakes } = latest.current;
-    const satellite = basemap === "satellite";
+    const satellite = basemap === "satellite" || basemap === "monthly";
     for (const lake of lakes) {
       const selected = highlight === lake.id;
       const dim = Boolean(highlight && !selected);
@@ -310,6 +326,31 @@ export function LakeMap(props: Props) {
       map.setPaintProperty(`extent-line-${lake.id}`, "line-width", selected ? 2.6 : satellite ? 1.5 : 0.8);
       map.setPaintProperty(`extent-line-${lake.id}`, "line-color", satellite ? "#f2ffff" : cssVar("--fg", "#e6edf7"));
     }
+  }, []);
+
+  const applyScene = useCallback(() => {
+    const map = mapRef.current;
+    if (!map || !readyRef.current) return;
+    const { basemap, archive, month } = latest.current;
+    const scene = basemap === "monthly" ? archive?.months[month] : undefined;
+    if ((scene?.item ?? null) === displayedScene.current) return;
+    for (const id of ["scene-detail", "scene-overview"]) {
+      if (map.getLayer(id)) map.removeLayer(id);
+      if (map.getSource(id)) map.removeSource(id);
+    }
+    displayedScene.current = scene?.item ?? null;
+    if (!archive || !scene) return;
+    const [w, s, e, n] = archive.bbox;
+    map.addSource("scene-overview", { type: "image", url: withBase("/data/scenes/" + scene.file),
+      coordinates: [[w, n], [e, n], [e, s], [w, s]] });
+    map.addLayer({ id: "scene-overview", source: "scene-overview", type: "raster",
+      paint: { "raster-fade-duration": 0 } }, "outline-line");
+    const url = "https://planetarycomputer.microsoft.com/api/data/v1/item/tiles/WebMercatorQuad/{z}/{x}/{y}.png";
+    const params = new URLSearchParams({ collection: "sentinel-2-l2a", item: scene.item, assets: "visual" });
+    map.addSource("scene-detail", { type: "raster", tiles: [url + "?" + params], tileSize: 256,
+      bounds: archive.bbox, minzoom: 12, maxzoom: 14 });
+    map.addLayer({ id: "scene-detail", source: "scene-detail", type: "raster", minzoom: 12,
+      paint: { "raster-fade-duration": 0 } }, "outline-line");
   }, []);
 
   const applyToggles = useCallback(() => {
@@ -323,6 +364,7 @@ export function LakeMap(props: Props) {
     for (const id of ["city-overview", "eox"]) {
       map.setLayoutProperty(id, "visibility", mode === "satellite" ? "visible" : "none");
     }
+    applyScene();
     applyWaterStyle();
     if (mode === "map" && !streetRequested.current) {
       streetRequested.current = true;
@@ -348,13 +390,21 @@ export function LakeMap(props: Props) {
         });
       });
     }
-  }, [applyWaterStyle]);
+  }, [applyWaterStyle, applyScene]);
 
   function applyFocus() {
     const map = mapRef.current;
     if (!map || !readyRef.current) return;
     const { lakes, focus } = latest.current;
     const set = focus === "all" ? lakes : lakes.filter((l) => l.id === focus);
+    const other = latest.current.places?.find(p => p.id === focus);
+    if (map.getLayer("place-line")) map.setPaintProperty("place-line", "line-width",
+      ["case", ["==", ["get", "id"], focus], 3, 1]);
+    if (other) {
+      const [w, s, e, n] = other.bbox;
+      map.fitBounds([[w, s], [e, n]], { padding: 56, maxZoom: 15, duration: 0 });
+      return;
+    }
     if (!set.length) return;
     const w = Math.min(...set.map((l) => l.bbox[0]));
     const s = Math.min(...set.map((l) => l.bbox[1]));
@@ -364,6 +414,7 @@ export function LakeMap(props: Props) {
     map.fitBounds([[w, s], [e, n]], { padding: 56, duration: reduce ? 0 : 500, maxZoom: 15 });
   }
 
+  useEffect(() => { applyScene(); }, [month, applyScene]);
   useEffect(() => { applyExtents(); }, [month, series, lakes]);
   useEffect(() => { applyToggles(); }, [ghost, basemap, applyToggles]);
   useEffect(() => { applyFocus(); }, [focus, lakes]);

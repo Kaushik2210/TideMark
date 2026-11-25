@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { SceneStrip } from "./SceneStrip";
 import { SatelliteCredit } from "./SatelliteCredit";
 import { CompareView } from "./CompareView";
 import { LakeMap, type BaseMode, type FlyTo, type GhostProps } from "./LakeMap";
@@ -12,7 +13,7 @@ import { AnimatedNumber } from "./AnimatedNumber";
 import { MiniTrend } from "./MiniTrend";
 import { MOTION_OK, registerGsap } from "@/lib/motion";
 import { ShareButton } from "./ShareButton";
-import type { LakeIndex, Row, Validation } from "@/lib/types";
+import type { CityLake, SceneArchive, LakeIndex, Row, Validation } from "@/lib/types";
 
 interface GhostFeature {
   properties: GhostProps & { worldcover_2021_builtup_frac?: number | null };
@@ -76,7 +77,7 @@ function Switch({ id, checked, onChange, label, hint }: { id: string; checked: b
   );
 }
 
-export function MapExplorer() {
+export function MapExplorer({ archive, places }: { archive: SceneArchive; places: CityLake[] }) {
   const [phase, setPhase] = useState<"loading" | "ready" | "error">("loading");
   const [lakes, setLakes] = useState<LakeIndex[]>([]);
   const [series, setSeries] = useState<Record<string, Row[]>>({});
@@ -84,7 +85,7 @@ export function MapExplorer() {
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [ghost, setGhost] = useState(false);
-  const [basemap, setBasemap] = useState<BaseMode>("satellite");
+  const [basemap, setBasemap] = useState<BaseMode>("monthly");
   const [focus, setFocus] = useState("all");
   const [mode, setMode] = useState<"time" | "compare">("time");
   const [cmpLake, setCmpLake] = useState("bellandur");
@@ -114,8 +115,8 @@ export function MapExplorer() {
         const hl = q.get("lake");
         const hb = q.get("base");
         if (hm && d.months.includes(hm)) setIdx(d.months.indexOf(hm));
-        if (hl && d.lakes.some((l) => l.id === hl)) setFocus(hl);
-        if (hb === "map" || hb === "satellite" || hb === "none") setBasemap(hb);
+        if (hl && (d.lakes.some((l) => l.id === hl) || places.some(l => l.id === hl))) setFocus(hl);
+        if (hb === "monthly" || hb === "map" || hb === "satellite" || hb === "none") setBasemap(hb);
         else if (hm || hl) setBasemap("map"); // Older shared links used implicit streets.
         if (q.get("ghost") === "1") setGhost(true);
         setCmpLake(d.lakes[0].id);
@@ -129,7 +130,7 @@ export function MapExplorer() {
     return () => {
       cancelled = true;
     };
-  }, [reloadKey]);
+  }, [reloadKey, places]);
 
   useEffect(() => {
     if (!playing) return;
@@ -185,9 +186,11 @@ export function MapExplorer() {
   }, [phase]);
 
   const month = months[idx];
+  const scene = archive.months[month];
+  const place = places.find(p => p.id === focus);
   const sel = useMemo(() => lakes.map((l) => ({ lake: l, row: byMonth(series[l.id] ?? []).get(month) })), [lakes, series, month]);
   const missing = sel.filter((s) => !hasExtent(s.row)).length;
-  const cmpLakeObj = lakes.find((l) => l.id === cmpLake) ?? lakes[0];
+  const cmpLakeObj = lakes.find((l) => l.id === cmpLake) ?? places.find(l => l.id === cmpLake) ?? lakes[0];
   const moments = useMemo(() => {
     if (!validation) return [];
     const nameOf = (id: string) => (lakes.find((l) => l.id === id)?.name ?? id).replace(" (Halasuru Kere)", "").replace(" Lake", "");
@@ -236,6 +239,8 @@ export function MapExplorer() {
           <>
             <div className="relative h-[54dvh] min-h-80 lg:h-auto lg:flex-1">
               <LakeMap
+                archive={archive}
+                places={places}
                 month={month}
                 lakes={lakes}
                 series={series}
@@ -251,6 +256,13 @@ export function MapExplorer() {
                 ariaLabel="Map of Bengaluru lakes showing open-water extent for the selected month"
                 className="absolute inset-0"
               />
+              {basemap === "monthly" && mapStatus !== "unsupported" && (
+                <div className="scene-caption">
+                  <span>Sentinel-2 · True colour</span>
+                  <strong>{place?.name.split(" · ")[0] ?? lakes.find(l => l.id === focus)?.name.split(" (")[0] ?? "Bengaluru"}</strong>
+                  {scene ? <a href={`https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-2-l2a/items/${scene.item}`}>Acquired {scene.date}</a> : <small>No optical scene this month</small>}
+                </div>
+              )}
               {mapStatus === "unsupported" ? (
                 <div role="status" className="absolute inset-0 grid place-items-center bg-bg p-6 text-center">
                   <p className="max-w-sm">The interactive map needs WebGL, which is not available here. The table beside it and the <Link className="underline" href="/lakes/">lake pages</Link> show the same data.</p>
@@ -258,17 +270,18 @@ export function MapExplorer() {
               ) : null}
             </div>
             <div className="border-t border-border bg-surface px-4 py-2">
-              <SourceLegend />
+              {place ? <p className="text-sm text-muted"><a className="underline" href={place.osm}>Mapped outline · OpenStreetMap contributors</a></p> : <SourceLegend />}
               {basemap === "satellite" && mapStatus !== "unsupported" && <SatelliteCredit />}
             </div>
-            <div className="border-t border-border bg-surface px-4 py-3 sm:px-6">
+            <div className="scene-console border-t border-border bg-surface px-4 py-3 sm:px-6">
+              {basemap === "monthly" && <SceneStrip archive={archive} months={months} index={idx} select={i => { setPlaying(false); setIdx(i); }} />}
               <TimeSlider months={months} idx={idx} onIdx={(i) => { setPlaying(false); setIdx(i); }} lakes={lakes} series={series} playing={playing} onTogglePlay={() => setPlaying((p) => !p)} />
             </div>
           </>
         ) : (
           <div className="overflow-y-auto p-4 sm:p-6">
             {cmpLakeObj ? (
-              <CompareView lake={cmpLakeObj} rows={series[cmpLakeObj.id] ?? []} months={months} a={cmpA} b={cmpB} onA={setCmpA} onB={setCmpB} basemap={basemap} />
+              <CompareView key={cmpLakeObj.id} archive={archive} lake={cmpLakeObj} rows={series[cmpLakeObj.id] ?? []} months={months} a={cmpA} b={cmpB} onA={setCmpA} onB={setCmpB} basemap={basemap} />
             ) : null}
           </div>
         )}
@@ -276,15 +289,15 @@ export function MapExplorer() {
 
       <aside ref={asideRef} aria-label="Details and controls" className="space-y-6 border-t border-border p-4 sm:p-6 lg:h-[calc(100dvh-3.5rem)] lg:overflow-y-auto lg:border-l lg:border-t-0">
         <div>
-          <h1 className="font-serif text-3xl font-semibold leading-tight">Bengaluru&apos;s lakes, seen from space</h1>
+          <h1 className="font-serif text-4xl font-medium leading-[1.03] tracking-tight sm:text-5xl">Bengaluru&apos;s lakes, seen from space</h1>
           <p className="mt-2 text-sm text-muted">
-            Open-water area of three lakes each month since 2016, from free Sentinel satellite data.
+            Browse dated satellite imagery of Bengaluru’s lakes since 2016. Three monitored lakes also have monthly water measurements.
             Estimates carry uncertainty and are not an official assessment.
           </p>
           <div className="mt-3">
             <ShareButton
               title="Tidemark: Bengaluru lakes from space"
-              text={(focus === "all" ? "Bengaluru's lakes" : (lakes.find((l) => l.id === focus)?.name.replace(" (Halasuru Kere)", "") ?? "Lake")) + " in " + formatMonth(month) + ", from Sentinel satellite data (research estimate, not official)."}
+              text={(focus === "all" ? "Bengaluru's lakes" : (place?.name ?? lakes.find((l) => l.id === focus)?.name.replace(" (Halasuru Kere)", "") ?? "Lake")) + " in " + formatMonth(month) + ", from Sentinel satellite data (research estimate, not official)."}
               label="Share this view"
             />
           </div>
@@ -293,7 +306,12 @@ export function MapExplorer() {
 
         <div role="group" aria-label="View mode" className="grid grid-cols-2 gap-2">
           {(["time", "compare"] as const).map((m) => (
-            <button key={m} type="button" aria-pressed={mode === m} onClick={() => { setMode(m); setPlaying(false); }} className={`tap rounded-md border px-3 text-sm font-medium ${mode === m ? "border-accent bg-surface-2" : "border-border text-muted"}`}>
+            <button key={m} type="button" aria-pressed={mode === m} onClick={() => { setMode(m); setPlaying(false);
+              if (m === "compare" && focus !== "all") {
+                setCmpLake(focus);
+                setCmpB(month);
+                setCmpA(months[Math.max(0, idx - 12)]);
+              } }} className={`tap rounded-md border px-3 text-sm font-medium ${mode === m ? "border-accent bg-surface-2" : "border-border text-muted"}`}>
               {m === "time" ? "Time slider" : "Compare dates"}
             </button>
           ))}
@@ -308,13 +326,21 @@ export function MapExplorer() {
               const rows = (series[e.target.value] ?? []).filter(hasExtent);
               setCmpA(rows.find((r) => r.source === "optical")?.month ?? months[0]);
               setCmpB(rows[rows.length - 1]?.month ?? months[months.length - 1]);
-              if (l) setFocus(l.id);
+              setFocus(l?.id ?? e.target.value);
             }} className="tap w-full rounded-md border border-border bg-surface px-3 text-base">
               {lakes.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}
+              <optgroup label="Satellite imagery and mapped outline">{places.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}</optgroup>
             </select>
           </div>
         ) : (
           <div>
+            <label className="mb-1 block text-sm font-medium" htmlFor="city-lake">Find a mapped lake</label>
+            <select id="city-lake" className="tap mb-2 w-full rounded-lg border border-border bg-surface px-3" value={focus} onChange={e => setFocus(e.target.value)}>
+              <option value="all">Monitored lakes overview</option>
+              <optgroup label="Monthly measurements">{lakes.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}</optgroup>
+              <optgroup label="Satellite imagery and mapped outline">{places.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}</optgroup>
+            </select>
+            {place && <p className="mb-3 text-sm text-muted">Satellite imagery and <a className="underline" href={place.osm}>mapped outline</a>. Monthly area and health estimates are unavailable for this lake.</p>}
             <p className="text-sm text-muted" id="focus-h">Focus the map</p>
             <div role="group" aria-labelledby="focus-h" className="mt-1 flex flex-wrap gap-2">
               {[{ id: "all", name: "All lakes" }, ...lakes].map((l) => (
@@ -330,14 +356,16 @@ export function MapExplorer() {
           <div>
             <p className="text-sm font-medium" id="base-h">Base map</p>
             <div role="group" aria-labelledby="base-h" aria-describedby="base-hint" className="mt-1 flex flex-wrap gap-2">
-              {([["satellite", "Satellite"], ["map", "Streets"], ["none", "No basemap"]] as const).map(([v, label]) => (
+              {([["monthly", "Monthly imagery"], ["satellite", "2025 mosaic"], ["map", "Streets"], ["none", "No basemap"]] as const).map(([v, label]) => (
                 <button key={v} type="button" aria-pressed={basemap === v} onClick={() => setBasemap(v)} data-testid={`base-${v}`} className={`tap rounded-full border px-4 text-sm ${basemap === v ? "border-accent bg-surface-2" : "border-border"}`}>
                   {label}
                 </button>
               ))}
             </div>
             <p id="base-hint" className="mt-1 text-sm text-muted">
-              {basemap === "satellite"
+              {basemap === "monthly"
+                ? "One Sentinel-2 overpass per month. Clouds remain visible. Monthly water estimates may use another acquisition. Contains modified Copernicus Sentinel data."
+                : basemap === "satellite"
                 ? "The Sentinel-2 cloudless basemap combines imagery from 2025. Moving the time slider changes the measured water extent."
                 : basemap === "map"
                   ? "Roads and places from OpenFreeMap (OpenStreetMap data)."

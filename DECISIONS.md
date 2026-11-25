@@ -321,3 +321,11 @@ side; the dropdowns and numbers carry the same information for anyone who cannot
 ## D-047 Satellite-first lake explorer
 
 The explorer opens on the 2025 EOX mosaic. A georeferenced Bengaluru overview is bundled with the site so the study area stays visible while higher-resolution tiles stream or if the tile host fails. Water masks use a translucent fill and a pale shoreline on imagery. The permanent imagery credit identifies the year separately from the observation slider. The street style loads when requested. Earlier shared month links with an implicit street basemap retain that view.
+
+## D-048 Monthly imagery and wider lake coverage
+
+One dated city scene keeps before/after comparisons spatially consistent across monitored and newly
+mapped lakes. A local overview and contact sheet accompany on-demand detail tiles of the same scene.
+The 2025 cloudless mosaic remains an explicit reference option. City directory entries support map
+selection and sharing independently of the intensive per-lake measurement pipeline. Only monitored
+lakes with published measurements appear in the area and health comparisons.

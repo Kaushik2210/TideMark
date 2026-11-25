@@ -48,6 +48,9 @@ jobs:
           MONTHS: ${{ inputs.months || '3' }}
         run: tidemark-update --months "$MONTHS"
 
+      - name: Refresh dated satellite overviews
+        run: python -m tidemark.scene_archive
+
       - name: Pipeline tests
         working-directory: pipeline
         run: |

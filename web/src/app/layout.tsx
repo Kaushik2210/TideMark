@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { getLakes } from "@/lib/server-data";
+import { getCityLakes, getLakes } from "@/lib/server-data";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -35,7 +35,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to main content
         </a>
-        <SiteHeader lakes={getLakes().map((x) => ({ id: x.id, name: x.name, name_kn: x.name_kn }))} />
+        <SiteHeader lakes={[...getLakes().map(x => ({ id: x.id, name: x.name, name_kn: x.name_kn })),
+          ...getCityLakes().map(x => ({ id: x.id, name: x.name, name_kn: x.name_kn, mapped: true }))]} />
         <main id="main" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>

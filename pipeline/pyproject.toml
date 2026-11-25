@@ -26,7 +26,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5"]
-media = ["matplotlib>=3.8", "imageio>=2.34", "imageio-ffmpeg>=0.5"]
+directory = ["osmium>=4.0"]
+media = ["pillow>=10", "matplotlib>=3.8", "imageio>=2.34", "imageio-ffmpeg>=0.5"]
 
 [project.scripts]
 tidemark-registry = "tidemark.registry:main"

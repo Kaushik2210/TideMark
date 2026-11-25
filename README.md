@@ -63,3 +63,12 @@ Copy `.env.example` to `.env` for optional settings. Never commit `.env`.
 ## Licences
 
 Code: MIT. Derived data: CC BY 4.0, with OpenStreetMap-derived geometry remaining under ODbL.
+
+### Explore more lakes by satellite
+
+[Explore Agara Lake](https://kaushik2210.github.io/TideMark/#lake=relation-8469370&base=monthly)
+or use **Find a mapped lake** to choose another water body. Monthly imagery shows one actual
+Sentinel-2 acquisition, including any clouds, with a link to the source scene. The time slider
+and contact sheet change the image. The separate 2025 mosaic is available for geographic context.
+The wider directory provides imagery and mapped outlines. Bellandur, Varthur and Ulsoor also have
+published monthly measurements. See [data provenance](DATA_SOURCES.md).

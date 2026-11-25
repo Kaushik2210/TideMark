@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { LakeMap, type BaseMode, type View } from "./LakeMap";
 import { SatelliteCredit } from "./SatelliteCredit";
 import { SourceMark } from "./SourceMark";
 import { fmtHa, formatMonth, hasExtent } from "@/lib/data";
-import type { LakeIndex, Row } from "@/lib/types";
+import type { CityLake, SceneArchive, LakeIndex, Row } from "@/lib/types";
 
 interface Props {
-  lake: LakeIndex;
+  archive: SceneArchive;
+  lake: LakeIndex | CityLake;
   rows: Row[];
   months: string[];
   a: string;
@@ -18,7 +19,7 @@ interface Props {
   basemap: BaseMode;
 }
 
-function MonthSelect({ id, label, value, months, rows, onChange }: { id: string; label: string; value: string; months: string[]; rows: Row[]; onChange: (m: string) => void }) {
+function MonthSelect({ id, label, value, months, rows, archive, onChange }: { archive?: SceneArchive; id: string; label: string; value: string; months: string[]; rows: Row[]; onChange: (m: string) => void }) {
   const by = new Map(rows.map((r) => [r.month, r]));
   return (
     <div className="flex-1">
@@ -28,8 +29,8 @@ function MonthSelect({ id, label, value, months, rows, onChange }: { id: string;
           const r = by.get(m);
           const ok = hasExtent(r);
           return (
-            <option key={m} value={m} disabled={!ok}>
-              {formatMonth(m)}{ok ? ` · ${(r.area_ha as number).toFixed(0)} ha` : " · no usable scene"}
+            <option key={m} value={m} disabled={!ok && !archive?.months[m]}>
+              {formatMonth(m)}{ok ? ` · ${(r.area_ha as number).toFixed(0)} ha` : archive?.months[m] ? ` · ${archive.months[m].date}` : " · no usable scene"}
             </option>
           );
         })}
@@ -42,7 +43,7 @@ function MonthSelect({ id, label, value, months, rows, onChange }: { id: string;
  * Before/after comparison: two synchronised maps, the "after" one clipped to the right of a
  * divider. The divider is a native range input, so it is fully keyboard accessible.
  */
-export function CompareView({ lake, rows, months, a, b, onA, onB, basemap }: Props) {
+export function CompareView({ archive, lake, rows, months, a, b, onA, onB, basemap }: Props) {
   const [pos, setPos] = useState(50);
   const [view, setView] = useState<View | null>(null);
   const by = new Map(rows.map((r) => [r.month, r]));
@@ -60,14 +61,16 @@ export function CompareView({ lake, rows, months, a, b, onA, onB, basemap }: Pro
     onB(hi.month < lo.month ? lo.month : hi.month);
   };
 
-  const mapProps = { lakes: [lake], series: { [lake.id]: rows }, ghost: false, basemap, focus: lake.id, view, onViewChange: setView };
+  const monitored = useMemo(() => "health" in lake ? [lake] : [], [lake]);
+  const places = useMemo(() => "osm" in lake ? [lake] : undefined, [lake]);
+  const mapProps = { archive, places, lakes: monitored, series: { [lake.id]: rows }, ghost: false, basemap, focus: lake.id, view, onViewChange: setView };
   return (
     <section aria-labelledby="cmp-h" className="space-y-3">
       <h2 id="cmp-h" className="font-serif text-xl font-semibold">Compare two dates: {lake.name}</h2>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
-        <MonthSelect id="cmp-a" label="Before" value={a} months={months} rows={rows} onChange={onA} />
-        <MonthSelect id="cmp-b" label="After" value={b} months={months} rows={rows} onChange={onB} />
-        <button type="button" onClick={preset} className="tap rounded-md border border-border px-3 text-sm">Largest vs smallest</button>
+        <MonthSelect archive={basemap === "monthly" || places ? archive : undefined} id="cmp-a" label="Before" value={a} months={months} rows={rows} onChange={onA} />
+        <MonthSelect archive={basemap === "monthly" || places ? archive : undefined} id="cmp-b" label="After" value={b} months={months} rows={rows} onChange={onB} />
+        {have.length > 0 && <button type="button" onClick={preset} className="tap rounded-md border border-border px-3 text-sm">Largest vs smallest</button>}
       </div>
 
       <div className="relative h-[52dvh] min-h-72 overflow-hidden rounded-xl border border-border" data-testid="compare">
@@ -84,7 +87,8 @@ export function CompareView({ lake, rows, months, a, b, onA, onB, basemap }: Pro
       </div>
 
       {basemap === "satellite" && <SatelliteCredit />}
-      <div className="num grid gap-3 text-sm sm:grid-cols-3" aria-live="polite">
+      {basemap === "monthly" && <p className="text-sm text-muted">Sentinel-2 true colour · Before {archive.months[a]?.date ?? "unavailable"} · After {archive.months[b]?.date ?? "unavailable"}</p>}
+      {!places && <div className="num grid gap-3 text-sm sm:grid-cols-3" aria-live="polite">
         <p>
           <span className="text-muted">Before ({formatMonth(a)})</span>
           <br />
@@ -102,7 +106,7 @@ export function CompareView({ lake, rows, months, a, b, onA, onB, basemap }: Pro
           <br />
           {change === null ? "n/a" : `${change >= 0 ? "+" : ""}${change.toFixed(1)} ha${pct === null ? "" : ` (${pct >= 0 ? "+" : ""}${pct.toFixed(0)}%)`}`}
         </p>
-      </div>
+      </div>}
       {ra && rb && ra.source !== rb.source ? (
         <p className="rounded-md border border-radar p-3 text-sm">
           These two months come from different sensors ({ra.source} vs {rb.source}). Radar and optical

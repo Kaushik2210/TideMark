@@ -8,7 +8,7 @@ test.describe("command palette", () => {
     await expect(dlg).toBeVisible();
     await expect(page.getByRole("combobox", { name: "Search pages and lakes" })).toBeFocused();
     await page.keyboard.type("varthur");
-    await expect(page.getByRole("option")).toHaveCount(1);
+    await expect(dlg.getByRole("option", { name: /Varthur Lake/ }).first()).toBeVisible();
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/lakes\/varthur\/$/);
     await page.keyboard.press("Control+k");
@@ -19,7 +19,7 @@ test.describe("command palette", () => {
   test("the header button opens it, and a no-match query says so", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Search pages and lakes" }).click();
-    await page.getByRole("combobox").fill("zzzz");
+    await page.getByRole("combobox", { name: "Search pages and lakes" }).fill("zzzz");
     await expect(page.getByText("Nothing matches")).toBeVisible();
   });
 });

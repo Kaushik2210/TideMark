@@ -31,3 +31,8 @@ It is kept as a separate file so that its share-alike terms do not attach to the
 ## Satellite basemap
 
 `web/public/bengaluru-2025.webp` is a cropped regional overview assembled from EOxCloudless by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2025). It retains the upstream [CC BY-NC-SA 4.0 licence](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [EOX terms](https://cloudless.eox.at/documentation/license).
+
+The monthly images and contact-sheet thumbnails under `web/public/data/scenes/` contain modified
+Copernicus Sentinel data from the acquisition year in each filename. The source scene is identified
+in `index.json`. The separate `web/public/data/city-lakes.geojson` directory is derived from
+OpenStreetMap contributors and retains the ODbL 1.0 licence.

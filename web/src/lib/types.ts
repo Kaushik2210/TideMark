@@ -108,3 +108,7 @@ export interface RainResponse {
   direction: "more water" | "less water" | null;
   caveats: string[];
 }
+
+export interface OpticalScene { date: string; item: string; file: string; sceneCloud: number }
+export interface SceneArchive { bbox: [number, number, number, number]; months: Record<string, OpticalScene> }
+export interface CityLake { id: string; name: string; name_kn: string | null; osm: string; bbox: [number, number, number, number] }

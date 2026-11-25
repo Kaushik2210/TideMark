@@ -1,9 +1,10 @@
 "use client";
 
+import { withBase } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-export interface PaletteLake { id: string; name: string; name_kn: string | null }
+export interface PaletteLake { id: string; name: string; name_kn: string | null; mapped?: boolean }
 interface Item { id: string; label: string; hint: string; href: string; keys: string }
 
 const PAGES: Omit<Item, "id" | "keys">[] = [
@@ -32,8 +33,8 @@ export function CommandPalette({ lakes }: { lakes: PaletteLake[] }) {
     const lk = lakes.map((l) => ({
       id: `lake-${l.id}`,
       label: l.name,
-      hint: "Lake",
-      href: `/lakes/${l.id}/`,
+      hint: l.mapped ? "Satellite map" : "Lake",
+      href: l.mapped ? `/#lake=${l.id}&base=monthly` : `/lakes/${l.id}/`,
       keys: `${l.name} ${l.name_kn ?? ""} lake`.toLowerCase(),
     }));
     const rnd = lakes.length
@@ -44,7 +45,7 @@ export function CommandPalette({ lakes }: { lakes: PaletteLake[] }) {
 
   const shown = useMemo(() => {
     const t = q.trim().toLowerCase();
-    if (!t) return items;
+    if (!t) return items.filter(i => i.hint !== "Satellite map");
     const words = t.split(/\s+/);
     return items.filter((i) => words.every((w) => i.keys.includes(w)));
   }, [items, q]);
@@ -60,8 +61,14 @@ export function CommandPalette({ lakes }: { lakes: PaletteLake[] }) {
   const go = (i: Item | undefined) => {
     if (!i) return;
     close();
-    if (i.id === "random") router.push(`/lakes/${lakes[Math.floor(Math.random() * lakes.length)].id}/`);
-    else router.push(i.href);
+    const target = i.id === "random" ? items[Math.floor(Math.random() * lakes.length)].href : i.href;
+    if (target.startsWith("/#")) {
+      // A different hash on the already-open explorer must also restore the selected lake.
+      if (location.pathname === withBase("/")) {
+        location.hash = target.slice(2);
+        location.reload();
+      } else location.assign(withBase(target));
+    } else router.push(target);
   };
 
   useEffect(() => {
